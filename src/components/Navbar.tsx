@@ -4,23 +4,42 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { COMPANY_INFO } from "@/data/siteData";
 import SiteSurveyModal from "./SiteSurveyModal";
 
-interface NavDropdownItem {
+interface MegamenuItem {
+  id: string;
   title: string;
   desc: string;
   href: string;
-  icon?: string;
-  badge?: string;
+  image: string;
+  badge: string;
+  cardTitle: string;
+  cardDesc: string;
 }
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
   const [surveyModalOpen, setSurveyModalOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  // Dynamic preview states for megamenus on hover
+  const [hoveredSolutionId, setHoveredSolutionId] = useState<string>("villas");
+  const [hoveredProductId, setHoveredProductId] = useState<string>("home-luxe");
+  const [hoveredServiceId, setHoveredServiceId] = useState<string>("gold-amc");
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
+
+  // On Admin and Portal console routes, do not render marketing website header
+  if (pathname && (pathname.startsWith("/admin") || pathname.startsWith("/portal"))) {
+    return null;
+  }
 
   const handleMouseEnter = (name: string) => {
     if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
@@ -30,12 +49,13 @@ export default function Navbar() {
   const handleMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
-    }, 150);
+    }, 180);
   };
 
   useEffect(() => {
     setActiveDropdown(null);
     setMobileMenuOpen(false);
+    setMobileSubmenu(null);
   }, [pathname]);
 
   // Lock body scroll completely when mobile menu is open
@@ -50,97 +70,336 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  const solutionsDropdown: NavDropdownItem[] = [
+  // Solutions data with dynamic cards
+  const solutionsBuildingType: MegamenuItem[] = [
     {
-      title: "Residential Elevators",
-      desc: "Compact, quiet gearless lifts for private villas & duplexes",
+      id: "villas",
+      title: "Villas & Independent Homes",
+      desc: "Villas, duplexes & bungalows",
       href: "/solutions#residential",
-      icon: "🏡",
+      image: "/images/residential.png",
+      badge: "Pitless 150mm · Single Phase 220V",
+      cardTitle: "Villas & Independent Homes",
+      cardDesc: "Whisper-quiet villa elevators running on standard 220V single-phase domestic power without requiring deep pit excavation or rooftop machine rooms.",
     },
     {
-      title: "Commercial MRL Lifts",
-      desc: "High-traffic, energy-efficient lifts for offices & retail",
+      id: "apartments",
+      title: "Residential Apartments",
+      desc: "Flats, gated communities & housing societies",
+      href: "/solutions#residential",
+      image: "/images/cabin-study.png",
+      badge: "High Traffic · 6 to 13 Passengers",
+      cardTitle: "Residential Apartments",
+      cardDesc: "Energy-efficient passenger elevators engineered for gated communities, multi-storey societies, and high-frequency residential traffic across Telangana.",
+    },
+    {
+      id: "commercial",
+      title: "Commercial & Offices",
+      desc: "Office towers, malls & showrooms",
       href: "/solutions#commercial",
-      icon: "🏢",
+      image: "/images/commercial.png",
+      badge: "Speeds up to 2.5 m/s · MRL",
+      cardTitle: "Commercial & Office Towers",
+      cardDesc: "Machine Room-Less (MRL) modular elevators with intelligent collective dispatching, destination management, and LCD cabin displays.",
     },
     {
-      title: "Hospital & Stretcher Lifts",
-      desc: "Jerk-free precision leveling for patient beds & stretchers",
-      href: "/solutions#hospital",
-      icon: "🏥",
-    },
-    {
-      title: "Industrial & Heavy Freight",
-      desc: "Robust cargo lifts engineered up to 5,000 kg capacity",
+      id: "industrial",
+      title: "Industrial & Warehouses",
+      desc: "Factories, plants & goods movement",
       href: "/solutions#industrial",
-      icon: "🏭",
+      image: "/images/industrial.png",
+      badge: "Heavy Freight up to 5,000 kg",
+      cardTitle: "Industrial Goods Elevators",
+      cardDesc: "Reinforced chequered steel flooring, heavy-duty guide rails, and bi-parting doors engineered for factories, warehouses, and forklifts.",
     },
     {
-      title: "Modernization & Retrofit",
-      desc: "Upgrade legacy lifts with modern PMSM drive & VVVF safety",
-      href: "/solutions#modernization",
-      icon: "⚡",
+      id: "hotels",
+      title: "Hotels",
+      desc: "Guest & service lifts for hospitality",
+      href: "/solutions#commercial",
+      image: "/images/hero-lobby.png",
+      badge: "Hospitality Grade · Silent Drive",
+      cardTitle: "Hotels & Hospitality Lifts",
+      cardDesc: "Elegant guest elevators and discrete service lifts with custom aesthetic interior finishes, indirect lighting, and whisper leveling.",
+    },
+    {
+      id: "hospitals",
+      title: "Hospitals",
+      desc: "Patient, stretcher & bed lifts",
+      href: "/solutions#hospital",
+      image: "/images/hospital.png",
+      badge: "NBC 2016 Compliant · ±2mm Leveling",
+      cardTitle: "Hospital & Stretcher Lifts",
+      cardDesc: "Jerk-free precision leveling within ±2mm to protect patient beds, antibacterial stainless steel finishes, and emergency medical priority keys.",
     },
   ];
 
-  const productsDropdown: NavDropdownItem[] = [
+  const solutionsLiftType: MegamenuItem[] = [
     {
+      id: "dumbwaiters",
+      title: "Dumbwaiters",
+      desc: "Compact service lifts for pantries, hotels & restaurants",
+      href: "/products#dumbwaiters",
+      image: "/images/safety-panel.png",
+      badge: "50 - 250 kg · Food Grade SS",
+      cardTitle: "Dumbwaiters & Service Lifts",
+      cardDesc: "Compact stainless steel vertical dumbwaiters with bi-parting shutters for restaurants, pantries, hotels, and multi-storey residences.",
+    },
+    {
+      id: "escalators",
+      title: "Escalators & Moving Walks",
+      desc: "High traffic commercial & public transit hubs",
+      href: "/solutions#commercial",
+      image: "/images/commercial.png",
+      badge: "Public Transit Grade",
+      cardTitle: "Escalators & Moving Walks",
+      cardDesc: "Heavy-duty commercial escalators with energy-saving VVVF sleep mode, comb-plate sensors, and skirt illumination brushes.",
+    },
+  ];
+
+  const allSolutions = [...solutionsBuildingType, ...solutionsLiftType];
+  const activeSolution =
+    allSolutions.find((s) => s.id === hoveredSolutionId) || solutionsBuildingType[0];
+
+  // Products data with dynamic cards
+  const productsSeries: MegamenuItem[] = [
+    {
+      id: "home-luxe",
       title: "VL-Home Luxe Series",
       desc: "Ultra-quiet villa lifts with Italian hydraulic / PMSM drive",
       href: "/products#vl-home-luxe",
-      icon: "✨",
+      image: "/images/residential.png",
+      badge: "Pitless 150mm · Single-Phase",
+      cardTitle: "VL-Home Luxe Series",
+      cardDesc: "Ultra-quiet villa lifts with PMSM gearless drive or Italian hydraulic power pack. Ideal for luxury duplexes and private farmhouses.",
     },
     {
+      id: "commercial-mrl",
       title: "VL-Commercial MRL",
       desc: "Machine-room-less modular lifts with speeds up to 2.5 m/s",
       href: "/products#vl-commercial-mrl",
-      icon: "🚀",
+      image: "/images/commercial.png",
+      badge: "MRL Modular · 2.5 m/s",
+      cardTitle: "VL-Commercial MRL",
+      cardDesc: "No rooftop penthouse machine room required. Gearless Monadrive machine delivering 40% energy reduction and intelligent dispatch.",
     },
     {
+      id: "medicare",
       title: "VL-Medicare Series",
-      desc: "Antibacterial finishes, wide doors & NBC 2016 compliance",
+      desc: "Antibacterial finishes, bed & stretcher dimensions",
       href: "/products#vl-medicare",
-      icon: "🩺",
+      image: "/images/hospital.png",
+      badge: "NBC 2016 Stretcher Compliant",
+      cardTitle: "VL-Medicare Hospital Series",
+      cardDesc: "Antibacterial finishes, wide 1200mm telescopic doors, medical key recall, and battery automatic rescue device (ARD).",
     },
     {
+      id: "heavy-freight",
       title: "VL-Heavy Freight",
-      desc: "Industrial grade reinforced floors & bi-parting doors",
+      desc: "Industrial grade reinforced floors & bi-parting doors up to 5,000 kg",
       href: "/products#vl-heavy-freight",
-      icon: "📦",
+      image: "/images/industrial.png",
+      badge: "Payloads up to 5,000 kg",
+      cardTitle: "VL-Heavy Freight Series",
+      cardDesc: "Industrial grade reinforced steel cabin and bi-parting gates engineered for factories, warehouses, and heavy auto workshops.",
     },
     {
+      id: "panoramic",
       title: "Panoramic Glass Capsule",
       desc: "Curved 360° architectural glass lifts for luxury spaces",
       href: "/products#panoramic-capsule",
-      icon: "💎",
-    },
-    {
-      title: "OEM Elevator Components",
-      desc: "PMSM machines, controllers & door operators for B2B buyers",
-      href: "/production-hub",
-      icon: "⚙️",
-      badge: "B2B",
+      image: "/images/hero-lobby.png",
+      badge: "360° Architectural Glass",
+      cardTitle: "Panoramic Glass Capsule 360°",
+      cardDesc: "Curved laminated safety glass with titanium gold or stainless frame, offering panoramic viewing for luxury villas and atriums.",
     },
   ];
 
+  const productsComponents: MegamenuItem[] = [
+    {
+      id: "pmsm-machines",
+      title: "PMSM Gearless Traction Machines",
+      desc: "Monadrive energy-saving machines (up to 40% reduction)",
+      href: "/production-hub",
+      image: "/images/safety-panel.png",
+      badge: "Monadrive OEM Partner",
+      cardTitle: "PMSM Traction Machines",
+      cardDesc: "Permanent magnet synchronous motors with zero oil maintenance, 40% energy savings, and whisper-quiet operation.",
+    },
+    {
+      id: "vvvf-controllers",
+      title: "VVVF Microprocessor Controllers",
+      desc: "Integrated ARD, emergency recall & duplex dispatching",
+      href: "/production-hub",
+      image: "/images/safety-panel.png",
+      badge: "Integrated ARD · Duplex",
+      cardTitle: "VVVF Smart Controllers",
+      cardDesc: "Microprocessor-based control panel with integrated ARD battery backup, emergency recall, and smooth landing within ±2mm.",
+    },
+    {
+      id: "door-operators",
+      title: "Door Operators & Cabin Fixtures",
+      desc: "Center-opening & telescopic doors with full light curtains",
+      href: "/production-hub",
+      image: "/images/cabin-study.png",
+      badge: "VVVF Synchronized Doors",
+      cardTitle: "Door Operators & Fixtures",
+      cardDesc: "Smooth center-opening and telescopic automatic doors equipped with full-height 36-beam infrared light curtains.",
+    },
+  ];
+
+  const allProducts = [...productsSeries, ...productsComponents];
+  const activeProduct =
+    allProducts.find((p) => p.id === hoveredProductId) || productsSeries[0];
+
+  // Services data with dynamic cards
+  const servicesLifecycle: MegamenuItem[] = [
+    {
+      id: "gold-amc",
+      title: "Comprehensive AMC (Gold Plan)",
+      desc: "24/7 breakdown support, routine audits & all spare parts included",
+      href: "/services#comprehensive",
+      image: "/images/safety-panel.png",
+      badge: "All Spare Parts Included",
+      cardTitle: "Comprehensive Gold AMC",
+      cardDesc: "100% complete coverage: 12 monthly safety audits, 24/7 breakdown dispatch, and all replacement parts at zero out-of-pocket cost.",
+    },
+    {
+      id: "silver-amc",
+      title: "Non-Comprehensive AMC (Silver Plan)",
+      desc: "Regular monthly preventive maintenance, lubrication & safety checks",
+      href: "/services#routine",
+      image: "/images/safety-panel.png",
+      badge: "Preventive Care",
+      cardTitle: "Non-Comprehensive Silver AMC",
+      cardDesc: "Regular monthly preventive maintenance, lubrication, brake adjustments, and emergency breakdown attendance.",
+    },
+    {
+      id: "modernization",
+      title: "Lift Modernization & Retrofit",
+      desc: "Upgrade legacy geared lifts to modern silent PMSM drive & VVVF safety",
+      href: "/services#modernization",
+      image: "/images/commercial.png",
+      badge: "Geared to Gearless Overhaul",
+      cardTitle: "Modernization & Retrofit",
+      cardDesc: "Upgrade legacy geared elevators to silent PMSM gearless drive, cutting power bills by 40% and eliminating oil leaks.",
+    },
+    {
+      id: "licensing",
+      title: "Govt. Safety Inspection & Licensing",
+      desc: "Certified hoistway testing, safety certificates & renewal support",
+      href: "/services#inspection",
+      image: "/images/hospital.png",
+      badge: "Certified Testing & Renewal",
+      cardTitle: "Safety Inspection & Licensing",
+      cardDesc: "Official load deflection tests, governor trip speed calibration, and complete municipal license renewal assistance.",
+    },
+    {
+      id: "breakdown",
+      title: "24/7 Rapid Breakdown Dispatch",
+      desc: "Emergency technician response across Karimnagar & Telangana",
+      href: "/services#breakdown",
+      image: "/images/safety-panel.png",
+      badge: "< 30 Min Response",
+      cardTitle: "24/7 Rapid Breakdown Dispatch",
+      cardDesc: "GPS-dispatched mobile service vans across Karimnagar and Telangana equipped with essential spares for fast arrival.",
+    },
+  ];
+
+  const activeService =
+    servicesLifecycle.find((s) => s.id === hoveredServiceId) || servicesLifecycle[0];
+
+  // Contact dropdown data with dynamic card preview
+  const [hoveredContactId, setHoveredContactId] = useState<string>("telangana-network");
+
+  const contactOptions: MegamenuItem[] = [
+    {
+      id: "telangana-network",
+      title: "Telangana State Network & Enquiry",
+      desc: "For any enquiry: 9700 123 878 — All 33 districts covered",
+      href: "/telangana-network",
+      image: "/images/telangana-enquiry-map.jpg",
+      badge: "Direct Line: 9700 123 878",
+      cardTitle: "Telangana State Network",
+      cardDesc: "Dedicated local elevator engineering support across all 33 districts of Telangana. Direct 24/7 technical line: 9700 123 878.",
+    },
+    {
+      id: "karimnagar-hq",
+      title: "Karimnagar Central Office & Workshop",
+      desc: "Gandhi Road commercial zone — meet Ramesh Vilasagar",
+      href: "/contact",
+      image: "/images/hero-lobby.png",
+      badge: "Headquarters & Experience Center",
+      cardTitle: "Karimnagar Central Office",
+      cardDesc: "Visit our central engineering headquarters and workshop on Gandhi Road, Karimnagar for direct consultation.",
+    },
+    {
+      id: "book-survey-nav",
+      title: "Book Free Hoistway Site Survey",
+      desc: "Zero-cost laser measurement of shaft, pit & headroom",
+      href: "/book-survey",
+      image: "/images/cabin-study.png",
+      badge: "Free Engineer Visit",
+      cardTitle: "Free Hoistway Survey",
+      cardDesc: "Our senior engineer visits your building with laser meters to inspect pit, headroom, and civil shaft dimensions.",
+    },
+    {
+      id: "quote-request-nav",
+      title: "Request Instant Elevator Quotation",
+      desc: "Detailed pricing, specifications & civil drawings",
+      href: "/quote-request",
+      image: "/images/commercial.png",
+      badge: "Itemized Pricing & CAD",
+      cardTitle: "Quotation & Blueprint",
+      cardDesc: "Receive an itemized quote tailored to your architectural plans with zero hidden costs.",
+    },
+    {
+      id: "b2b-nav",
+      title: "B2B & Architect Partnership Desk",
+      desc: "Civil blueprints, tenders & bulk project pricing",
+      href: "/b2b-enquiry",
+      image: "/images/project-commercial.png",
+      badge: "Builders & Architects",
+      cardTitle: "B2B Civil Coordination",
+      cardDesc: "Dedicated civil coordination, CAD hoistway drawings, and special project pricing for builders and architects.",
+    },
+    {
+      id: "breakdown-nav",
+      title: "24/7 Breakdown & Emergency Helpline",
+      desc: "Rapid technician dispatch for trapped passengers or repairs",
+      href: "/service-request",
+      image: "/images/safety-panel.png",
+      badge: "24/7 Emergency Dispatch",
+      cardTitle: "24/7 Emergency Response",
+      cardDesc: "Immediate on-call technician dispatch across Telangana with guaranteed response time.",
+    },
+  ];
+
+  const activeContact =
+    contactOptions.find((c) => c.id === hoveredContactId) || contactOptions[0];
+
   const isActive = (href: string) => {
+    if (!pathname) return false;
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
   return (
     <>
-      {/* Clean White Architectural Header with Light Attractive Red Accents */}
-      <header className="sticky top-0 z-40 bg-white/98 backdrop-blur-md border-b border-slate-100 shadow-2xs">
+      {/* 100% Permanently Fixed / Sticky Navbar on Top with Official Logo Palette Theme */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-md border-b border-slate-100 shadow-2xs"
+        suppressHydrationWarning
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Standalone Official Logo (Image 3) */}
+            {/* Standalone Official Logo */}
             <Link
               href="/"
               className="flex items-center shrink-0 py-2 group"
               aria-label="Vision Lifts & Solutions Home"
             >
-              <div className="relative h-13 w-40 sm:w-48 transition-transform group-hover:scale-[1.02]">
+              <div className="relative h-12 w-44 sm:w-52 transition-transform group-hover:scale-[1.02]">
                 <Image
                   src="/images/vision-lifts-logo.png"
                   alt="Vision Lifts & Solutions"
@@ -159,34 +418,38 @@ export default function Navbar() {
               {/* Home */}
               <Link
                 href="/"
-                className={`relative px-2.5 py-2 text-[14px] font-medium transition-colors whitespace-nowrap ${
+                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
                   isActive("/")
                     ? "text-[#423887] font-bold"
-                    : "text-slate-600 hover:text-[#423887]"
+                    : "text-slate-700 hover:text-[#423887]"
                 }`}
               >
-                <span>Home</span>
-                {isActive("/") && (
-                  <span className="absolute -bottom-4.5 left-2 right-2 h-[2.5px] bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] rounded-full" />
-                )}
+                <span className="relative inline-block pb-1">
+                  Home
+                  {isActive("/") && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
+                  )}
+                </span>
               </Link>
 
               {/* About Us */}
               <Link
                 href="/about"
-                className={`relative px-2.5 py-2 text-[14px] font-medium transition-colors whitespace-nowrap ${
+                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
                   isActive("/about")
                     ? "text-[#423887] font-bold"
-                    : "text-slate-600 hover:text-[#423887]"
+                    : "text-slate-700 hover:text-[#423887]"
                 }`}
               >
-                <span>About Us</span>
-                {isActive("/about") && (
-                  <span className="absolute -bottom-4.5 left-2 right-2 h-[2.5px] bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] rounded-full" />
-                )}
+                <span className="relative inline-block pb-1">
+                  About
+                  {isActive("/about") && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
+                  )}
+                </span>
               </Link>
 
-              {/* Solutions Dropdown */}
+              {/* Solutions Megamenu with DYNAMIC Hover Image (Logo Palette) */}
               <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnter("solutions")}
@@ -194,13 +457,18 @@ export default function Navbar() {
               >
                 <Link
                   href="/solutions"
-                  className={`relative px-2.5 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
+                  className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1.5 ${
                     isActive("/solutions")
                       ? "text-[#423887] font-bold"
-                      : "text-slate-600 hover:text-[#423887]"
+                      : "text-slate-700 hover:text-[#423887]"
                   }`}
                 >
-                  <span>Solutions</span>
+                  <span className="relative inline-block pb-1">
+                    Solutions
+                    {isActive("/solutions") && (
+                      <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
+                    )}
+                  </span>
                   <svg
                     className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
                       activeDropdown === "solutions" ? "rotate-180 text-[#423887]" : ""
@@ -211,51 +479,156 @@ export default function Navbar() {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
                   </svg>
-                  {isActive("/solutions") && (
-                    <span className="absolute -bottom-4.5 left-2 right-2 h-[2.5px] bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] rounded-full" />
-                  )}
                 </Link>
 
-                {/* Dropdown Panel */}
+                {/* Solutions Megamenu Card */}
                 {activeDropdown === "solutions" && (
-                  <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl shadow-slate-200/70 border border-slate-100 p-2.5 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
-                    <div className="px-3 py-1.5 border-b border-slate-100 mb-1">
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                        Tailored Lift Solutions
-                      </p>
-                    </div>
-                    {solutionsDropdown.map((item) => (
-                      <Link
-                        key={item.title}
-                        href={item.href}
-                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-purple-50/50 transition-colors group"
-                      >
-                        <span className="text-lg p-1.5 rounded-lg bg-slate-50 group-hover:bg-purple-100/60 text-slate-700 transition-colors">
-                          {item.icon}
-                        </span>
+                  <div className="absolute top-full left-1/2 -translate-x-1/3 mt-2 w-[790px] max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl shadow-purple-950/10 border border-slate-100 p-6 sm:p-7 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
+                    <div className="grid grid-cols-12 gap-6">
+                      {/* Left Column: Categorized Lists */}
+                      <div className="col-span-7 space-y-4 pr-1">
                         <div>
-                          <div className="text-xs font-bold text-slate-800 group-hover:text-[#423887] transition-colors">
-                            {item.title}
-                          </div>
-                          <div className="text-[11px] text-slate-500 line-clamp-1">
-                            {item.desc}
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-[#863078] mb-2">
+                            By building type
+                          </p>
+                          <div className="space-y-1">
+                            {solutionsBuildingType.map((item) => {
+                              const isHovered = hoveredSolutionId === item.id;
+                              return (
+                                <Link
+                                  key={item.id}
+                                  href={item.href}
+                                  onMouseEnter={() => setHoveredSolutionId(item.id)}
+                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
+                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
+                                  }`}
+                                >
+                                  <div>
+                                    <div
+                                      className={`text-[13px] font-bold transition-colors leading-snug ${
+                                        isHovered
+                                          ? "text-[#423887]"
+                                          : "text-slate-900 group-hover:text-[#423887]"
+                                      }`}
+                                    >
+                                      {item.title}
+                                    </div>
+                                    <div className="text-[11px] text-slate-400 group-hover:text-slate-500 transition-colors">
+                                      {item.desc}
+                                    </div>
+                                  </div>
+                                  <span
+                                    className={`text-xs font-semibold pl-2 transition-all ${
+                                      isHovered
+                                        ? "text-[#423887] translate-x-1"
+                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
+                                    }`}
+                                  >
+                                    ›
+                                  </span>
+                                </Link>
+                              );
+                            })}
                           </div>
                         </div>
-                      </Link>
-                    ))}
-                    <div className="pt-2 mt-1 border-t border-slate-100">
-                      <Link
-                        href="/solutions"
-                        className="block text-center text-xs font-bold text-[#423887] hover:text-[#ff1f38] py-1"
-                      >
-                        View All Engineering Solutions →
-                      </Link>
+
+                        <div className="pt-2 border-t border-slate-100">
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-[#863078] mb-2">
+                            Type of lifts
+                          </p>
+                          <div className="space-y-1">
+                            {solutionsLiftType.map((item) => {
+                              const isHovered = hoveredSolutionId === item.id;
+                              return (
+                                <Link
+                                  key={item.id}
+                                  href={item.href}
+                                  onMouseEnter={() => setHoveredSolutionId(item.id)}
+                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
+                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
+                                  }`}
+                                >
+                                  <div>
+                                    <div
+                                      className={`text-[13px] font-bold transition-colors leading-snug ${
+                                        isHovered
+                                          ? "text-[#423887]"
+                                          : "text-slate-900 group-hover:text-[#423887]"
+                                      }`}
+                                    >
+                                      {item.title}
+                                    </div>
+                                    <div className="text-[11px] text-slate-400 group-hover:text-slate-500 transition-colors">
+                                      {item.desc}
+                                    </div>
+                                  </div>
+                                  <span
+                                    className={`text-xs font-semibold pl-2 transition-all ${
+                                      isHovered
+                                        ? "text-[#423887] translate-x-1"
+                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
+                                    }`}
+                                  >
+                                    ›
+                                  </span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Column: DYNAMIC Cabin Card on Hover */}
+                      <div className="col-span-5 border-l border-slate-100 pl-6 flex flex-col justify-between">
+                        <div>
+                          <div className="relative h-44 w-full rounded-2xl overflow-hidden shadow-sm border border-slate-100 bg-slate-900 transition-all">
+                            <Image
+                              key={activeSolution.image}
+                              src={activeSolution.image}
+                              alt={activeSolution.cardTitle}
+                              fill
+                              className="object-cover transition-opacity duration-300 animate-in fade-in"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                            <div className="absolute bottom-2.5 left-3 right-3 text-white text-[10px] font-semibold tracking-wider uppercase opacity-95">
+                              {activeSolution.badge}
+                            </div>
+                          </div>
+
+                          <h4 className="text-[15px] font-extrabold text-slate-900 mt-4 tracking-tight transition-all">
+                            {activeSolution.cardTitle}
+                          </h4>
+                          <p className="text-[12px] text-slate-500 leading-relaxed mt-1 line-clamp-3">
+                            {activeSolution.cardDesc}
+                          </p>
+
+                          <Link
+                            href={activeSolution.href}
+                            className="inline-flex items-center gap-1 text-[12px] font-bold text-[#423887] underline underline-offset-4 hover:text-[#863078] transition-colors mt-3"
+                          >
+                            Explore {activeSolution.title.split("&")[0]} specs →
+                          </Link>
+                        </div>
+
+                        <div className="pt-4 border-t border-slate-100 mt-4">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setActiveDropdown(null);
+                              setSurveyModalOpen(true);
+                            }}
+                            className="w-full py-2.5 px-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-bold text-center transition-all shadow-xs"
+                          >
+                            Book a Free Site Survey
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Products Dropdown */}
+              {/* Products Megamenu with DYNAMIC Hover Image */}
               <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnter("products")}
@@ -263,13 +636,18 @@ export default function Navbar() {
               >
                 <Link
                   href="/products"
-                  className={`relative px-2.5 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
+                  className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1.5 ${
                     isActive("/products")
                       ? "text-[#423887] font-bold"
-                      : "text-slate-600 hover:text-[#423887]"
+                      : "text-slate-700 hover:text-[#423887]"
                   }`}
                 >
-                  <span>Products</span>
+                  <span className="relative inline-block pb-1">
+                    Products
+                    {isActive("/products") && (
+                      <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
+                    )}
+                  </span>
                   <svg
                     className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
                       activeDropdown === "products" ? "rotate-180 text-[#423887]" : ""
@@ -280,499 +658,802 @@ export default function Navbar() {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
                   </svg>
-                  {isActive("/products") && (
-                    <span className="absolute -bottom-4.5 left-2 right-2 h-[2.5px] bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] rounded-full" />
-                  )}
                 </Link>
 
-                {/* Dropdown Panel */}
+                {/* Products Megamenu Card */}
                 {activeDropdown === "products" && (
-                  <div className="absolute top-full left-0 mt-2 w-84 bg-white rounded-2xl shadow-xl shadow-slate-200/70 border border-slate-100 p-2.5 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
-                    <div className="px-3 py-1.5 border-b border-slate-100 mb-1">
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                        Elevator Product Lineup
-                      </p>
-                    </div>
-                    {productsDropdown.map((item) => (
-                      <Link
-                        key={item.title}
-                        href={item.href}
-                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-purple-50/50 transition-colors group"
-                      >
-                        <span className="text-lg p-1.5 rounded-lg bg-slate-50 group-hover:bg-purple-100/60 text-slate-700 transition-colors">
-                          {item.icon}
-                        </span>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-slate-800 group-hover:text-[#423887] transition-colors">
-                              {item.title}
-                            </span>
-                            {item.badge && (
-                              <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-purple-50 text-[#423887] border border-purple-100">
-                                {item.badge}
-                              </span>
-                            )}
-                          </div>
-                          <div className="text-[11px] text-slate-500 line-clamp-1">
-                            {item.desc}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[790px] max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl shadow-purple-950/10 border border-slate-100 p-6 sm:p-7 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
+                    <div className="grid grid-cols-12 gap-6">
+                      <div className="col-span-7 space-y-4 pr-1">
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-[#863078] mb-2">
+                            By elevator series
+                          </p>
+                          <div className="space-y-1">
+                            {productsSeries.map((item) => {
+                              const isHovered = hoveredProductId === item.id;
+                              return (
+                                <Link
+                                  key={item.id}
+                                  href={item.href}
+                                  onMouseEnter={() => setHoveredProductId(item.id)}
+                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
+                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
+                                  }`}
+                                >
+                                  <div>
+                                    <div
+                                      className={`text-[13px] font-bold transition-colors leading-snug ${
+                                        isHovered
+                                          ? "text-[#423887]"
+                                          : "text-slate-900 group-hover:text-[#423887]"
+                                      }`}
+                                    >
+                                      {item.title}
+                                    </div>
+                                    <div className="text-[11px] text-slate-400 group-hover:text-slate-500 transition-colors">
+                                      {item.desc}
+                                    </div>
+                                  </div>
+                                  <span
+                                    className={`text-xs font-semibold pl-2 transition-all ${
+                                      isHovered
+                                        ? "text-[#423887] translate-x-1"
+                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
+                                    }`}
+                                  >
+                                    ›
+                                  </span>
+                                </Link>
+                              );
+                            })}
                           </div>
                         </div>
-                      </Link>
-                    ))}
-                    <div className="pt-2 mt-1 border-t border-slate-100">
-                      <Link
-                        href="/products"
-                        className="block text-center text-xs font-bold text-[#423887] hover:text-[#ff1f38] py-1"
-                      >
-                        Explore Complete Technical Catalog →
-                      </Link>
+
+                        <div className="pt-2 border-t border-slate-100">
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-[#863078] mb-2">
+                            B2B Components & Hub
+                          </p>
+                          <div className="space-y-1">
+                            {productsComponents.map((item) => {
+                              const isHovered = hoveredProductId === item.id;
+                              return (
+                                <Link
+                                  key={item.id}
+                                  href={item.href}
+                                  onMouseEnter={() => setHoveredProductId(item.id)}
+                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
+                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
+                                  }`}
+                                >
+                                  <div>
+                                    <div
+                                      className={`text-[13px] font-bold transition-colors leading-snug ${
+                                        isHovered
+                                          ? "text-[#423887]"
+                                          : "text-slate-900 group-hover:text-[#423887]"
+                                      }`}
+                                    >
+                                      {item.title}
+                                    </div>
+                                    <div className="text-[11px] text-slate-400 group-hover:text-slate-500 transition-colors">
+                                      {item.desc}
+                                    </div>
+                                  </div>
+                                  <span
+                                    className={`text-xs font-semibold pl-2 transition-all ${
+                                      isHovered
+                                        ? "text-[#423887] translate-x-1"
+                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
+                                    }`}
+                                  >
+                                    ›
+                                  </span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Column: Dynamic Product Card */}
+                      <div className="col-span-5 border-l border-slate-100 pl-6 flex flex-col justify-between">
+                        <div>
+                          <div className="relative h-44 w-full rounded-2xl overflow-hidden shadow-sm border border-slate-100 bg-slate-900 transition-all">
+                            <Image
+                              key={activeProduct.image}
+                              src={activeProduct.image}
+                              alt={activeProduct.cardTitle}
+                              fill
+                              className="object-cover transition-opacity duration-300 animate-in fade-in"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                            <div className="absolute bottom-2.5 left-3 right-3 text-white text-[10px] font-semibold tracking-wider uppercase opacity-95">
+                              {activeProduct.badge}
+                            </div>
+                          </div>
+
+                          <h4 className="text-[15px] font-extrabold text-slate-900 mt-4 tracking-tight">
+                            {activeProduct.cardTitle}
+                          </h4>
+                          <p className="text-[12px] text-slate-500 leading-relaxed mt-1 line-clamp-3">
+                            {activeProduct.cardDesc}
+                          </p>
+
+                          <Link
+                            href={activeProduct.href}
+                            className="inline-flex items-center gap-1 text-[12px] font-bold text-[#423887] underline underline-offset-4 hover:text-[#863078] transition-colors mt-3"
+                          >
+                            Explore full product specs →
+                          </Link>
+                        </div>
+
+                        <div className="pt-4 border-t border-slate-100 mt-4">
+                          <Link
+                            href="/quote-request"
+                            className="block w-full py-2.5 px-3 bg-[#423887] hover:bg-[#342b6e] text-white rounded-xl text-xs font-bold text-center transition-colors shadow-xs"
+                          >
+                            Request Hoistway Blueprint
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Services */}
-              <Link
-                href="/services"
-                className={`relative px-2.5 py-2 text-[14px] font-medium transition-colors whitespace-nowrap ${
-                  isActive("/services")
-                    ? "text-[#423887] font-bold"
-                    : "text-slate-600 hover:text-[#423887]"
-                }`}
+              {/* Services Megamenu with DYNAMIC Hover Image */}
+              <div
+                className="relative"
+                onMouseEnter={() => handleMouseEnter("services")}
+                onMouseLeave={handleMouseLeave}
               >
-                <span>Services</span>
-                {isActive("/services") && (
-                  <span className="absolute -bottom-4.5 left-2 right-2 h-[2.5px] bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] rounded-full" />
-                )}
-              </Link>
+                <Link
+                  href="/services"
+                  className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+                    isActive("/services")
+                      ? "text-[#423887] font-bold"
+                      : "text-slate-700 hover:text-[#423887]"
+                  }`}
+                >
+                  <span className="relative inline-block pb-1">
+                    Services
+                    {isActive("/services") && (
+                      <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
+                    )}
+                  </span>
+                  <svg
+                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
+                      activeDropdown === "services" ? "rotate-180 text-[#423887]" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Link>
 
-              {/* Safety & Tech */}
-              <Link
-                href="/safety-technology"
-                className={`relative px-2.5 py-2 text-[14px] font-medium transition-colors whitespace-nowrap ${
-                  isActive("/safety-technology")
-                    ? "text-[#423887] font-bold"
-                    : "text-slate-600 hover:text-[#423887]"
-                }`}
-              >
-                <span>Safety & Tech</span>
-                {isActive("/safety-technology") && (
-                  <span className="absolute -bottom-4.5 left-2 right-2 h-[2.5px] bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] rounded-full" />
-                )}
-              </Link>
+                {/* Services Megamenu Card */}
+                {activeDropdown === "services" && (
+                  <div className="absolute top-full left-1/2 -translate-x-2/3 mt-2 w-[770px] max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl shadow-purple-950/10 border border-slate-100 p-6 sm:p-7 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
+                    <div className="grid grid-cols-12 gap-6">
+                      <div className="col-span-7 space-y-3 pr-1">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-[#863078] mb-1">
+                          Lifecycle Care & Maintenance
+                        </p>
+                        <div className="space-y-1">
+                          {servicesLifecycle.map((item) => {
+                            const isHovered = hoveredServiceId === item.id;
+                            return (
+                              <Link
+                                key={item.id}
+                                href={item.href}
+                                onMouseEnter={() => setHoveredServiceId(item.id)}
+                                className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
+                                  isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
+                                }`}
+                              >
+                                <div>
+                                  <div
+                                    className={`text-[13px] font-bold transition-colors leading-snug ${
+                                      isHovered
+                                        ? "text-[#423887]"
+                                        : "text-slate-900 group-hover:text-[#423887]"
+                                    }`}
+                                  >
+                                    {item.title}
+                                  </div>
+                                  <div className="text-[11px] text-slate-400 group-hover:text-slate-500 transition-colors">
+                                    {item.desc}
+                                  </div>
+                                </div>
+                                <span
+                                  className={`text-xs font-semibold pl-2 transition-all ${
+                                    isHovered
+                                      ? "text-[#423887] translate-x-1"
+                                      : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
+                                  }`}
+                                >
+                                  ›
+                                </span>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
 
-              {/* Production Hub (B2B) */}
-              <Link
-                href="/production-hub"
-                className={`relative px-2.5 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1.5 ${
-                  isActive("/production-hub")
-                    ? "text-[#423887] font-bold"
-                    : "text-slate-600 hover:text-[#423887]"
-                }`}
-              >
-                <span>Production Hub</span>
-                <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.2 rounded-full bg-purple-50 text-[#423887] border border-purple-100">
-                  B2B
-                </span>
-                {isActive("/production-hub") && (
-                  <span className="absolute -bottom-4.5 left-2 right-2 h-[2.5px] bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] rounded-full" />
+                      {/* Right Column: Dynamic Service Card */}
+                      <div className="col-span-5 border-l border-slate-100 pl-6 flex flex-col justify-between">
+                        <div>
+                          <div className="relative h-44 w-full rounded-2xl overflow-hidden shadow-sm border border-slate-100 bg-slate-900 transition-all">
+                            <Image
+                              key={activeService.image}
+                              src={activeService.image}
+                              alt={activeService.cardTitle}
+                              fill
+                              className="object-cover transition-opacity duration-300 animate-in fade-in"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                            <div className="absolute bottom-2.5 left-3 right-3 text-white text-[10px] font-semibold tracking-wider uppercase opacity-95">
+                              {activeService.badge}
+                            </div>
+                          </div>
+
+                          <h4 className="text-[15px] font-extrabold text-slate-900 mt-4 tracking-tight">
+                            {activeService.cardTitle}
+                          </h4>
+                          <p className="text-[12px] text-slate-500 leading-relaxed mt-1 line-clamp-3">
+                            {activeService.cardDesc}
+                          </p>
+
+                          <Link
+                            href={activeService.href}
+                            className="inline-flex items-center gap-1 text-[12px] font-bold text-[#423887] underline underline-offset-4 hover:text-[#863078] transition-colors mt-3"
+                          >
+                            Compare AMC plans →
+                          </Link>
+                        </div>
+
+                        <div className="pt-4 border-t border-slate-100 mt-4">
+                          <Link
+                            href="/book-survey"
+                            className="block w-full py-2.5 px-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-bold text-center transition-all shadow-xs"
+                          >
+                            Book Free Safety Audit
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 )}
-              </Link>
+              </div>
 
               {/* Projects */}
               <Link
                 href="/projects"
-                className={`relative px-2.5 py-2 text-[14px] font-medium transition-colors whitespace-nowrap ${
+                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
                   isActive("/projects")
                     ? "text-[#423887] font-bold"
-                    : "text-slate-600 hover:text-[#423887]"
+                    : "text-slate-700 hover:text-[#423887]"
                 }`}
               >
-                <span>Projects</span>
-                {isActive("/projects") && (
-                  <span className="absolute -bottom-4.5 left-2 right-2 h-[2.5px] bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] rounded-full" />
-                )}
+                <span className="relative inline-block pb-1">
+                  Projects
+                  {isActive("/projects") && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
+                  )}
+                </span>
               </Link>
 
-              {/* Contact Us */}
+              {/* Safety & Tech */}
               <Link
-                href="/contact"
-                className={`relative px-2.5 py-2 text-[14px] font-medium transition-colors whitespace-nowrap ${
-                  isActive("/contact")
+                href="/safety-tech"
+                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
+                  isActive("/safety-tech") || isActive("/safety-technology")
                     ? "text-[#423887] font-bold"
-                    : "text-slate-600 hover:text-[#423887]"
+                    : "text-slate-700 hover:text-[#423887]"
                 }`}
               >
-                <span>Contact Us</span>
-                {isActive("/contact") && (
-                  <span className="absolute -bottom-4.5 left-2 right-2 h-[2.5px] bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] rounded-full" />
-                )}
+                <span className="relative inline-block pb-1">
+                  Safety & Tech
+                  {(isActive("/safety-tech") || isActive("/safety-technology")) && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
+                  )}
+                </span>
               </Link>
+
+              {/* Showcase (11 Sections) */}
+              <Link
+                href="/presentation"
+                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
+                  isActive("/presentation") || isActive("/showcase")
+                    ? "text-[#423887] font-bold"
+                    : "text-slate-700 hover:text-[#423887]"
+                }`}
+              >
+                <span className="relative inline-block pb-1">
+                  Showcase
+                  {(isActive("/presentation") || isActive("/showcase")) && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
+                  )}
+                </span>
+              </Link>
+
+              {/* Contact Dropdown with Telangana Network & 9700 123 878 */}
+              <div
+                className="relative"
+                onMouseEnter={() => handleMouseEnter("contact")}
+                onMouseLeave={handleMouseLeave}
+              >
+                <Link
+                  href="/contact"
+                  className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+                    isActive("/contact") || isActive("/telangana-network")
+                      ? "text-[#423887] font-bold"
+                      : "text-slate-700 hover:text-[#423887]"
+                  }`}
+                >
+                  <span className="relative inline-block pb-1">
+                    Contact
+                    {(isActive("/contact") || isActive("/telangana-network")) && (
+                      <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
+                    )}
+                  </span>
+                  <svg
+                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
+                      activeDropdown === "contact" ? "rotate-180 text-[#423887]" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Link>
+
+                {/* Contact Megamenu - Executive Engineering Desks & Statewide Helpline */}
+                {activeDropdown === "contact" && (
+                  <div className="absolute top-full right-0 mt-2 w-[760px] max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl shadow-purple-950/10 border border-slate-100 p-6 sm:p-7 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
+                    <div className="grid grid-cols-12 gap-6">
+                      {/* Left Column: Direct Enquiry Desks & Regional Coverage */}
+                      <div className="col-span-7 space-y-3 pr-1">
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="text-[11px] font-bold uppercase tracking-wider text-[#863078]">
+                              Direct Engineering Desks
+                            </p>
+                            <span className="text-[10px] font-bold text-slate-400">
+                              Telangana Statewide
+                            </span>
+                          </div>
+
+                          <div className="space-y-1">
+                            {contactOptions.map((item) => {
+                              const isHovered = hoveredContactId === item.id;
+                              return (
+                                <Link
+                                  key={item.id}
+                                  href={item.href}
+                                  onMouseEnter={() => setHoveredContactId(item.id)}
+                                  onClick={() => setActiveDropdown(null)}
+                                  className={`group flex items-center justify-between p-2.5 rounded-xl transition-all ${
+                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
+                                  }`}
+                                >
+                                  <div className="pr-2">
+                                    <div
+                                      className={`text-[13px] font-bold transition-colors leading-snug ${
+                                        isHovered
+                                          ? "text-[#423887]"
+                                          : "text-slate-900 group-hover:text-[#423887]"
+                                      }`}
+                                    >
+                                      {item.title}
+                                    </div>
+                                    <div className="text-[11px] text-slate-400 group-hover:text-slate-500 transition-colors line-clamp-1">
+                                      {item.desc}
+                                    </div>
+                                  </div>
+                                  <span
+                                    className={`text-xs font-semibold pl-2 transition-all shrink-0 ${
+                                      isHovered
+                                        ? "text-[#423887] translate-x-1"
+                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
+                                    }`}
+                                  >
+                                    ›
+                                  </span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Quick Contact Line Strip */}
+                        <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                          <span className="truncate">Karimnagar Central HQ & Workshop</span>
+                          <a
+                            href="tel:9848480868"
+                            className="font-bold text-slate-800 hover:text-[#423887] transition-colors shrink-0 pl-2"
+                          >
+                            +91 98484 80868
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Right Column: Dynamic Preview Card on Hover + Direct Technical Line */}
+                      <div className="col-span-5 border-l border-slate-100 pl-6 flex flex-col justify-between">
+                        <div>
+                          <div className="relative h-44 w-full rounded-2xl overflow-hidden shadow-sm border border-slate-100 bg-slate-900 transition-all group">
+                            <Image
+                              key={activeContact.image}
+                              src={activeContact.image}
+                              alt={activeContact.cardTitle}
+                              fill
+                              className="object-cover transition-opacity duration-300 animate-in fade-in"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                            <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-white/95 backdrop-blur-xs text-[9px] font-extrabold uppercase tracking-wider text-[#423887]">
+                              {activeContact.badge}
+                            </div>
+                            <div className="absolute bottom-2.5 left-3 right-3 text-white">
+                              <div className="text-[9px] text-slate-300 uppercase tracking-wider font-semibold">Central Statewide Line</div>
+                              <div className="text-lg font-black tracking-tight text-white flex items-center justify-between">
+                                <span>9700 123 878</span>
+                                <span className="text-[9px] font-bold text-emerald-400 bg-black/50 px-2 py-0.5 rounded">24/7 Live</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <h4 className="text-[14px] font-extrabold text-slate-900 mt-3 tracking-tight transition-all">
+                            {activeContact.cardTitle}
+                          </h4>
+                          <p className="text-[11px] text-slate-500 leading-relaxed mt-1 line-clamp-2">
+                            {activeContact.cardDesc}
+                          </p>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="pt-3 border-t border-slate-100 mt-3 space-y-2">
+                          <a
+                            href="tel:9700123878"
+                            className="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold text-center flex items-center justify-center gap-2 transition-all shadow-xs"
+                          >
+                            <span>📞</span>
+                            <span>Call 9700 123 878 Direct</span>
+                          </a>
+
+                          <Link
+                            href="/contact"
+                            onClick={() => setActiveDropdown(null)}
+                            className="btn-sheen block w-full py-2.5 px-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-bold text-center transition-all shadow-xs"
+                          >
+                            Open Contact & Survey Page →
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </nav>
 
-            {/* Right Action: Clean Rounded-Full Phone & CTA Button with Light Attractive Red */}
-            <div className="hidden lg:flex items-center gap-3">
-              <a
-                href={`tel:${COMPANY_INFO.phoneRaw}`}
-                className="hidden 2xl:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#423887] hover:bg-purple-50/50 transition-colors whitespace-nowrap"
-                title="Call Vision Lifts Directly"
+            {/* Right Action Cluster (Logo Color Theme - No Red) */}
+            <div className="hidden lg:flex items-center gap-3 shrink-0">
+              {/* Admin Console Link */}
+              <Link
+                href="/admin"
+                className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 hover:text-[#423887] border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-2xs"
+                title="Admin Console Access"
               >
-                <span className="w-7 h-7 rounded-full bg-purple-50 text-[#423887] flex items-center justify-center text-xs">
-                  📞
-                </span>
-                <span>{COMPANY_INFO.phone}</span>
-              </a>
+                <svg
+                  className="w-3.5 h-3.5 text-[#863078]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
+                </svg>
+                <span>Admin</span>
+              </Link>
 
-              <button
-                type="button"
-                onClick={() => setSurveyModalOpen(true)}
-                className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] hover:opacity-95 text-white shadow-sm shadow-[#863078]/25 hover:shadow-md transition-all whitespace-nowrap cursor-pointer"
+              {/* Book Site Survey CTA Button - Signature Logo Brand Gradient */}
+              <Link
+                href="/book-survey"
+                className="px-5 py-2.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white text-xs font-bold uppercase tracking-wider rounded-full transition-all shadow-md shadow-purple-950/15 whitespace-nowrap inline-flex items-center justify-center"
               >
-                Book Free Survey
-              </button>
+                Book Survey
+              </Link>
             </div>
 
-            {/* Mobile Actions: Survey Pill + Clean 3-Lines Toggle Button */}
-            <div className="flex lg:hidden items-center gap-2">
+            {/* Mobile Actions & Hamburger Button */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <Link
+                href="/book-survey"
+                className="px-3.5 py-1.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white text-[11px] font-bold uppercase tracking-wider rounded-full shadow-2xs whitespace-nowrap active:scale-95 transition-all"
+              >
+                Book Survey
+              </Link>
               <button
                 type="button"
-                onClick={() => setSurveyModalOpen(true)}
-                className="px-3.5 py-1.5 text-xs font-bold bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] text-white rounded-full uppercase tracking-wider shadow-xs cursor-pointer active:scale-95 transition-all"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+                aria-label="Toggle Navigation Menu"
               >
-                Survey
-              </button>
-
-              {/* Clean 3-Horizontal-Lines Hamburger Toggle Button */}
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(true)}
-                className="w-10 h-10 rounded-full hover:bg-slate-100 active:scale-95 flex flex-col items-center justify-center gap-1.25 transition-all focus:outline-none cursor-pointer border border-slate-200/80 bg-white"
-                aria-label="Open menu"
-                title="Open menu"
-              >
-                <span className="w-5 h-[2px] bg-slate-800 rounded-full block" />
-                <span className="w-5 h-[2px] bg-slate-800 rounded-full block" />
-                <span className="w-5 h-[2px] bg-slate-800 rounded-full block" />
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {mobileMenuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
               </button>
             </div>
           </div>
         </div>
-      </header>
 
-      {/* FULL-SCREEN Mobile Navigation Menu (Moved outside <header> to escape backdrop-filter containing block) */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 w-full h-full bg-white z-[9999] flex flex-col justify-between overflow-y-auto">
-          {/* Header & Navigation Links */}
-          <div className="w-full">
-            <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-white shrink-0 sticky top-0 z-20">
+        {/* Mobile Full-Screen Drawer */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden fixed inset-0 top-20 z-50 bg-white overflow-y-auto px-5 py-5 border-t border-slate-100">
+            <div className="flex flex-col space-y-3.5 pb-24">
+              {/* Mobile Quick Contact Strip */}
+              <div className="p-3 bg-purple-50/70 border border-purple-100 rounded-2xl flex items-center justify-between gap-2 mb-1">
+                <div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#863078]">Telangana Helpline</div>
+                  <a href="tel:9700123878" className="text-sm font-black text-slate-900 hover:text-[#423887]">
+                    9700 123 878
+                  </a>
+                </div>
+                <a
+                  href="tel:9700123878"
+                  className="px-3 py-1.5 bg-slate-900 text-white rounded-xl text-[10px] font-bold uppercase tracking-wider shadow-2xs"
+                >
+                  Call Now
+                </a>
+              </div>
               <Link
                 href="/"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center"
+                className="text-base font-bold text-slate-900 hover:text-[#423887] py-2 border-b border-slate-50"
               >
-                <div className="relative h-12 w-44">
-                  <Image
-                    src="/images/vision-lifts-logo.png"
-                    alt="Vision Lifts & Solutions"
-                    fill
-                    className="object-contain object-left"
-                    priority
-                  />
-                </div>
+                Home
               </Link>
 
+              <Link
+                href="/about"
+                className="text-base font-bold text-slate-900 hover:text-[#423887] py-2 border-b border-slate-50"
+              >
+                About
+              </Link>
+
+              {/* Mobile Solutions Accordion */}
+              <div className="border-b border-slate-50 py-2">
                 <button
                   type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 flex items-center justify-center font-bold text-lg transition-all active:scale-95 shadow-2xs cursor-pointer"
-                  aria-label="Close menu"
+                  onClick={() =>
+                    setMobileSubmenu(mobileSubmenu === "solutions" ? null : "solutions")
+                  }
+                  className="w-full flex items-center justify-between text-base font-bold text-slate-900"
                 >
-                  ✕
+                  <span>Solutions</span>
+                  <span className="text-slate-400 text-sm">
+                    {mobileSubmenu === "solutions" ? "▲" : "▼"}
+                  </span>
                 </button>
-              </div>
-
-              {/* Direct Support Hotline Strip */}
-              <div className="px-5 py-2.5 bg-purple-50/70 border-b border-purple-100/70 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-1.5 font-medium text-slate-700">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Karimnagar & Telangana HQ</span>
-                </div>
-                <a
-                  href={`tel:${COMPANY_INFO.phoneRaw}`}
-                  className="font-bold text-[#423887] hover:underline flex items-center gap-1"
-                >
-                  📞 {COMPANY_INFO.phone}
-                </a>
-              </div>
-
-              {/* Navigation Links List */}
-              <div className="p-4 space-y-1.5">
-                {/* Home */}
-                <Link
-                  href="/"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-colors ${
-                    isActive("/")
-                      ? "bg-purple-50 text-[#423887] font-bold"
-                      : "text-slate-800 hover:bg-slate-50"
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-base">🏠</span>
-                    <span>Home</span>
-                  </span>
-                  {isActive("/") && <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887]" />}
-                </Link>
-
-                {/* About Us */}
-                <Link
-                  href="/about"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-colors ${
-                    isActive("/about")
-                      ? "bg-purple-50 text-[#423887] font-bold"
-                      : "text-slate-800 hover:bg-slate-50"
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-base">🏢</span>
-                    <span>About Us</span>
-                  </span>
-                  {isActive("/about") && <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887]" />}
-                </Link>
-
-                {/* Solutions Accordion */}
-                <div className="rounded-2xl border border-slate-100 overflow-hidden bg-white">
-                  <div className="flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-800 bg-slate-50/60">
-                    <Link
-                      href="/solutions"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-3 hover:text-[#423887] flex-1 font-bold"
-                    >
-                      <span className="text-base">🛗</span>
-                      <span>Solutions</span>
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setActiveDropdown(activeDropdown === "mobile-solutions" ? null : "mobile-solutions")
-                      }
-                      className="p-1.5 text-slate-500 hover:text-slate-900"
-                      aria-label="Toggle solutions submenu"
-                    >
-                      <svg
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          activeDropdown === "mobile-solutions" ? "rotate-180 text-[#423887]" : ""
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                {mobileSubmenu === "solutions" && (
+                  <div className="mt-3 pl-3 space-y-2.5">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#863078]">
+                      By building type
+                    </p>
+                    {solutionsBuildingType.map((item) => (
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        className="block text-xs font-semibold text-slate-700 hover:text-[#423887] py-1"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  {(activeDropdown === "mobile-solutions" || isActive("/solutions")) && (
-                    <div className="px-4 py-2 bg-slate-50/30 space-y-1 border-t border-slate-100">
-                      {solutionsDropdown.map((s) => (
-                        <Link
-                          key={s.title}
-                          href={s.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:text-[#423887] hover:bg-white transition-colors"
-                        >
-                          <span>{s.icon}</span>
-                          <span>{s.title}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Products Accordion */}
-                <div className="rounded-2xl border border-slate-100 overflow-hidden bg-white">
-                  <div className="flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-800 bg-slate-50/60">
-                    <Link
-                      href="/products"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-3 hover:text-[#423887] flex-1 font-bold"
-                    >
-                      <span className="text-base">📦</span>
-                      <span>Products</span>
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setActiveDropdown(activeDropdown === "mobile-products" ? null : "mobile-products")
-                      }
-                      className="p-1.5 text-slate-500 hover:text-slate-900"
-                      aria-label="Toggle products submenu"
-                    >
-                      <svg
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          activeDropdown === "mobile-products" ? "rotate-180 text-[#423887]" : ""
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                        {item.title}
+                      </Link>
+                    ))}
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#863078] pt-2">
+                      Type of lifts
+                    </p>
+                    {solutionsLiftType.map((item) => (
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        className="block text-xs font-semibold text-slate-700 hover:text-[#423887] py-1"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
+                        {item.title}
+                      </Link>
+                    ))}
                   </div>
-
-                  {(activeDropdown === "mobile-products" || isActive("/products")) && (
-                    <div className="px-4 py-2 bg-slate-50/30 space-y-1 border-t border-slate-100">
-                      {productsDropdown.map((p) => (
-                        <Link
-                          key={p.title}
-                          href={p.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:text-[#423887] hover:bg-white transition-colors"
-                        >
-                          <span className="flex items-center gap-2.5">
-                            <span>{p.icon}</span>
-                            <span>{p.title}</span>
-                          </span>
-                          {p.badge && (
-                            <span className="text-[9px] font-black uppercase px-1.5 py-0.2 rounded-full bg-purple-50 text-[#423887] border border-purple-100">
-                              {p.badge}
-                            </span>
-                          )}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Services */}
-                <Link
-                  href="/services"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-colors ${
-                    isActive("/services")
-                      ? "bg-purple-50 text-[#423887] font-bold"
-                      : "text-slate-800 hover:bg-slate-50"
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-base">🛠️</span>
-                    <span>Services & AMC</span>
-                  </span>
-                  {isActive("/services") && <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887]" />}
-                </Link>
-
-                {/* Safety & Tech */}
-                <Link
-                  href="/safety-technology"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-colors ${
-                    isActive("/safety-technology")
-                      ? "bg-purple-50 text-[#423887] font-bold"
-                      : "text-slate-800 hover:bg-slate-50"
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-base">🛡️</span>
-                    <span>Safety & Technology</span>
-                  </span>
-                  {isActive("/safety-technology") && <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887]" />}
-                </Link>
-
-                {/* Production Hub */}
-                <Link
-                  href="/production-hub"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-colors ${
-                    isActive("/production-hub")
-                      ? "bg-purple-50 text-[#423887] font-bold"
-                      : "text-slate-800 hover:bg-slate-50"
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-base">🏭</span>
-                    <span>Production Hub</span>
-                  </span>
-                  <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-purple-50 text-[#423887] border border-purple-100">
-                    B2B
-                  </span>
-                </Link>
-
-                {/* Projects */}
-                <Link
-                  href="/projects"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-colors ${
-                    isActive("/projects")
-                      ? "bg-purple-50 text-[#423887] font-bold"
-                      : "text-slate-800 hover:bg-slate-50"
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-base">📸</span>
-                    <span>Projects Gallery</span>
-                  </span>
-                  {isActive("/projects") && <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887]" />}
-                </Link>
-
-                {/* Contact Us */}
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-colors ${
-                    isActive("/contact")
-                      ? "bg-purple-50 text-[#423887] font-bold"
-                      : "text-slate-800 hover:bg-slate-50"
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-base">📍</span>
-                    <span>Contact Us</span>
-                  </span>
-                  {isActive("/contact") && <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887]" />}
-                </Link>
+                )}
               </div>
-            </div>
 
-            {/* Bottom Actions inside Full-Screen Menu */}
-            <div className="p-5 border-t border-slate-100 bg-white space-y-3 shrink-0">
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setSurveyModalOpen(true);
-                }}
-                className="w-full py-3.5 bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold rounded-full text-xs uppercase tracking-wider text-center shadow-md shadow-[#863078]/25 transition-all cursor-pointer active:scale-98"
+              {/* Mobile Products Accordion */}
+              <div className="border-b border-slate-50 py-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setMobileSubmenu(mobileSubmenu === "products" ? null : "products")
+                  }
+                  className="w-full flex items-center justify-between text-base font-bold text-slate-900"
+                >
+                  <span>Products</span>
+                  <span className="text-slate-400 text-sm">
+                    {mobileSubmenu === "products" ? "▲" : "▼"}
+                  </span>
+                </button>
+                {mobileSubmenu === "products" && (
+                  <div className="mt-3 pl-3 space-y-2.5">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#863078]">
+                      Elevator Series
+                    </p>
+                    {productsSeries.map((item) => (
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        className="block text-xs font-semibold text-slate-700 hover:text-[#423887] py-1"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#863078] pt-2">
+                      B2B Components
+                    </p>
+                    {productsComponents.map((item) => (
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        className="block text-xs font-semibold text-slate-700 hover:text-[#423887] py-1"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Services Accordion */}
+              <div className="border-b border-slate-50 py-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setMobileSubmenu(mobileSubmenu === "services" ? null : "services")
+                  }
+                  className="w-full flex items-center justify-between text-base font-bold text-slate-900"
+                >
+                  <span>Services</span>
+                  <span className="text-slate-400 text-sm">
+                    {mobileSubmenu === "services" ? "▲" : "▼"}
+                  </span>
+                </button>
+                {mobileSubmenu === "services" && (
+                  <div className="mt-3 pl-3 space-y-2">
+                    {servicesLifecycle.map((item) => (
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        className="block text-xs font-semibold text-slate-700 hover:text-[#423887] py-1"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/projects"
+                className="text-base font-bold text-slate-900 hover:text-[#423887] py-2 border-b border-slate-50"
               >
-                Book Free Site Survey
-              </button>
+                Projects
+              </Link>
 
-              <div className="grid grid-cols-2 gap-2.5">
-                <a
-                  href={`tel:${COMPANY_INFO.phoneRaw}`}
-                  className="py-3 px-3 bg-slate-50 border border-slate-200/80 text-slate-800 font-semibold rounded-full text-xs text-center hover:bg-slate-100 flex items-center justify-center gap-2 transition-all active:scale-98"
+              <Link
+                href="/safety-tech"
+                className="text-base font-bold text-slate-900 hover:text-[#423887] py-2 border-b border-slate-50"
+              >
+                Safety & Technology
+              </Link>
+
+              <Link
+                href="/presentation"
+                className="text-base font-bold text-slate-900 hover:text-[#423887] py-2 border-b border-slate-50"
+              >
+                Showcase (11 Sections)
+              </Link>
+
+              {/* Mobile Contact Accordion */}
+              <div className="border-b border-slate-50 py-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setMobileSubmenu(mobileSubmenu === "contact" ? null : "contact")
+                  }
+                  className="w-full flex items-center justify-between text-base font-bold text-slate-900"
                 >
-                  <span>📞</span>
-                  <span>Call Now</span>
-                </a>
-                <a
-                  href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Hi%20Vision%20Lifts%2C%20I%20would%20like%20to%20enquire%20about%20an%20elevator.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="py-3 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full text-xs text-center flex items-center justify-center gap-2 transition-all active:scale-98 shadow-2xs"
-                >
-                  <span>💬</span>
-                  <span>WhatsApp</span>
-                </a>
+                  <span>Contact</span>
+                  <span className="text-slate-400 text-sm">
+                    {mobileSubmenu === "contact" ? "▲" : "▼"}
+                  </span>
+                </button>
+                {mobileSubmenu === "contact" && (
+                  <div className="mt-3 pl-3 space-y-2">
+                    <Link
+                      href="/contact"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-xs font-bold text-[#863078] py-1"
+                    >
+                      ● Telangana State Network (33 Districts Directory)
+                    </Link>
+                    <a
+                      href="tel:9700123878"
+                      className="block text-xs font-extrabold text-slate-900 py-1"
+                    >
+                      📞 Helpline: 9700 123 878
+                    </a>
+                    <Link
+                      href="/contact"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-xs font-semibold text-slate-700 hover:text-[#423887] py-1"
+                    >
+                      📍 Karimnagar Central HQ & Workshop (Gandhi Road)
+                    </Link>
+                  </div>
+                )}
               </div>
 
-              <div className="pt-1 text-center text-[10px] text-slate-400">
-                Gandhi Road, Karimnagar, Telangana · IS 14665 Certified
+              <div className="pt-4 space-y-2.5">
+                <Link
+                  href="/book-survey"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white text-xs font-bold uppercase tracking-wider rounded-xl text-center shadow-md shadow-[#863078]/25 transition-opacity"
+                >
+                  Book Free Hoistway Site Survey →
+                </Link>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href="https://wa.me/919700123878"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 px-3 bg-emerald-600 text-white text-xs font-bold rounded-xl text-center flex items-center justify-center gap-1.5 shadow-2xs"
+                  >
+                    <span>💬 WhatsApp</span>
+                  </a>
+                  <Link
+                    href="/admin"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl text-center flex items-center justify-center gap-1"
+                  >
+                    <span>🔒 Admin</span>
+                  </Link>
+                </div>
+
+                <p className="text-[10px] text-center text-slate-400 pt-1">
+                  📍 Gandhi Road, Karimnagar - 505001, Telangana
+                </p>
               </div>
             </div>
           </div>
         )}
+      </header>
 
       <SiteSurveyModal
         isOpen={surveyModalOpen}

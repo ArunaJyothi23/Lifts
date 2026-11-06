@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import FloatingActions from "@/components/FloatingActions";
+import ConditionalLayout from "@/components/ConditionalLayout";
 
 export const metadata: Metadata = {
   title: "Vision Lifts & Solutions | Premium Elevators in Karimnagar & Telangana",
@@ -27,14 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="antialiased font-sans text-slate-800 bg-white">
-        <Navbar />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <FloatingActions />
+    <html lang="en" className="overflow-x-hidden max-w-full w-full" suppressHydrationWarning>
+      <body
+        className="antialiased font-sans text-slate-800 bg-white overflow-x-hidden max-w-full w-full min-h-screen relative"
+        suppressHydrationWarning
+      >
+        <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
   );
 }
-

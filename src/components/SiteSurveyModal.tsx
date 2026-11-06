@@ -18,12 +18,36 @@ export default function SiteSurveyModal({ isOpen, onClose }: SiteSurveyModalProp
     notes: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [leadId, setLeadId] = useState("");
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          formType: "modal-survey",
+          name: formData.name,
+          phone: formData.phone,
+          city: formData.location,
+          buildingType: formData.buildingType,
+          floors: formData.floors,
+          message: formData.notes,
+        }),
+      });
+      const data = await res.json();
+      if (data.leadId) setLeadId(data.leadId);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+      setSubmitted(true);
+    }
   };
 
   const resetAndClose = () => {
@@ -38,7 +62,7 @@ export default function SiteSurveyModal({ isOpen, onClose }: SiteSurveyModalProp
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Banner */}
-        <div className="bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] text-white p-5 sm:p-6 relative shrink-0">
+        <div className="bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white p-5 sm:p-6 relative shrink-0">
           <button
             type="button"
             onClick={resetAndClose}
@@ -62,6 +86,9 @@ export default function SiteSurveyModal({ isOpen, onClose }: SiteSurveyModalProp
             <div className="text-center py-8">
               <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">
                 ✓
+              </div>
+              <div className="inline-block px-3 py-1 bg-purple-50 text-[#423887] text-[11px] font-bold uppercase tracking-wider rounded-full border border-purple-100 mb-2">
+                Booking Ref: {leadId || "SURVEY-REQUEST"}
               </div>
               <h4 className="text-lg font-bold text-slate-900 mb-1">Survey Request Received!</h4>
               <p className="text-xs text-slate-600 mb-6">
@@ -182,7 +209,7 @@ export default function SiteSurveyModal({ isOpen, onClose }: SiteSurveyModalProp
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold rounded-full shadow-md shadow-[#863078]/25 transition-all text-xs uppercase tracking-wider cursor-pointer active:scale-98"
+                  className="w-full py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold rounded-full shadow-md shadow-[#863078]/25 transition-all text-xs uppercase tracking-wider cursor-pointer active:scale-98"
                 >
                   Confirm Free Site Survey Request
                 </button>

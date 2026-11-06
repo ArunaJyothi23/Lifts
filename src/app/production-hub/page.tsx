@@ -42,7 +42,7 @@ export default function ProductionHubPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Page Header Banner (White Background) */}
-      <section className="bg-white border-b border-slate-100 py-14 lg:py-20">
+      <section className="bg-white border-b border-slate-100 py-8 sm:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
@@ -97,7 +97,7 @@ export default function ProductionHubPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap ${
                   selectedCategory === cat
-                    ? "bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] text-white shadow-xs"
+                    ? "bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white shadow-xs"
                     : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200"
                 }`}
               >
@@ -335,7 +335,7 @@ export default function ProductionHubPage() {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md hover:shadow-lg transition-all"
+                    className="w-full py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md hover:shadow-lg transition-all"
                   >
                     Request Wholesale B2B Price Quotation
                   </button>

@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { SAFETY_FEATURES_DATA, COMPANY_INFO } from "@/data/siteData";
 import SiteSurveyModal from "@/components/SiteSurveyModal";
+import TypewriterText from "@/components/TypewriterText";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function SafetyTechnologyPage() {
   const [surveyOpen, setSurveyOpen] = useState(false);
@@ -69,10 +71,13 @@ export default function SafetyTechnologyPage() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      {/* 1. ARCHITECTURAL SPLIT HERO (White Background, Red Accents & Rounded Buttons) */}
-      <section className="bg-white border-b border-slate-100 py-14 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
+      {/* 1. ARCHITECTURAL SPLIT HERO with Ambient Glow */}
+      <section className="bg-white border-b border-slate-100 py-10 sm:py-14 relative overflow-hidden animate-fade-in-up">
+        <div className="ambient-orb w-96 h-96 -top-20 -left-20 bg-purple-200/35 animate-pulse-slow" />
+        <div className="ambient-orb w-80 h-80 top-1/2 -right-16 bg-rose-200/25 animate-pulse-slow" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
@@ -83,14 +88,33 @@ export default function SafetyTechnologyPage() {
               </div>
 
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-xs font-bold text-[#423887] uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] animate-pulse" />
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#863078] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887]"></span>
+                </span>
                 IS 14665 & NBC 2016 Compliant Systems
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.12]">
                 Safety systems <br />
-                built for <span className="text-[#423887]">peace of mind.</span>
+                built for <span className="text-shimmer-brand">peace of mind.</span>
               </h1>
+
+              {/* Dynamic Typewriter text loading */}
+              <div className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-50 border border-slate-200/80 px-4 py-2.5 rounded-2xl w-fit shadow-2xs">
+                <span className="text-slate-400 font-medium">Protection standards:</span>
+                <TypewriterText
+                  words={[
+                    "Automatic Rescue Device (ARD) Anti-Trap",
+                    "Infrared Full-Height 128-Beam Light Curtains",
+                    "Instantaneous Mechanical Bi-Directional Safety Gear",
+                    "Firefighter Emergency Recall & Overload Sensors",
+                    "Real-Time CAN-Bus Electronic Diagnostics",
+                  ]}
+                  className="text-[#423887] font-extrabold"
+                  cursorClassName="bg-[#863078]"
+                />
+              </div>
 
               <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
                 Elevator safety is not an optional accessory. At Vision Lifts & Solutions, every system installed across Telangana incorporates multi-layered mechanical fail-safes, real-time electronic diagnostics, and automatic battery rescue systems.
@@ -98,26 +122,26 @@ export default function SafetyTechnologyPage() {
 
               {/* Metric Highlights */}
               <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100">
-                <div className="p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 card-glow">
                   <div className="text-2xl font-black text-slate-900">8-Tier</div>
-                  <div className="text-xs text-slate-500 font-medium">Redundant Safety</div>
+                  <div className="text-xs text-slate-500 font-medium mt-0.5">Redundant Safety</div>
                 </div>
-                <div className="p-3 rounded-2xl bg-emerald-50 border border-emerald-100">
+                <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-100 card-glow">
                   <div className="text-2xl font-black text-emerald-700">100%</div>
-                  <div className="text-xs text-emerald-700 font-medium">Anti-Trap ARD</div>
+                  <div className="text-xs text-emerald-700 font-medium mt-0.5">Anti-Trap ARD</div>
                 </div>
-                <div className="p-3 rounded-2xl bg-purple-50 border border-purple-100">
+                <div className="p-3.5 rounded-2xl bg-purple-50 border border-purple-100 card-glow">
                   <div className="text-2xl font-black text-[#423887]">&lt; 30 ms</div>
-                  <div className="text-xs text-[#423887] font-medium">Sensor Reaction</div>
+                  <div className="text-xs text-[#423887] font-medium mt-0.5">Sensor Reaction</div>
                 </div>
               </div>
 
-              {/* Action Buttons (Rounded-Full) */}
+              {/* Action Buttons */}
               <div className="pt-2 flex flex-wrap gap-3">
                 <button
                   type="button"
                   onClick={() => setSurveyOpen(true)}
-                  className="px-7 py-3.5 bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md hover:shadow-lg transition-all"
+                  className="btn-sheen px-7 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md hover:shadow-lg transition-all cursor-pointer"
                 >
                   Request On-Site Safety Inspection
                 </button>
@@ -130,15 +154,15 @@ export default function SafetyTechnologyPage() {
               </div>
             </div>
 
-            {/* Right Visual Card */}
+            {/* Right Visual Card with subtle float */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-slate-900 shadow-xl">
+              <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-slate-900 shadow-xl card-glow group">
                 <div className="relative h-80 sm:h-96">
                   <Image
                     src="/images/safety-panel.png"
                     alt="Precision Microprocessor Safety Panel"
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover:scale-104 transition-transform duration-500"
                     priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
@@ -146,7 +170,8 @@ export default function SafetyTechnologyPage() {
                   {/* Status Overlay */}
                   <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 border border-slate-200 shadow-md backdrop-blur-md">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
+                      <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                         Active Monitoring Active
                       </span>
                       <span className="text-[11px] text-slate-500 font-semibold">VVVF Micro-Control</span>
@@ -165,52 +190,56 @@ export default function SafetyTechnologyPage() {
       {/* 2. ARD (AUTOMATIC RESCUE DEVICE) INTERACTIVE WORKFLOW */}
       <section className="py-16 bg-slate-50 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#423887] bg-red-100/70 px-3 py-1 rounded-full">
-              Power Loss Protection
-            </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 mt-2 tracking-tight">
-              Automatic Rescue Device (ARD) Technology
-            </h2>
-            <p className="text-slate-600 mt-2 text-sm leading-relaxed">
-              Power outages are common in regional grid systems. Vision Lifts integrates dedicated emergency battery systems ensuring passengers are smoothly evacuated within seconds without requiring manual external assistance.
-            </p>
-          </div>
+          <ScrollReveal animation="fadeInUp">
+            <div className="max-w-3xl mb-10">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#863078] bg-purple-100/70 px-3 py-1 rounded-full">
+                Power Loss Protection
+              </span>
+              <h2 className="text-3xl font-extrabold text-slate-900 mt-2 tracking-tight">
+                Automatic Rescue Device (ARD) Technology
+              </h2>
+              <p className="text-slate-600 mt-2 text-sm leading-relaxed">
+                Power outages are common in regional grid systems. Vision Lifts integrates dedicated emergency battery systems ensuring passengers are smoothly evacuated within seconds without requiring manual external assistance.
+              </p>
+            </div>
+          </ScrollReveal>
 
-          {/* 4 Step Sequential Process with Rounded-2xl Cards */}
+          {/* 4 Step Sequential Process */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {ardSteps.map((item, idx) => (
-              <div
-                key={idx}
-                onClick={() => setActiveStep(idx)}
-                className={`p-6 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
-                  activeStep === idx
-                    ? "bg-white border-[#863078] shadow-md ring-1 ring-[#863078]/40/20"
-                    : "bg-white border-slate-200 hover:border-slate-300"
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`text-xs font-black px-2.5 py-0.5 rounded-full ${activeStep === idx ? "bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] text-white" : "bg-slate-100 text-slate-700"}`}>
-                      STEP {item.step}
-                    </span>
-                    <span className="text-[11px] font-semibold text-slate-400">
-                      {item.time}
+              <ScrollReveal key={idx} animation="fadeInUp" delay={idx * 0.1}>
+                <div
+                  onClick={() => setActiveStep(idx)}
+                  className={`p-6 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between card-glow h-full ${
+                    activeStep === idx
+                      ? "bg-white border-[#863078] shadow-md ring-1 ring-[#863078]/40"
+                      : "bg-white border-slate-200 hover:border-slate-300"
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className={`text-xs font-black px-2.5 py-0.5 rounded-full ${activeStep === idx ? "bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white" : "bg-slate-100 text-slate-700"}`}>
+                        STEP {item.step}
+                      </span>
+                      <span className="text-[11px] font-semibold text-slate-400">
+                        {item.time}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[11px] font-bold text-emerald-600 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      {item.state}
                     </span>
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {item.desc}
-                  </p>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-emerald-600">
-                    ● {item.state}
-                  </span>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -219,44 +248,47 @@ export default function SafetyTechnologyPage() {
       {/* 3. EIGHT-POINT REDUNDANT SAFETY SYSTEM */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
-              Redundant Fail-Safes
-            </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 mt-2 tracking-tight">
-              8-Tier Protection Standard on All Models
-            </h2>
-            <p className="text-slate-600 mt-2 text-sm">
-              From our compact villa lifts to multi-ton industrial cargo elevators.
-            </p>
-          </div>
+          <ScrollReveal animation="fadeInUp">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#863078] bg-purple-50 border border-purple-100 px-3 py-1 rounded-full">
+                Redundant Fail-Safes
+              </span>
+              <h2 className="text-3xl font-extrabold text-slate-900 mt-2 tracking-tight">
+                8-Tier Protection Standard on All Models
+              </h2>
+              <p className="text-slate-600 mt-2 text-sm">
+                From our compact villa lifts to multi-ton industrial cargo elevators.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {SAFETY_FEATURES_DATA.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all flex flex-col justify-between bg-white"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="w-8 h-8 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-xs">
-                      {idx + 1}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-full">
-                      {item.badge}
-                    </span>
+              <ScrollReveal key={idx} animation="fadeInUp" delay={idx * 0.08}>
+                <div
+                  className="p-6 rounded-2xl border border-slate-200 hover:border-slate-300 card-glow transition-all flex flex-col justify-between bg-white h-full"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="w-8 h-8 rounded-full bg-purple-50 text-[#423887] flex items-center justify-center font-bold text-xs border border-purple-100">
+                        {idx + 1}
+                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-full">
+                        {item.badge}
+                      </span>
+                    </div>
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#423887] mb-1">
+                      {item.tag}
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#423887] mb-1">
-                    {item.tag}
-                  </div>
-                  <h3 className="text-base font-bold text-slate-900 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {item.description}
-                  </p>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -267,36 +299,40 @@ export default function SafetyTechnologyPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 bg-white border border-slate-200 px-3 py-1 rounded-full">
-                Regulatory Standards
-              </span>
-              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-                Tested & Approved for Commercial Handover
-              </h2>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                We handle the entire documentation and inspection workflow required by the Department of Electrical Inspectorate and local municipal authorities in Telangana.
-              </p>
-              <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={() => setSurveyOpen(true)}
-                  className="px-7 py-3.5 bg-gradient-to-r from-[#d3313f] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow transition-all"
-                >
-                  Schedule Statutory Inspection
-                </button>
-              </div>
+              <ScrollReveal animation="fadeInUp">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 bg-white border border-slate-200 px-3 py-1 rounded-full">
+                  Regulatory Standards
+                </span>
+                <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight mt-2">
+                  Tested & Approved for Commercial Handover
+                </h2>
+                <p className="text-slate-600 text-sm leading-relaxed mt-2">
+                  We handle the entire documentation and inspection workflow required by the Department of Electrical Inspectorate and local municipal authorities in Telangana.
+                </p>
+                <div className="pt-3">
+                  <button
+                    type="button"
+                    onClick={() => setSurveyOpen(true)}
+                    className="btn-sheen px-7 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow transition-all cursor-pointer"
+                  >
+                    Schedule Statutory Inspection
+                  </button>
+                </div>
+              </ScrollReveal>
             </div>
 
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {complianceStandards.map((std, i) => (
-                <div key={i} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#423887] mb-1">
-                    {std.category}
+                <ScrollReveal key={i} animation="fadeInUp" delay={i * 0.1}>
+                  <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs card-glow h-full">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#423887] mb-1">
+                      {std.category}
+                    </div>
+                    <h4 className="text-base font-bold text-slate-900">{std.code}</h4>
+                    <div className="text-xs font-semibold text-slate-700 mt-0.5 mb-2">{std.title}</div>
+                    <p className="text-xs text-slate-500 leading-relaxed">{std.desc}</p>
                   </div>
-                  <h4 className="text-base font-bold text-slate-900">{std.code}</h4>
-                  <div className="text-xs font-semibold text-slate-700 mt-0.5 mb-2">{std.title}</div>
-                  <p className="text-xs text-slate-500 leading-relaxed">{std.desc}</p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
