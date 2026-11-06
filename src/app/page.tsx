@@ -131,32 +131,32 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* 1. HERO SECTION (White Background, Inspired by Image 2 lmbib.com) */}
-      <section className="bg-white py-6 sm:py-8 lg:py-10 border-b border-slate-100 relative overflow-hidden">
+      {/* 1. HERO SECTION (White Background, Engineered to Fit 100% Desktop Viewport) */}
+      <section className="bg-white pt-3 pb-5 sm:py-6 lg:py-4 xl:py-8 border-b border-slate-100 relative overflow-hidden lg:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
         {/* Ambient Glowing Background Orbs */}
         <div className="ambient-orb w-96 h-96 -top-20 -left-20 bg-purple-200/35 animate-pulse-slow" />
         <div className="ambient-orb w-80 h-80 top-1/2 -right-16 bg-rose-200/25 animate-pulse-slow" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8 items-center">
             {/* Left Column: Canva & Figma Official Branding */}
-            <div className="lg:col-span-7 space-y-4 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-[#423887] border border-purple-100 text-xs font-bold uppercase tracking-wider">
-                <span className="relative flex h-2.5 w-2.5">
+            <div className="lg:col-span-7 space-y-3 xl:space-y-4 animate-fade-in-up">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-[#423887] border border-purple-100 text-[11px] xl:text-xs font-bold uppercase tracking-wider">
+                <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#863078] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887]"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887]"></span>
                 </span>
                 VISION LIFTS & SOLUTIONS / TELANGANA, INDIA
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.12]">
+              <h1 className="text-2xl sm:text-3xl lg:text-[34px] xl:text-[46px] font-black tracking-tight text-slate-900 leading-[1.12]">
                 Elevating Spaces. <br />
                 Moving People. <br />
                 <span className="text-shimmer-brand font-black">Building Trust.</span>
               </h1>
 
               {/* Dynamic Modern Text Loading Animation */}
-              <div className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-50/90 border border-slate-200/80 px-3.5 py-2 rounded-2xl w-fit shadow-2xs hover-elevate">
+              <div className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-50/90 border border-slate-200/80 px-3 py-1.5 rounded-2xl w-fit shadow-2xs hover-elevate">
                 <span className="text-slate-400 font-medium">Engineered for:</span>
                 <TypewriterText
                   words={[
@@ -171,37 +171,37 @@ export default function HomePage() {
                 />
               </div>
 
-              <p className="text-sm sm:text-base text-slate-600 max-w-xl leading-relaxed">
+              <p className="text-xs sm:text-sm xl:text-base text-slate-600 max-w-xl leading-relaxed">
                 Reliable elevator solutions engineered for homes, commercial buildings, hospitals and industrial applications. Designed for safety, built for performance, and supported for the long run.
               </p>
 
               {/* Canva Frame 01 Call to Actions */}
-              <div className="flex flex-wrap items-center gap-3 pt-0.5">
+              <div className="flex flex-wrap items-center gap-2.5 pt-0.5">
                 <Link
                   href="/quote-request"
-                  className="btn-sheen px-5 py-3 rounded-full bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-[#863078]/20 transition-all active:scale-98"
+                  className="btn-sheen px-4 xl:px-5 py-2.5 xl:py-3 rounded-full bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-[11px] xl:text-xs uppercase tracking-wider shadow-md shadow-[#863078]/20 transition-all active:scale-98"
                 >
                   Get a Free Consultation
                 </Link>
                 <Link
                   href="/products"
-                  className="px-5 py-3 rounded-full border-2 border-slate-300 hover:border-slate-800 text-slate-800 font-bold text-xs uppercase tracking-wider transition-all hover:bg-slate-50"
+                  className="px-4 xl:px-5 py-2.5 xl:py-3 rounded-full border-2 border-slate-300 hover:border-slate-800 text-slate-800 font-bold text-[11px] xl:text-xs uppercase tracking-wider transition-all hover:bg-slate-50"
                 >
                   Explore Elevators
                 </Link>
               </div>
 
-              <div className="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
+              <div className="text-[10px] xl:text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
                 <span className="text-emerald-500 font-bold">✦</span>
                 <span>Designed for safety. Built for performance. Supported for the long run.</span>
               </div>
 
               {/* 5 Rounded Category Pills at bottom of hero */}
-              <div className="pt-2">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-2">
+              <div className="pt-1 xl:pt-2">
+                <p className="text-[10px] xl:text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">
                   Select Your Building Type:
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5 xl:gap-2">
                   {buildingTypes.map((type, idx) => {
                     const isSelected = selectedBuildingType === type.id;
                     return (
@@ -209,14 +209,14 @@ export default function HomePage() {
                         key={type.id}
                         type="button"
                         onClick={() => setSelectedBuildingType(type.id)}
-                        className={`p-2.5 rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1 cursor-pointer card-glow ${
+                        className={`p-2 xl:p-2.5 rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-0.5 xl:gap-1 cursor-pointer card-glow ${
                           isSelected
                             ? "border-[#863078] bg-purple-50/70 shadow-xs ring-1 ring-[#863078]/40"
                             : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
                         } ${idx === 4 ? "col-span-2 sm:col-span-1" : ""}`}
                       >
-                        <span className="text-lg transform group-hover:scale-110 transition-transform">{type.icon}</span>
-                        <span className={`text-[11px] font-bold ${isSelected ? "text-[#423887]" : "text-slate-700"}`}>
+                        <span className="text-base xl:text-lg transform group-hover:scale-110 transition-transform">{type.icon}</span>
+                        <span className={`text-[10px] xl:text-[11px] font-bold ${isSelected ? "text-[#423887]" : "text-slate-700"}`}>
                           {type.title}
                         </span>
                       </button>
@@ -228,10 +228,10 @@ export default function HomePage() {
 
             {/* Right Column: Elevator Visual Showcase & Free Site Survey Card */}
             <div className="lg:col-span-5 animate-fade-in-up stagger-2">
-              <div className="bg-slate-50/90 border border-slate-200 rounded-3xl p-5 sm:p-6 shadow-xl relative backdrop-blur-sm card-glow">
+              <div className="bg-slate-50/90 border border-slate-200 rounded-3xl p-4 sm:p-5 xl:p-6 shadow-xl relative backdrop-blur-sm card-glow">
                 
                 {/* Dynamic Elevator Preview Image */}
-                <div className="relative h-44 sm:h-48 w-full rounded-2xl overflow-hidden mb-4 border border-slate-200/80 shadow-2xs group bg-slate-900">
+                <div className="relative h-32 sm:h-36 xl:h-44 w-full rounded-2xl overflow-hidden mb-3 xl:mb-4 border border-slate-200/80 shadow-2xs group bg-slate-900">
                   <Image
                     src={activeBuilding.image}
                     alt={activeBuilding.title}
@@ -240,36 +240,36 @@ export default function HomePage() {
                     priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                  <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-xs text-[10px] font-bold text-[#423887] border border-purple-100 uppercase tracking-wider">
+                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-xs text-[9px] xl:text-[10px] font-bold text-[#423887] border border-purple-100 uppercase tracking-wider">
                     {activeBuilding.series}
                   </div>
-                  <div className="absolute bottom-2.5 left-3 right-3 text-white flex items-end justify-between">
+                  <div className="absolute bottom-2 left-2.5 right-2.5 text-white flex items-end justify-between">
                     <div>
-                      <div className="text-xs font-black tracking-tight">{activeBuilding.title}</div>
-                      <div className="text-[10px] text-slate-300">Whisper-Quiet · Single Phase 220V</div>
+                      <div className="text-[11px] xl:text-xs font-black tracking-tight">{activeBuilding.title}</div>
+                      <div className="text-[9px] xl:text-[10px] text-slate-300">Whisper-Quiet · Single Phase 220V</div>
                     </div>
-                    <span className="text-[10px] font-bold text-emerald-400 bg-slate-900/80 px-2 py-0.5 rounded-md">Live Preview</span>
+                    <span className="text-[9px] xl:text-[10px] font-bold text-emerald-400 bg-slate-900/80 px-2 py-0.5 rounded-md">Live Preview</span>
                   </div>
                 </div>
 
-                <div className="mb-3.5">
-                  <h3 className="text-lg font-extrabold text-slate-900 tracking-tight">
+                <div className="mb-2.5 xl:mb-3">
+                  <h3 className="text-base xl:text-lg font-extrabold text-slate-900 tracking-tight">
                     Get Free Site Survey & Quote
                   </h3>
-                  <p className="text-[11px] text-slate-500 mt-0.5">
+                  <p className="text-[10px] xl:text-[11px] text-slate-500 mt-0.5">
                     Share your details — Ramesh Vilasagar or our senior elevator engineer will call you back.
                   </p>
                 </div>
 
                 {leadSubmitted ? (
-                  <div className="text-center py-8 space-y-3">
-                    <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold animate-pulse-badge">
+                  <div className="text-center py-6 space-y-2.5">
+                    <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-xl font-bold animate-pulse-badge">
                       ✓
                     </div>
-                    <div className="inline-block px-3 py-1 bg-purple-50 text-[#423887] text-[11px] font-bold uppercase tracking-wider rounded-full border border-purple-100">
+                    <div className="inline-block px-3 py-0.5 bg-purple-50 text-[#423887] text-[10px] font-bold uppercase tracking-wider rounded-full border border-purple-100">
                       Ref: {heroLeadId || "LEAD-NEW"}
                     </div>
-                    <h4 className="text-lg font-bold text-slate-900">Survey Request Received!</h4>
+                    <h4 className="text-base font-bold text-slate-900">Survey Request Received!</h4>
                     <p className="text-xs text-slate-600 leading-relaxed">
                       Thank you, <strong>{leadForm.name}</strong>. We will coordinate your free site survey in <strong>{leadForm.city}</strong> shortly.
                     </p>
@@ -278,23 +278,23 @@ export default function HomePage() {
                         href={`https://wa.me/919440180868?text=Hi%20Vision%20Lifts%2C%20I%20just%20submitted%20a%20survey%20request%20(Ref%3A%20${heroLeadId || 'LEAD-NEW'})%20for%20${encodeURIComponent(leadForm.buildingType)}%20in%20${encodeURIComponent(leadForm.city)}.`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-sheen px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow flex items-center justify-center gap-1.5"
+                        className="btn-sheen px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow flex items-center justify-center gap-1.5"
                       >
                         <span>Chat on WhatsApp Directly</span>
                       </a>
                       <button
                         type="button"
                         onClick={() => setLeadSubmitted(false)}
-                        className="px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-full text-xs font-semibold"
+                        className="px-4 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-full text-xs font-semibold"
                       >
                         Submit Another Query
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <form onSubmit={handleLeadSubmit} className="space-y-3.5">
+                  <form onSubmit={handleLeadSubmit} className="space-y-2.5 xl:space-y-3">
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                      <label className="block text-[10px] xl:text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
                         YOUR NAME <span className="text-[#423887]">*</span>
                       </label>
                       <input
@@ -303,18 +303,18 @@ export default function HomePage() {
                         placeholder="e.g. Ramesh Reddy"
                         value={leadForm.name}
                         onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
-                        className="w-full px-4 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40 text-slate-800 transition-all"
+                        className="w-full px-3 py-1.5 xl:py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40 text-slate-800 transition-all"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                      <label className="block text-[10px] xl:text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
                         BUILDING / PROJECT TYPE
                       </label>
                       <select
                         value={leadForm.buildingType}
                         onChange={(e) => setLeadForm({ ...leadForm, buildingType: e.target.value })}
-                        className="w-full px-4 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40 text-slate-800 transition-all"
+                        className="w-full px-3 py-1.5 xl:py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40 text-slate-800 transition-all"
                       >
                         <option>Villas & Independent Homes</option>
                         <option>Residential Apartments</option>
@@ -325,9 +325,9 @@ export default function HomePage() {
                       </select>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                        <label className="block text-[10px] xl:text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
                           LOCATION <span className="text-[#423887]">*</span>
                         </label>
                         <input
@@ -336,11 +336,11 @@ export default function HomePage() {
                           placeholder="Karimnagar, Warangal"
                           value={leadForm.city}
                           onChange={(e) => setLeadForm({ ...leadForm, city: e.target.value })}
-                          className="w-full px-4 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40 text-slate-800 transition-all"
+                          className="w-full px-3 py-1.5 xl:py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40 text-slate-800 transition-all"
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                        <label className="block text-[10px] xl:text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
                           MOBILE NUMBER <span className="text-[#423887]">*</span>
                         </label>
                         <input
@@ -349,15 +349,15 @@ export default function HomePage() {
                           placeholder="+91 98484 80868"
                           value={leadForm.phone}
                           onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
-                          className="w-full px-4 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40 text-slate-800 transition-all"
+                          className="w-full px-3 py-1.5 xl:py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40 text-slate-800 transition-all"
                         />
                       </div>
                     </div>
 
-                    <div className="pt-2">
+                    <div className="pt-1">
                       <button
                         type="submit"
-                        className="btn-sheen w-full py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 shadow-md shadow-[#863078]/25 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer"
+                        className="btn-sheen w-full py-2.5 xl:py-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 shadow-md shadow-[#863078]/25 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer"
                       >
                         Request a Call Back →
                       </button>

@@ -613,11 +613,36 @@ export default function AdminDashboardPage() {
     emergencyDesk: "24 Hours / 365 Days Emergency Breakdown Support",
   });
 
+  // Session Authentication Check
+  const [sessionChecked, setSessionChecked] = useState(false);
+  const [adminUser, setAdminUser] = useState("admin@visionlifts.com");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("vl_admin_session");
+      if (!stored) {
+        router.push("/admin/login");
+        return;
+      }
+      try {
+        const parsed = JSON.parse(stored);
+        if (parsed?.adminUser) {
+          setAdminUser(parsed.adminUser);
+        }
+      } catch {
+        // use default
+      }
+      setSessionChecked(true);
+    }
+  }, [router]);
+
   // Fetch SEO data and Leads on mount
   useEffect(() => {
-    fetchSeoPages();
-    fetchLeads();
-  }, []);
+    if (sessionChecked) {
+      fetchSeoPages();
+      fetchLeads();
+    }
+  }, [sessionChecked]);
 
   const showToast = (msg: string) => {
     setActionToast(msg);
@@ -840,6 +865,25 @@ export default function AdminDashboardPage() {
     { key: "settings", label: "Site Settings", icon: "⚙️", badge: null },
   ];
 
+  if (!sessionChecked) {
+    return (
+      <div className="min-h-screen bg-[#080c14] flex flex-col items-center justify-center text-slate-200">
+        <div className="relative h-12 w-48 mb-6 animate-pulse">
+          <Image
+            src="/images/vision-lifts-logo.png"
+            alt="Vision Lifts"
+            fill
+            className="object-contain"
+          />
+        </div>
+        <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#863078] animate-ping" />
+          <span>Verifying Administrator Access...</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-screen w-full overflow-hidden bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-[#a22b51] selection:text-white">
 
@@ -942,15 +986,16 @@ export default function AdminDashboardPage() {
           </Link>
 
           <div className="p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 min-w-0">
               <div className="w-7 h-7 rounded-full bg-[#423887] text-white flex items-center justify-center text-xs font-black shrink-0">
                 AD
               </div>
-              <div className="leading-tight truncate max-w-[120px]">
-                <div className="text-xs font-bold text-slate-900 truncate">
-                  admin@visionlifts.com
+              <div className="leading-tight truncate max-w-[130px]">
+                <div className="text-xs font-bold text-slate-900 truncate" title={adminUser}>
+                  {adminUser}
                 </div>
-                <div className="text-[9px] font-bold tracking-wider text-slate-400 uppercase">
+                <div className="text-[9px] font-bold tracking-wider text-emerald-600 uppercase flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                   ADMINISTRATOR
                 </div>
               </div>
@@ -959,9 +1004,10 @@ export default function AdminDashboardPage() {
               type="button"
               onClick={handleSignOut}
               title="Sign out of Admin Console"
-              className="p-1 text-slate-400 hover:text-slate-700 hover:bg-white rounded-lg transition-colors cursor-pointer"
+              className="px-2 py-1 text-[11px] font-bold text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer border border-rose-100 flex items-center gap-1"
             >
-              ⎋
+              <span>⎋</span>
+              <span>Exit</span>
             </button>
           </div>
         </div>
@@ -1029,6 +1075,30 @@ export default function AdminDashboardPage() {
               </button>
             ))}
           </nav>
+        </div>
+
+        {/* Mobile Drawer Bottom User Info & Sign Out */}
+        <div className="p-3 border-t border-slate-100 space-y-2 bg-slate-50">
+          <Link
+            href="/"
+            target="_blank"
+            className="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-bold text-slate-700 bg-white border border-slate-200 rounded-xl"
+          >
+            <span>↗</span>
+            <span>View Live Website</span>
+          </Link>
+          <div className="flex items-center justify-between p-2 rounded-xl bg-white border border-slate-200">
+            <div className="text-xs font-bold text-slate-800 truncate max-w-[130px]">
+              {adminUser}
+            </div>
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="px-2 py-1 text-[11px] font-bold text-rose-600 bg-rose-50 rounded-lg"
+            >
+              Sign Out
+            </button>
+          </div>
         </div>
       </aside>
 

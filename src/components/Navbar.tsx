@@ -391,15 +391,15 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-md border-b border-slate-100 shadow-2xs"
         suppressHydrationWarning
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-5 xl:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Standalone Official Logo */}
             <Link
               href="/"
               className="flex items-center shrink-0 py-2 group"
               aria-label="Vision Lifts & Solutions Home"
             >
-              <div className="relative h-12 w-44 sm:w-52 transition-transform group-hover:scale-[1.02]">
+              <div className="relative h-10 sm:h-12 w-36 sm:w-48 xl:w-52 transition-transform group-hover:scale-[1.02]">
                 <Image
                   src="/images/vision-lifts-logo.png"
                   alt="Vision Lifts & Solutions"
@@ -412,13 +412,13 @@ export default function Navbar() {
 
             {/* Desktop Navigation Links */}
             <nav
-              className="hidden lg:flex items-center gap-1 xl:gap-2.5"
+              className="hidden lg:flex items-center gap-0.5 xl:gap-1.5"
               aria-label="Main Navigation"
             >
               {/* Home */}
               <Link
                 href="/"
-                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
                   isActive("/")
                     ? "text-[#423887] font-bold"
                     : "text-slate-700 hover:text-[#423887]"
@@ -435,7 +435,7 @@ export default function Navbar() {
               {/* About Us */}
               <Link
                 href="/about"
-                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
                   isActive("/about")
                     ? "text-[#423887] font-bold"
                     : "text-slate-700 hover:text-[#423887]"
@@ -457,7 +457,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/solutions"
-                  className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
                     isActive("/solutions")
                       ? "text-[#423887] font-bold"
                       : "text-slate-700 hover:text-[#423887]"
@@ -636,7 +636,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/products"
-                  className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
                     isActive("/products")
                       ? "text-[#423887] font-bold"
                       : "text-slate-700 hover:text-[#423887]"
@@ -810,7 +810,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/services"
-                  className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
                     isActive("/services")
                       ? "text-[#423887] font-bold"
                       : "text-slate-700 hover:text-[#423887]"
@@ -932,7 +932,7 @@ export default function Navbar() {
               {/* Projects */}
               <Link
                 href="/projects"
-                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
                   isActive("/projects")
                     ? "text-[#423887] font-bold"
                     : "text-slate-700 hover:text-[#423887]"
@@ -949,7 +949,7 @@ export default function Navbar() {
               {/* Safety & Tech */}
               <Link
                 href="/safety-tech"
-                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
                   isActive("/safety-tech") || isActive("/safety-technology")
                     ? "text-[#423887] font-bold"
                     : "text-slate-700 hover:text-[#423887]"
@@ -966,7 +966,7 @@ export default function Navbar() {
               {/* Showcase (11 Sections) */}
               <Link
                 href="/presentation"
-                className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
                   isActive("/presentation") || isActive("/showcase")
                     ? "text-[#423887] font-bold"
                     : "text-slate-700 hover:text-[#423887]"
@@ -988,7 +988,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/contact"
-                  className={`px-3 py-2 text-[14px] font-medium transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
                     isActive("/contact") || isActive("/telangana-network")
                       ? "text-[#423887] font-bold"
                       : "text-slate-700 hover:text-[#423887]"
@@ -1140,11 +1140,11 @@ export default function Navbar() {
             </nav>
 
             {/* Right Action Cluster (Logo Color Theme - No Red) */}
-            <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
               {/* Admin Console Link */}
               <Link
                 href="/admin"
-                className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 hover:text-[#423887] border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-2xs"
+                className="flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs font-semibold text-slate-700 hover:text-[#423887] border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-2xs whitespace-nowrap"
                 title="Admin Console Access"
               >
                 <svg
@@ -1166,39 +1166,33 @@ export default function Navbar() {
               {/* Book Site Survey CTA Button - Signature Logo Brand Gradient */}
               <Link
                 href="/book-survey"
-                className="px-5 py-2.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white text-xs font-bold uppercase tracking-wider rounded-full transition-all shadow-md shadow-purple-950/15 whitespace-nowrap inline-flex items-center justify-center"
+                className="px-3.5 xl:px-4 py-1.5 xl:py-2 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white text-[11px] xl:text-xs font-bold uppercase tracking-wider rounded-full transition-all shadow-sm shadow-purple-950/15 whitespace-nowrap inline-flex items-center justify-center active:scale-95"
               >
                 Book Survey
               </Link>
             </div>
 
-            {/* Mobile Actions & Hamburger Button */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <Link
-                href="/book-survey"
-                className="px-3.5 py-1.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white text-[11px] font-bold uppercase tracking-wider rounded-full shadow-2xs whitespace-nowrap active:scale-95 transition-all"
-              >
-                Book Survey
-              </Link>
+            {/* Mobile Actions: Clean Standalone Hamburger Button (NO Cramped Book Survey) */}
+            <div className="flex items-center gap-1.5 lg:hidden">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+                className="p-2.5 rounded-2xl text-slate-700 hover:bg-slate-100/90 active:bg-slate-200 transition-all cursor-pointer focus:outline-hidden"
                 aria-label="Toggle Navigation Menu"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {mobileMenuOpen ? (
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth="2"
+                      strokeWidth="2.5"
                       d="M6 18L18 6M6 6l12 12"
                     />
                   ) : (
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth="2"
+                      strokeWidth="2.5"
                       d="M4 6h16M4 12h16M4 18h16"
                     />
                   )}
@@ -1210,7 +1204,7 @@ export default function Navbar() {
 
         {/* Mobile Full-Screen Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-20 z-50 bg-white overflow-y-auto px-5 py-5 border-t border-slate-100">
+          <div className="lg:hidden fixed inset-0 top-16 sm:top-20 z-50 bg-white overflow-y-auto px-5 py-5 border-t border-slate-100 animate-in fade-in slide-in-from-top-2 duration-200">
             <div className="flex flex-col space-y-3.5 pb-24">
               {/* Mobile Quick Contact Strip */}
               <div className="p-3 bg-purple-50/70 border border-purple-100 rounded-2xl flex items-center justify-between gap-2 mb-1">
