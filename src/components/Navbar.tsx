@@ -995,127 +995,91 @@ export default function Navbar() {
                   </svg>
                 </Link>
 
-                {/* Contact Megamenu - Executive Engineering Desks & Statewide Helpline */}
+                {/* Contact Dropdown - Focused Telangana State Network & Direct Hotline Card */}
                 {activeDropdown === "contact" && (
-                  <div className="absolute top-full right-0 mt-2 w-[760px] max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl shadow-purple-950/10 border border-slate-100 p-6 sm:p-7 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
-                    <div className="grid grid-cols-12 gap-6">
-                      {/* Left Column: Direct Enquiry Desks & Regional Coverage */}
-                      <div className="col-span-7 space-y-3 pr-1">
-                        <div>
-                          <div className="flex items-center justify-between mb-2">
-                            <p className="text-[11px] font-bold uppercase tracking-wider text-[#863078]">
-                              Direct Engineering Desks
-                            </p>
-                            <span className="text-[10px] font-bold text-slate-400">
-                              Telangana Statewide
-                            </span>
-                          </div>
-
-                          <div className="space-y-1">
-                            {contactOptions.map((item) => {
-                              const isHovered = hoveredContactId === item.id;
-                              return (
-                                <Link
-                                  key={item.id}
-                                  href={item.href}
-                                  onMouseEnter={() => setHoveredContactId(item.id)}
-                                  onClick={() => setActiveDropdown(null)}
-                                  className={`group flex items-center justify-between p-2.5 rounded-xl transition-all ${
-                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
-                                  }`}
-                                >
-                                  <div className="pr-2">
-                                    <div
-                                      className={`text-[13px] font-bold transition-colors leading-snug ${
-                                        isHovered
-                                          ? "text-[#423887]"
-                                          : "text-slate-900 group-hover:text-[#423887]"
-                                      }`}
-                                    >
-                                      {item.title}
-                                    </div>
-                                    <div className="text-[11px] text-slate-400 group-hover:text-slate-500 transition-colors line-clamp-1">
-                                      {item.desc}
-                                    </div>
-                                  </div>
-                                  <span
-                                    className={`text-xs font-semibold pl-2 transition-all shrink-0 ${
-                                      isHovered
-                                        ? "text-[#423887] translate-x-1"
-                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
-                                    }`}
-                                  >
-                                    ›
-                                  </span>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        {/* Quick Contact Line Strip */}
-                        <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                          <span className="truncate">Karimnagar Central HQ & Workshop</span>
-                          <a
-                            href="tel:9848480868"
-                            className="font-bold text-slate-800 hover:text-[#423887] transition-colors shrink-0 pl-2"
-                          >
-                            +91 98484 80868
-                          </a>
-                        </div>
+                  <div className="absolute top-full right-0 mt-2 w-[390px] max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl shadow-purple-950/15 border border-slate-100 p-5 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
+                    {/* Header Strip */}
+                    <div className="flex items-center justify-between mb-3.5 px-0.5">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 border border-purple-100 text-[10px] font-black uppercase tracking-wider text-[#863078]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#863078] animate-pulse"></span>
+                        <span>Telangana State Network</span>
                       </div>
+                      <span className="text-[11px] font-bold text-slate-400">
+                        33 Districts
+                      </span>
+                    </div>
 
-                      {/* Right Column: Dynamic Preview Card on Hover + Direct Technical Line */}
-                      <div className="col-span-5 border-l border-slate-100 pl-6 flex flex-col justify-between">
-                        <div>
-                          <div className="relative h-44 w-full rounded-2xl overflow-hidden shadow-sm border border-slate-100 bg-slate-900 transition-all group">
-                            <Image
-                              key={activeContact.image}
-                              src={activeContact.image}
-                              alt={activeContact.cardTitle}
-                              fill
-                              className="object-cover transition-opacity duration-300 animate-in fade-in"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                            <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-white/95 backdrop-blur-xs text-[9px] font-extrabold uppercase tracking-wider text-[#423887]">
-                              {activeContact.badge}
-                            </div>
-                            <div className="absolute bottom-2.5 left-3 right-3 text-white">
-                              <div className="text-[9px] text-slate-300 uppercase tracking-wider font-semibold">Central Statewide Line</div>
-                              <div className="text-lg font-black tracking-tight text-white flex items-center justify-between">
-                                <span>9700 123 878</span>
-                                <span className="text-[9px] font-bold text-emerald-400 bg-black/50 px-2 py-0.5 rounded">24/7 Live</span>
-                              </div>
-                            </div>
-                          </div>
+                    {/* Visual Preview: Telangana Map & Central Line */}
+                    <div className="relative h-44 w-full rounded-2xl overflow-hidden shadow-xs border border-slate-200/80 bg-slate-100 group">
+                      <Image
+                        src="/images/telangana-enquiry-map.jpg"
+                        alt="Telangana State Network Coverage"
+                        fill
+                        className="object-contain p-2 group-hover:scale-103 transition-transform duration-500"
+                      />
+                    </div>
 
-                          <h4 className="text-[14px] font-extrabold text-slate-900 mt-3 tracking-tight transition-all">
-                            {activeContact.cardTitle}
-                          </h4>
-                          <p className="text-[11px] text-slate-500 leading-relaxed mt-1 line-clamp-2">
-                            {activeContact.cardDesc}
-                          </p>
+                    {/* Quick Access Two-Box Grid */}
+                    <div className="grid grid-cols-2 gap-2 mt-3.5">
+                      <a
+                        href="tel:9700123878"
+                        className="p-2.5 rounded-xl bg-slate-50 hover:bg-emerald-50/70 border border-slate-200/80 hover:border-emerald-200 transition-all text-left group"
+                      >
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <span className="text-sm">📞</span>
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-emerald-700">
+                            Statewide Hotline
+                          </span>
                         </div>
-
-                        {/* Action Buttons */}
-                        <div className="pt-3 border-t border-slate-100 mt-3 space-y-2">
-                          <a
-                            href="tel:9700123878"
-                            className="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold text-center flex items-center justify-center gap-2 transition-all shadow-xs"
-                          >
-                            <span>📞</span>
-                            <span>Call 9700 123 878 Direct</span>
-                          </a>
-
-                          <Link
-                            href="/contact"
-                            onClick={() => setActiveDropdown(null)}
-                            className="btn-sheen block w-full py-2.5 px-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-bold text-center transition-all shadow-xs"
-                          >
-                            Open Contact & Survey Page →
-                          </Link>
+                        <div className="text-xs font-black text-slate-900 group-hover:text-emerald-700 transition-colors">
+                          9700 123 878
                         </div>
-                      </div>
+                      </a>
+
+                      <a
+                        href="https://wa.me/919700123878?text=Hello%20Vision%20Lifts%2C%20I%20need%20elevator%20information."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 rounded-xl bg-slate-50 hover:bg-purple-50/70 border border-slate-200/80 hover:border-purple-200 transition-all text-left group"
+                      >
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <span className="text-sm">💬</span>
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-[#423887]">
+                            WhatsApp Desk
+                          </span>
+                        </div>
+                        <div className="text-xs font-black text-slate-900 group-hover:text-[#423887] transition-colors">
+                          Chat with Team
+                        </div>
+                      </a>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="mt-3.5 space-y-2">
+                      <a
+                        href="tel:9700123878"
+                        className="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-black text-center flex items-center justify-center gap-2 transition-all shadow-xs active:scale-98"
+                        style={{ color: "#ffffff" }}
+                      >
+                        <span>📞</span>
+                        <span style={{ color: "#ffffff" }}>Call 9700 123 878 Direct</span>
+                      </a>
+
+                      <Link
+                        href="/contact"
+                        onClick={() => setActiveDropdown(null)}
+                        className="btn-sheen block w-full py-2.5 px-4 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-black text-center transition-all shadow-md active:scale-98"
+                        style={{ color: "#ffffff" }}
+                      >
+                        <span style={{ color: "#ffffff" }}>Open Complete Contact & Estimate Page →</span>
+                      </Link>
+                    </div>
+
+                    {/* Footer Address */}
+                    <div className="mt-3 pt-2.5 border-t border-slate-100 text-center">
+                      <span className="text-[10px] font-semibold text-slate-500">
+                        📍 HQ: Gandhi Road, Karimnagar · All 33 Telangana Districts
+                      </span>
                     </div>
                   </div>
                 )}

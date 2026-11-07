@@ -90,7 +90,7 @@ export default function ContactPage() {
       message: prev.message || `Need elevator survey and quotation for ${districtName}.`,
     }));
 
-    const formElement = document.getElementById("project-enquiry-section");
+    const formElement = document.getElementById("project-enquiry-form");
     if (formElement) {
       formElement.scrollIntoView({ behavior: "smooth" });
     }
@@ -124,400 +124,409 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
-      {/* 1. HERO HEADER: Executive Branding & Dynamic Typewriter */}
-      <section className="bg-white border-b border-slate-100 py-8 sm:py-10 relative overflow-hidden">
-        <div className="ambient-orb w-96 h-96 -top-20 -left-20 bg-purple-200/30 animate-pulse-slow" />
-        <div className="ambient-orb w-80 h-80 top-1/2 -right-16 bg-rose-200/20 animate-pulse-slow" />
+    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden font-sans text-slate-800 selection:bg-[#a22b51] selection:text-white">
+      
+      {/* =========================================================================
+          1. EXECUTIVE 2-COLUMN HERO: DIRECT DESKS (LEFT) + LIVE ENQUIRY FORM (RIGHT)
+          Eliminates all dead space and delivers instant engagement
+          ========================================================================= */}
+      <section className="bg-white border-b border-slate-100 pt-6 pb-12 sm:pt-8 sm:pb-16 relative overflow-hidden">
+        {/* Subtle Ambient Glowing Background Orbs */}
+        <div className="ambient-orb w-96 h-96 -top-24 -left-24 bg-purple-100/50 animate-pulse-slow" />
+        <div className="ambient-orb w-96 h-96 top-1/3 -right-20 bg-rose-100/40 animate-pulse-slow" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-3.5">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-              <Link href="/" className="hover:text-slate-900 transition-colors">Home</Link>
-              <span>/</span>
-              <span className="text-[#423887] font-bold">Contact</span>
-            </nav>
-
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-[11px] font-bold text-[#863078] uppercase tracking-wider">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#863078] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#863078]"></span>
-              </span>
-              <span>All <AnimatedCounter value="33" /> Districts of Telangana Covered</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.15]">
-              Get in touch with our <span className="text-shimmer-brand">elevator engineers.</span>
-            </h1>
-
-            {/* Dynamic Typewriter text loading */}
-            <div className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-50/90 border border-slate-200/80 px-4 py-2 rounded-2xl w-fit shadow-2xs">
-              <span className="text-slate-400 font-medium">Direct support for:</span>
-              <TypewriterText
-                words={[
-                  "Karimnagar Central HQ & Workshop",
-                  "Direct Central Line: 9700 123 878",
-                  "Greater Hyderabad Luxury Villa Lifts",
-                  "Warangal Commercial & Hospital Towers",
-                  "Nizamabad, Jagtial & North Telangana Hubs",
-                  "Rapid 2-Hour Breakdown Dispatch",
-                  "All 33 Districts Across Telangana",
-                ]}
-                className="text-[#423887] font-extrabold"
-                cursorClassName="bg-[#863078]"
-              />
-            </div>
-
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-0.5">
-              Have an upcoming construction project, need a free laser hoistway survey, or require urgent 24/7 elevator maintenance? Reach out to Ramesh Vilasagar or our senior engineering desk below.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. MAIN 2-COLUMN SECTION: Reach Us Directly (Left) + Project Enquiry Form (Right) */}
-      <section id="project-enquiry-section" className="py-8 sm:py-12 bg-white border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-start">
             
-            {/* LEFT COLUMN: Reach Us Directly */}
-            <div className="lg:col-span-5 space-y-4">
-              <ScrollReveal animation="fadeInUp">
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                    Reach us directly
-                  </h2>
-                  <p className="text-slate-500 text-xs sm:text-sm mt-1 leading-relaxed">
-                    Direct access to technical leads, quotation estimators, and emergency dispatch teams.
-                  </p>
-                </div>
-              </ScrollReveal>
+            {/* LEFT COLUMN: Executive Headline, Typewriter, & 4 Direct Channels */}
+            <div className="lg:col-span-6 space-y-4 sm:space-y-5 animate-fade-in-up">
+              
+              {/* Breadcrumb Navigation */}
+              <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
+                <Link href="/" className="hover:text-slate-900 transition-colors">Home</Link>
+                <span>/</span>
+                <span className="text-[#423887] font-bold">Contact & Engineering Desks</span>
+              </div>
 
-              {/* Direct Channel Cards */}
-              <div className="space-y-3 pt-1">
-                {/* 1. Sales Enquiries */}
-                <ScrollReveal animation="fadeInUp" delay={0.05}>
-                  <a
-                    href="tel:9848480868"
-                    className="p-4 rounded-2xl bg-slate-50 hover:bg-purple-50/70 border border-slate-200/90 hover:border-purple-200 transition-all flex items-center justify-between group shadow-2xs card-glow"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-purple-100 text-[#423887] flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
-                        📞
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                          Sales & Principal Engineer
-                        </div>
-                        <div className="text-sm font-extrabold text-slate-900 mt-0.5 group-hover:text-[#423887] transition-colors">
-                          +91 98484 80868
-                        </div>
-                        <div className="text-[10px] text-slate-500">Ramesh Vilasagar (Direct)</div>
-                      </div>
+              {/* Status Pill */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50/80 border border-purple-100 text-[11px] sm:text-xs font-bold text-[#863078] uppercase tracking-wider">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#863078] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887]"></span>
+                </span>
+                <span>All <AnimatedCounter value="33" /> Districts of Telangana Covered</span>
+              </div>
+
+              {/* Main Headline */}
+              <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-black tracking-tight text-slate-900 leading-[1.14]">
+                Get in touch with our{" "}
+                <span className="text-shimmer-brand font-black">elevator engineers.</span>
+              </h1>
+
+              {/* Dynamic Typewriter Text Loading */}
+              <div className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-50 border border-slate-200/90 px-4 py-2 rounded-2xl w-fit shadow-2xs">
+                <span className="text-slate-400 font-medium">Direct Support For:</span>
+                <TypewriterText
+                  words={[
+                    "Karimnagar Central HQ & Workshop (Gandhi Road)",
+                    "Direct Central Line: 9700 123 878",
+                    "Founder Direct: +91 98484 80868 (Ramesh Vilasagar)",
+                    "Greater Hyderabad Luxury Villa Lifts & Capsules",
+                    "Warangal Commercial & Hospital Stretcher Elevators",
+                    "Nizamabad, Jagtial & North Telangana Rapid AMC",
+                    "Rapid <30 Min Breakdown Van Dispatch",
+                  ]}
+                  className="text-[#423887] font-extrabold"
+                  cursorClassName="bg-[#863078]"
+                />
+              </div>
+
+              {/* Executive Subtitle */}
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Have an upcoming construction project, need a free laser hoistway survey, or require urgent 24/7 elevator maintenance? Reach out directly to <strong>Ramesh Vilasagar</strong> or our senior engineering desk.
+              </p>
+
+              {/* 4 Direct Channels: 2x2 Clean Architectural Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                {/* 1. Ramesh Vilasagar Direct */}
+                <a
+                  href="tel:9848480868"
+                  className="p-3.5 rounded-2xl bg-white hover:bg-purple-50/70 border border-slate-200/90 hover:border-purple-200 transition-all flex items-center justify-between group shadow-sm card-glow"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-purple-100 text-[#423887] flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
+                      📞
                     </div>
-                    <span className="text-slate-400 group-hover:text-[#423887] font-bold text-sm transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </a>
-                </ScrollReveal>
-
-                {/* 2. 24/7 Statewide Helpline */}
-                <ScrollReveal animation="fadeInUp" delay={0.1}>
-                  <a
-                    href="tel:9700123878"
-                    className="p-4 rounded-2xl bg-slate-50 hover:bg-emerald-50/70 border border-slate-200/90 hover:border-emerald-200 transition-all flex items-center justify-between group shadow-2xs card-glow"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
-                        🕒
+                    <div>
+                      <div className="text-[10px] font-black uppercase tracking-wider text-[#863078]">
+                        Founder & Principal
                       </div>
-                      <div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                          24/7 Service & Statewide Line
-                        </div>
-                        <div className="text-sm font-extrabold text-slate-900 mt-0.5 group-hover:text-emerald-700 transition-colors">
-                          9700 123 878
-                        </div>
-                        <div className="text-[10px] text-emerald-600 font-semibold">Immediate technician dispatch</div>
+                      <div className="text-sm font-black text-slate-900 group-hover:text-[#423887] transition-colors">
+                        +91 98484 80868
                       </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-emerald-700 font-bold text-sm transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </a>
-                </ScrollReveal>
-
-                {/* 3. WhatsApp Desk */}
-                <ScrollReveal animation="fadeInUp" delay={0.15}>
-                  <a
-                    href={`https://wa.me/919700123878?text=Hi%20Vision%20Lifts%2C%20I%20am%20reaching%20out%20regarding%20an%20elevator%20requirement.`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 rounded-2xl bg-slate-50 hover:bg-emerald-50/70 border border-slate-200/90 hover:border-emerald-200 transition-all flex items-center justify-between group shadow-2xs card-glow"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
-                        💬
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                          WhatsApp Engineering Desk
-                        </div>
-                        <div className="text-sm font-extrabold text-slate-900 mt-0.5 group-hover:text-emerald-700 transition-colors">
-                          Chat with our team
-                        </div>
-                        <div className="text-[10px] text-slate-500">Send CAD drawings & floor plans</div>
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-emerald-700 font-bold text-sm transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </a>
-                </ScrollReveal>
-
-                {/* 4. Project Email */}
-                <ScrollReveal animation="fadeInUp" delay={0.2}>
-                  <a
-                    href={`mailto:${COMPANY_INFO.email}`}
-                    className="p-4 rounded-2xl bg-slate-50 hover:bg-purple-50/70 border border-slate-200/90 hover:border-purple-200 transition-all flex items-center justify-between group shadow-2xs card-glow"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-purple-100 text-[#423887] flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
-                        ✉️
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                          Official Quotation & Tender Email
-                        </div>
-                        <div className="text-xs sm:text-sm font-extrabold text-slate-900 mt-0.5 group-hover:text-[#423887] transition-colors break-all">
-                          {COMPANY_INFO.email}
-                        </div>
-                        <div className="text-[10px] text-slate-500">Fast 24-hour quotation turnaround</div>
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-[#423887] font-bold text-sm transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </a>
-                </ScrollReveal>
-
-                {/* 5. Head Office Address */}
-                <ScrollReveal animation="fadeInUp" delay={0.25}>
-                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs card-glow">
-                    <div className="flex items-start gap-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-slate-200/80 text-slate-700 flex items-center justify-center font-bold text-base shrink-0 mt-0.5">
-                        📍
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                          Central Head Office & Manufacturing Workshop
-                        </div>
-                        <p className="text-xs sm:text-sm font-extrabold text-slate-900 mt-0.5 leading-snug">
-                          {COMPANY_INFO.address}
-                        </p>
-                        <p className="text-[11px] text-slate-500 mt-1">
-                          Mon - Sat (9:00 AM - 7:30 PM) · 24/7 Breakdown Crew
-                        </p>
-                      </div>
+                      <div className="text-[10px] text-slate-500 font-medium">Ramesh Vilasagar</div>
                     </div>
                   </div>
-                </ScrollReveal>
+                  <span className="text-slate-400 group-hover:text-[#423887] font-bold text-sm transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+
+                {/* 2. 24/7 Statewide Hotline */}
+                <a
+                  href="tel:9700123878"
+                  className="p-3.5 rounded-2xl bg-white hover:bg-emerald-50/70 border border-slate-200/90 hover:border-emerald-200 transition-all flex items-center justify-between group shadow-sm card-glow"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
+                      🕒
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-black uppercase tracking-wider text-emerald-700">
+                        24/7 Statewide Line
+                      </div>
+                      <div className="text-sm font-black text-slate-900 group-hover:text-emerald-700 transition-colors">
+                        9700 123 878
+                      </div>
+                      <div className="text-[10px] text-slate-500 font-medium">Emergency Dispatch</div>
+                    </div>
+                  </div>
+                  <span className="text-slate-400 group-hover:text-emerald-700 font-bold text-sm transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+
+                {/* 3. WhatsApp Desk */}
+                <a
+                  href="https://wa.me/919700123878?text=Hello%20Vision%20Lifts%2C%20I%20need%20elevator%20quotation%20and%20hoistway%20information."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3.5 rounded-2xl bg-white hover:bg-emerald-50/70 border border-slate-200/90 hover:border-emerald-200 transition-all flex items-center justify-between group shadow-sm card-glow"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
+                      💬
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-black uppercase tracking-wider text-emerald-700">
+                        WhatsApp Desk
+                      </div>
+                      <div className="text-sm font-black text-slate-900 group-hover:text-emerald-700 transition-colors">
+                        Chat with Team
+                      </div>
+                      <div className="text-[10px] text-slate-500 font-medium">Send CAD & Plans</div>
+                    </div>
+                  </div>
+                  <span className="text-slate-400 group-hover:text-emerald-700 font-bold text-sm transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+
+                {/* 4. Karimnagar Central HQ */}
+                <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm card-glow flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-purple-100 text-[#423887] flex items-center justify-center font-bold text-base shrink-0">
+                    📍
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-wider text-[#863078]">
+                      Central HQ & Spares
+                    </div>
+                    <div className="text-xs font-black text-slate-900">
+                      Gandhi Road, Karimnagar
+                    </div>
+                    <div className="text-[10px] text-slate-500 font-medium">Experience Center</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Trust Badges Row */}
+              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 border-t border-slate-100">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-emerald-500 font-bold">✓</span>
+                  <span>100% In-House Engineers</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-emerald-500 font-bold">✓</span>
+                  <span>Free Laser Hoistway Survey</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-emerald-500 font-bold">✓</span>
+                  <span>IS 14665 Safety Certified</span>
+                </div>
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Tell Us About Your Project Form */}
-            <div className="lg:col-span-7">
-              <ScrollReveal animation="fadeInUp" delay={0.1}>
-                <div className="bg-slate-50/90 border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm card-glow">
-                  <div className="mb-5">
-                    <span className="px-3 py-1 bg-purple-100 text-[#863078] rounded-full text-[10px] font-bold uppercase tracking-wider">
-                      Technical Consultation Request
+            {/* RIGHT COLUMN: Interactive Project Enquiry & Survey Form Card */}
+            <div id="project-enquiry-form" className="lg:col-span-6 animate-fade-in-up stagger-2">
+              <div className="bg-white/95 rounded-3xl p-5 sm:p-7 shadow-xl border border-slate-200/90 relative backdrop-blur-sm card-glow">
+                
+                {/* Header inside Form Card */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="px-3 py-1 bg-purple-100 text-[#863078] rounded-full text-[10px] font-black uppercase tracking-wider">
+                      Technical Consultation & Free Survey
                     </span>
-                    <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-2">
-                      Tell us about your project
-                    </h2>
-                    <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                      Fill out the details below. Our senior elevator engineering team will prepare customized blueprints and pricing.
-                    </p>
+                    <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                      ● Active Dispatch
+                    </span>
                   </div>
+                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                    Tell us about your project
+                  </h2>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Our senior elevator engineering team will prepare customized blueprints, shaft layouts & itemized pricing.
+                  </p>
+                </div>
 
-                  {submitted ? (
-                    <div className="text-center py-10 space-y-3">
-                      <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold animate-pulse-badge">
-                        ✓
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-900">Enquiry Successfully Dispatched!</h3>
-                      <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
-                        Thank you, <strong>{formData.name}</strong>. Ramesh Vilasagar or our regional engineer for <strong>{formData.city}</strong> will contact you within 2 business hours.
-                      </p>
+                {submitted ? (
+                  <div className="text-center py-8 space-y-3">
+                    <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold animate-pulse-badge">
+                      ✓
+                    </div>
+                    <h3 className="text-xl font-black text-slate-900">Enquiry Successfully Dispatched!</h3>
+                    <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
+                      Thank you, <strong>{formData.name}</strong>. Ramesh Vilasagar or our regional engineer for <strong>{formData.city}</strong> will contact you within 2 business hours.
+                    </p>
+                    <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+                      <a
+                        href={`https://wa.me/919700123878?text=Hello%2C%20I%20just%20submitted%20an%20enquiry%20for%20${encodeURIComponent(formData.city)}.`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-all inline-flex items-center gap-2"
+                        style={{ color: "#ffffff" }}
+                      >
+                        <span>💬</span>
+                        <span style={{ color: "#ffffff" }}>Connect on WhatsApp Instantly</span>
+                      </a>
                       <button
                         type="button"
                         onClick={() => setSubmitted(false)}
-                        className="btn-sheen mt-3 px-5 py-2.5 bg-[#423887] text-white text-xs font-bold rounded-xl cursor-pointer"
+                        className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl cursor-pointer"
                       >
-                        Submit Another Requirement →
+                        Submit Another Requirement
                       </button>
                     </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      {/* Row 1: Name & Email */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                            YOUR NAME <span className="text-[#a22b51]">*</span>
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            placeholder="e.g. Ramesh Reddy"
-                            value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                            EMAIL <span className="text-[#a22b51]">*</span>
-                          </label>
-                          <input
-                            type="email"
-                            required
-                            placeholder="name@company.com"
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs"
-                          />
-                        </div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-3.5">
+                    {/* Row 1: Building Type Quick Selector */}
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                        BUILDING / PROJECT TYPE <span className="text-[#a22b51]">*</span>
+                      </label>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+                        {[
+                          "Villas & Independent Homes",
+                          "Apartments & Gated",
+                          "Commercial Towers",
+                          "Hospitals & Clinics",
+                          "Industrial & Factories",
+                          "Modernization / Retrofit",
+                        ].map((bType) => {
+                          const isSelected = formData.buildingType === bType;
+                          return (
+                            <button
+                              key={bType}
+                              type="button"
+                              onClick={() => setFormData({ ...formData, buildingType: bType })}
+                              className={`p-2 rounded-xl text-[11px] font-bold text-left transition-all cursor-pointer border ${
+                                isSelected
+                                  ? "bg-purple-50 border-[#863078] text-[#423887] shadow-2xs"
+                                  : "bg-slate-50 border-slate-200/80 text-slate-600 hover:bg-slate-100"
+                              }`}
+                            >
+                              {bType}
+                            </button>
+                          );
+                        })}
                       </div>
+                    </div>
 
-                      {/* Row 2: Phone & City */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                            PHONE NUMBER <span className="text-[#a22b51]">*</span>
-                          </label>
-                          <input
-                            type="tel"
-                            required
-                            placeholder="+91 98484 80868"
-                            value={formData.phone}
-                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                            CITY / DISTRICT <span className="text-[#a22b51]">*</span>
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            placeholder="Karimnagar, Hyderabad, Warangal, etc."
-                            value={formData.city}
-                            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                            className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Row 3: Project Type & Building Type */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                            PROJECT TYPE <span className="text-[#a22b51]">*</span>
-                          </label>
-                          <select
-                            value={formData.projectType}
-                            onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                            className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs cursor-pointer"
-                          >
-                            <option>New Lift Installation</option>
-                            <option>Elevator Modernization & Retrofit</option>
-                            <option>Annual Maintenance Contract (AMC)</option>
-                            <option>B2B Elevator Parts Supply</option>
-                            <option>Emergency Breakdown Service</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                            BUILDING TYPE <span className="text-[#a22b51]">*</span>
-                          </label>
-                          <select
-                            value={formData.buildingType}
-                            onChange={(e) => setFormData({ ...formData, buildingType: e.target.value })}
-                            className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs cursor-pointer"
-                          >
-                            <option>Independent Villa / Bungalow</option>
-                            <option>Residential Apartment / Gated Community</option>
-                            <option>Commercial Office / Shopping Mall</option>
-                            <option>Hospital / Stretcher Lift</option>
-                            <option>Industrial Factory / Heavy Goods</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      {/* Row 4: Approximate Units Needed */}
+                    {/* Row 2: Name & Phone */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                          APPROXIMATE UNITS NEEDED
+                        <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                          YOUR NAME <span className="text-[#a22b51]">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. Ramesh Reddy"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                          MOBILE NUMBER <span className="text-[#a22b51]">*</span>
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="+91 98484 80868"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row 3: Email & City */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                          EMAIL ADDRESS <span className="text-[#a22b51]">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          placeholder="name@company.com"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                          DISTRICT / TOWN IN TELANGANA <span className="text-[#a22b51]">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Karimnagar, Hyderabad, Warangal, etc."
+                          value={formData.city}
+                          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row 4: Units Needed & Project Type */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                          PROJECT TYPE
+                        </label>
+                        <select
+                          value={formData.projectType}
+                          onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs cursor-pointer"
+                        >
+                          <option>New Lift Installation</option>
+                          <option>Elevator Modernization & Retrofit</option>
+                          <option>Annual Maintenance Contract (AMC)</option>
+                          <option>B2B Elevator Parts Supply</option>
+                          <option>Emergency Breakdown Service</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                          APPROXIMATE UNITS
                         </label>
                         <select
                           value={formData.units}
                           onChange={(e) => setFormData({ ...formData, units: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs cursor-pointer"
+                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs cursor-pointer"
                         >
                           <option>1 Unit</option>
                           <option>2 - 3 Units</option>
                           <option>4 - 8 Units</option>
-                          <option>10+ Units (Builder / Bulk Project)</option>
+                          <option>10+ Units (Bulk / Builder)</option>
                         </select>
                       </div>
+                    </div>
 
-                      {/* Row 5: Specific Requirements */}
-                      <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                          SPECIFIC REQUIREMENTS / HOISTWAY DETAILS
-                        </label>
-                        <textarea
-                          rows={3}
-                          placeholder="Tell us about number of floors, pit depth, overhead space, or timeline..."
-                          value={formData.message}
-                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs resize-none"
-                        />
-                      </div>
+                    {/* Row 5: Specific Requirements */}
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                        SPECIFIC REQUIREMENTS / HOISTWAY DETAILS
+                      </label>
+                      <textarea
+                        rows={2}
+                        placeholder="Tell us about number of floors, pit depth, glass capsule preference, or timeline..."
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs resize-none"
+                      />
+                    </div>
 
-                      <div className="pt-2">
-                        <button
-                          type="submit"
-                          disabled={loading}
-                          className="btn-sheen w-full py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 shadow-md shadow-[#863078]/25 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer disabled:opacity-50"
-                        >
-                          {loading ? "Submitting Enquiry..." : "Submit Project Enquiry →"}
-                        </button>
-                        <p className="text-center text-[10px] text-slate-400 mt-2">
-                          🔒 Zero spam guarantee. Direct response from Ramesh Vilasagar or senior engineer.
-                        </p>
-                      </div>
-                    </form>
-                  )}
-                </div>
-              </ScrollReveal>
+                    <div className="pt-1">
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="btn-sheen w-full py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 shadow-md shadow-[#863078]/25 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer disabled:opacity-50 active:scale-98"
+                        style={{ color: "#ffffff" }}
+                      >
+                        <span style={{ color: "#ffffff" }}>
+                          {loading ? "Submitting Enquiry..." : "Submit Project Enquiry & Free Survey →"}
+                        </span>
+                      </button>
+                      <p className="text-center text-[10px] text-slate-400 mt-2 font-medium">
+                        🔒 Zero spam guarantee. Direct technical response from Ramesh Vilasagar or senior engineer within 2 hours.
+                      </p>
+                    </div>
+                  </form>
+                )}
+              </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* 3. VISIT OUR KARIMNAGAR HEADQUARTERS & GOOGLE MAPS */}
-      <section className="py-8 sm:py-12 bg-white border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* =========================================================================
+          2. CENTRAL KARIMNAGAR HQ & GOOGLE MAPS SHOWCASE
+          ========================================================================= */}
+      <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#863078] bg-purple-50 px-2.5 py-1 rounded-full border border-purple-100">
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#863078] bg-purple-50 px-3 py-1 rounded-full border border-purple-100">
                   Headquarters & Experience Center
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1.5">
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-2">
                   Visit our Karimnagar headquarters
                 </h2>
                 <p className="text-slate-500 text-xs sm:text-sm mt-0.5 leading-relaxed">
@@ -530,16 +539,16 @@ export default function ContactPage() {
                   href="https://maps.google.com/?q=Gandhi+Road,+Karimnagar,+Telangana+505001"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-sheen py-2 px-4 bg-[#423887] text-white rounded-xl text-xs font-bold text-center flex items-center gap-1.5"
+                  className="btn-sheen py-2.5 px-4 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white rounded-xl text-xs font-bold text-center flex items-center gap-1.5 shadow-sm"
+                  style={{ color: "#ffffff" }}
                 >
-                  <span>Open in Google Maps</span>
-                  <span>↗</span>
+                  <span style={{ color: "#ffffff" }}>Open in Google Maps ↗</span>
                 </a>
               </div>
             </div>
 
             {/* Interactive Map Card */}
-            <div className="relative w-full h-80 sm:h-96 rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
+            <div className="relative w-full h-80 sm:h-96 rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-slate-100">
               <iframe
                 title="Vision Lifts & Solutions Karimnagar Office"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3785.4984242686127!2d79.128841!3d18.438555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccd9198b1e4f4b%3A0x6b4ef8d4d8ef8c9a!2sGandhi%20Rd%2C%20Karimnagar%2C%20Telangana%20505001!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
@@ -550,13 +559,13 @@ export default function ContactPage() {
               />
 
               {/* Floating Location Card */}
-              <div className="absolute top-4 left-4 max-w-xs sm:max-w-sm bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-slate-200 shadow-lg">
+              <div className="absolute top-4 left-4 max-w-xs sm:max-w-sm bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-slate-200/90 shadow-xl">
                 <div className="flex items-start gap-2.5">
                   <div className="w-8 h-8 rounded-lg bg-purple-50 text-[#863078] flex items-center justify-center font-bold text-sm shrink-0">
                     📍
                   </div>
                   <div>
-                    <h3 className="text-xs font-extrabold text-slate-900">
+                    <h3 className="text-xs font-black text-slate-900">
                       Karimnagar Central Office & Workshop
                     </h3>
                     <p className="text-[11px] text-slate-500 mt-0.5 leading-snug">
@@ -569,8 +578,9 @@ export default function ContactPage() {
                   <a
                     href="tel:9700123878"
                     className="flex-1 py-1.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-[10px] font-bold text-center"
+                    style={{ color: "#ffffff" }}
                   >
-                    📞 Helpline: 9700 123 878
+                    <span style={{ color: "#ffffff" }}>📞 Helpline: 9700 123 878</span>
                   </a>
                   <a
                     href="tel:9848480868"
@@ -585,17 +595,19 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 4. TELANGANA 33 DISTRICTS INTERACTIVE DIRECTORY */}
-      <section className="py-8 sm:py-12 bg-slate-50/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* =========================================================================
+          3. TELANGANA 33 DISTRICTS INTERACTIVE DIRECTORY & SEARCH
+          ========================================================================= */}
+      <section className="py-12 sm:py-16 bg-slate-50/60 border-b border-slate-100">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           
           <ScrollReveal animation="fadeInUp">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#863078] bg-purple-50 px-2.5 py-1 rounded-full border border-purple-100">
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#863078] bg-purple-50 px-3 py-1 rounded-full border border-purple-100">
                   Statewide Engineering Network
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1.5 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-2 tracking-tight">
                   All 33 Districts Elevator Engineering Units
                 </h2>
                 <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
@@ -638,6 +650,7 @@ export default function ContactPage() {
                         ? "bg-[#423887] text-white shadow-2xs ring-1 ring-[#423887]/50"
                         : "bg-slate-50 text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900"
                     }`}
+                    style={isActive ? { color: "#ffffff" } : {}}
                   >
                     {zone}
                   </button>
@@ -650,7 +663,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
             {filteredDistricts.map((district, dIdx) => (
               <ScrollReveal key={district.name} animation="fadeInUp" delay={Math.min((dIdx % 6) * 0.05, 0.3)}>
-                <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-2xs card-glow transition-all flex flex-col justify-between h-full">
+                <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-2xs card-glow transition-all flex flex-col justify-between h-full hover:border-purple-200">
                   <div>
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <h3 className="text-base font-extrabold text-slate-900 tracking-tight">
@@ -680,8 +693,9 @@ export default function ContactPage() {
                     <a
                       href="tel:9700123878"
                       className="btn-sheen flex-1 py-2 px-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-[11px] font-bold text-center transition-colors"
+                      style={{ color: "#ffffff" }}
                     >
-                      📞 9700 123 878
+                      <span style={{ color: "#ffffff" }}>📞 9700 123 878</span>
                     </a>
                     <button
                       type="button"
@@ -706,6 +720,7 @@ export default function ContactPage() {
                   setSelectedZone("All");
                 }}
                 className="btn-sheen mt-3 px-4 py-2 bg-[#423887] text-white text-xs font-bold rounded-xl cursor-pointer"
+                style={{ color: "#ffffff" }}
               >
                 Reset Search Filters
               </button>

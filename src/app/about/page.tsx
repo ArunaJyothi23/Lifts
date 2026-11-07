@@ -13,18 +13,18 @@ export default function AboutPage() {
   const [surveyOpen, setSurveyOpen] = useState(false);
 
   const stats = [
-    { value: "15+", label: "Years Engineering Mastery", sub: "Since inception in Telangana" },
-    { value: "500+", label: "Landmark Sites Commissioned", sub: "Villas, towers & hospitals" },
-    { value: "33", label: "Telangana Districts Covered", sub: "Statewide technical presence" },
-    { value: "<30m", label: "Emergency SLA Response", sub: "Direct mobile technician dispatch" },
+    { value: "15+", label: "Years Experience", sub: "Since inception in Telangana" },
+    { value: "500+", label: "Landmark Sites", sub: "Villas, towers & hospitals" },
+    { value: "33", label: "Districts Covered", sub: "Statewide technical presence" },
+    { value: "<30m", label: "Emergency SLA", sub: "Direct mobile technician dispatch" },
   ];
 
   const leadershipPillars = [
     {
       title: "Direct Technical Access",
-      desc: "Speak directly with the principal elevator engineers who designed and installed your shaft — never an untrained third-party call center agent.",
+      desc: "Speak directly with senior elevator engineers who designed and installed your hoistway — never an untrained third-party call center agent.",
       icon: "⚙️",
-      tag: "Engineer Owned",
+      tag: "Direct Engineering",
     },
     {
       title: "Zero Subcontracting Policy",
@@ -39,7 +39,7 @@ export default function AboutPage() {
       tag: "Tier-1 Hardware",
     },
     {
-      title: "In-House Karimnagar Spares Depot",
+      title: "Karimnagar Stocked Spares Depot",
       desc: "Our central workshop on Gandhi Road maintains complete inventory of genuine OEM boards, belts, door operators, and ARD battery systems.",
       icon: "📦",
       tag: "Zero Delay",
@@ -147,21 +147,21 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden font-sans text-slate-800">
+    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden font-sans text-slate-800 selection:bg-[#a22b51] selection:text-white">
       
       {/* =========================================================================
-          1. HERO SECTION: 2-COLUMN SPLIT WITH ZERO DEAD SPACE & LUXURY CARD
+          1. HERO SECTION: BALANCED 2-COLUMN LUXURY ARCHITECTURAL SHOWCASE
           ========================================================================= */}
-      <section className="bg-white border-b border-slate-100 pt-8 pb-12 sm:pt-10 sm:pb-16 relative overflow-hidden">
-        {/* Ambient Glowing Background Orbs */}
-        <div className="ambient-orb w-96 h-96 -top-24 -left-24 bg-purple-200/40 animate-pulse-slow" />
-        <div className="ambient-orb w-96 h-96 top-1/3 -right-20 bg-rose-200/30 animate-pulse-slow" />
+      <section className="bg-white border-b border-slate-100 pt-6 pb-12 sm:pt-8 sm:pb-16 relative overflow-hidden">
+        {/* Subtle Ambient Glowing Background Orbs */}
+        <div className="ambient-orb w-96 h-96 -top-24 -left-24 bg-purple-100/50 animate-pulse-slow" />
+        <div className="ambient-orb w-96 h-96 top-1/3 -right-20 bg-rose-100/40 animate-pulse-slow" />
 
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
             
-            {/* Left Column: Brand Story & Typewriter Core Commitments */}
-            <div className="lg:col-span-7 space-y-4 sm:space-y-5 animate-fade-in-up">
+            {/* Left Column: Brand Story & Executive Intro */}
+            <div className="lg:col-span-7 space-y-4 sm:space-y-4.5 animate-fade-in-up">
               
               {/* Breadcrumb Navigation */}
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
@@ -170,8 +170,8 @@ export default function AboutPage() {
                 <span className="text-[#423887] font-bold">About Vision Lifts</span>
               </div>
 
-              {/* Verified Location Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-xs font-bold text-[#423887] uppercase tracking-wider">
+              {/* Verified Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50/80 border border-purple-100 text-[11px] sm:text-xs font-bold text-[#423887] uppercase tracking-wider">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#863078] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887]"></span>
@@ -180,13 +180,13 @@ export default function AboutPage() {
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[54px] font-black tracking-tight text-slate-900 leading-[1.12]">
+              <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[50px] font-black tracking-tight text-slate-900 leading-[1.14]">
                 Engineering vertical trust across{" "}
-                <span className="text-shimmer-brand">Telangana.</span>
+                <span className="text-shimmer-brand font-black">Telangana.</span>
               </h1>
 
               {/* Dynamic Typewriter Text Loading */}
-              <div className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-50 border border-slate-200/90 px-4 py-2.5 rounded-2xl w-fit shadow-2xs">
+              <div className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-50 border border-slate-200/90 px-4 py-2 rounded-2xl w-fit shadow-2xs">
                 <span className="text-slate-400 font-medium">Core Commitments:</span>
                 <TypewriterText
                   words={[
@@ -202,26 +202,32 @@ export default function AboutPage() {
               </div>
 
               {/* Executive Subtitle */}
-              <p className="text-slate-600 text-sm sm:text-base xl:text-lg leading-relaxed max-w-2xl">
-                Founded by <strong>Ramesh Vilasagar</strong>, Vision Lifts & Solutions bridges high-precision elevator engineering with local service responsiveness. We engineer safer, quieter, and smarter vertical mobility systems for luxury villas, commercial towers, healthcare clinics, and factories across all 33 districts of Telangana.
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
+                Founded by <strong>Ramesh Vilasagar</strong>, Vision Lifts & Solutions blends rigorous mechanical engineering with local service responsiveness. We engineer safer, quieter, and smarter vertical mobility systems for luxury villas, commercial towers, healthcare clinics, and factories across all 33 districts of Telangana.
               </p>
 
-              {/* Hero Call-To-Action Cluster */}
-              <div className="pt-2 flex flex-wrap items-center gap-3">
+              {/* Hero Call-To-Action Cluster (High Contrast, Guaranteed Visible Text) */}
+              <div className="pt-1.5 flex flex-wrap items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setSurveyOpen(true)}
-                  className="btn-sheen px-6 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md shadow-[#863078]/25 transition-all cursor-pointer inline-flex items-center gap-2 active:scale-95"
+                  className="btn-sheen px-6 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-extrabold text-xs uppercase tracking-wider rounded-full shadow-md shadow-[#863078]/25 transition-all cursor-pointer inline-flex items-center gap-2 active:scale-95"
+                  style={{ color: "#ffffff" }}
                 >
-                  <span>Book Free Hoistway Survey →</span>
+                  <span className="text-white font-black" style={{ color: "#ffffff" }}>
+                    Book Free Hoistway Survey →
+                  </span>
                 </button>
 
                 <a
                   href="tel:9700123878"
-                  className="px-5 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center gap-2 shadow-sm active:scale-95"
+                  className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center gap-2 shadow-sm active:scale-95 border border-slate-800"
+                  style={{ color: "#ffffff" }}
                 >
-                  <span className="text-emerald-400">📞</span>
-                  <span>Call 9700 123 878 Direct</span>
+                  <span className="text-emerald-400 text-sm">📞</span>
+                  <span className="text-white font-black tracking-wide" style={{ color: "#ffffff" }}>
+                    Call 9700 123 878 Direct
+                  </span>
                 </a>
               </div>
 
@@ -242,55 +248,52 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Right Column: Hero Visual Command Card (Eliminating White Dead Space) */}
+            {/* Right Column: Architectural Light Showcase Card (Matches Light Website Theme) */}
             <div className="lg:col-span-5 animate-fade-in-up stagger-2">
-              <div className="relative bg-slate-900 rounded-3xl p-3 shadow-2xl border border-slate-800 overflow-hidden card-glow group">
+              <div className="relative bg-white/95 rounded-3xl p-4 sm:p-5 shadow-xl border border-slate-200/90 overflow-hidden card-glow group backdrop-blur-sm">
                 
-                {/* Background Elevator Photo */}
-                <div className="relative h-72 sm:h-80 xl:h-96 w-full rounded-2xl overflow-hidden">
+                {/* Elevated Elevator Image Frame */}
+                <div className="relative h-64 sm:h-72 xl:h-80 w-full rounded-2xl overflow-hidden shadow-xs border border-slate-100 bg-slate-900">
                   <Image
                     src="/images/hero-lobby.png"
-                    alt="Vision Lifts Central Experience & Engineering Hub"
+                    alt="Vision Lifts Engineering & Experience Center"
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-95"
+                    className="object-cover group-hover:scale-104 transition-transform duration-700"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
-                  {/* Top Floating Badge */}
-                  <div className="absolute top-3 left-3 px-3 py-1 bg-white/95 backdrop-blur-md rounded-full text-[10px] font-black text-[#423887] border border-purple-100 shadow-sm flex items-center gap-1.5">
+                  {/* Top Floating Glass Badges */}
+                  <div className="absolute top-3 left-3 px-3 py-1 bg-white/95 backdrop-blur-md rounded-full text-[10px] font-black text-[#423887] border border-purple-100 shadow-xs flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span>15+ Years Mechanical Mastery</span>
                   </div>
 
-                  <div className="absolute top-3 right-3 px-3 py-1 bg-slate-900/90 backdrop-blur-md rounded-full text-[10px] font-bold text-amber-400 border border-slate-700 shadow-sm">
+                  <div className="absolute top-3 right-3 px-2.5 py-1 bg-slate-900/90 backdrop-blur-md rounded-full text-[10px] font-bold text-amber-300 border border-slate-700 shadow-xs">
                     ★ 99.4% Uptime Record
                   </div>
 
-                  {/* Bottom Image Overlay Content */}
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <div className="text-[10px] uppercase tracking-wider text-slate-300 font-bold">
-                      Gandhi Road Central Office & Workshop
+                  {/* Bottom Image Overlay Strip */}
+                  <div className="absolute bottom-3 left-3 right-3 text-white">
+                    <div className="text-[10px] uppercase font-bold text-slate-300 tracking-wider">
+                      Karimnagar Central HQ & Workshop
                     </div>
-                    <div className="text-base sm:text-lg font-black tracking-tight text-white mt-0.5">
-                      Ramesh Vilasagar Engineering Command
-                    </div>
-                    <div className="text-xs text-slate-300 mt-1 flex items-center justify-between">
-                      <span>Karimnagar, Telangana - 505001</span>
-                      <span className="text-emerald-400 font-bold">24/7 On-Call Support</span>
+                    <div className="text-sm sm:text-base font-extrabold text-white mt-0.5 flex items-center justify-between">
+                      <span>Gandhi Road Commercial Zone</span>
+                      <span className="text-[10px] font-bold text-emerald-400 bg-black/60 px-2 py-0.5 rounded">24/7 Hotline</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Bottom Trust Stat Bar */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 px-2 pb-1">
+                {/* Bottom Trust Stat Bar (Light, Architectural, Brand Colored Numbers) */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3">
                   {stats.map((s, idx) => (
-                    <div key={idx} className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/60 text-center">
-                      <div className="text-base sm:text-lg font-black text-white">
+                    <div key={idx} className="bg-slate-50/90 p-2.5 rounded-xl border border-slate-200/80 text-center hover:bg-purple-50/50 transition-colors">
+                      <div className="text-base sm:text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887]">
                         <AnimatedCounter value={s.value} />
                       </div>
-                      <div className="text-[9px] font-bold uppercase tracking-wider text-slate-300 mt-0.5 leading-tight">
-                        {s.label.split(" ")[0]} {s.label.split(" ")[1] || ""}
+                      <div className="text-[9px] font-bold uppercase tracking-wider text-slate-600 mt-0.5 leading-tight">
+                        {s.label}
                       </div>
                     </div>
                   ))}
@@ -305,31 +308,31 @@ export default function AboutPage() {
       {/* =========================================================================
           2. EXECUTIVE FOUNDER & STORY: DIRECT ACCOUNTABILITY & 4 PILLARS
           ========================================================================= */}
-      <section className="py-14 sm:py-20 bg-white border-b border-slate-100 relative">
+      <section className="py-14 sm:py-20 bg-slate-50/60 border-b border-slate-100 relative">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
               
               {/* Left Column: Founder Visual Card */}
               <div className="lg:col-span-5 space-y-4">
-                <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900 group card-glow">
-                  <div className="relative h-96 sm:h-[420px] w-full">
+                <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-lg bg-slate-900 group card-glow">
+                  <div className="relative h-80 sm:h-96 w-full">
                     <Image
                       src="/images/safety-panel.png"
                       alt="Ramesh Vilasagar Precision Engineering Setup"
                       fill
-                      className="object-cover group-hover:scale-104 transition-transform duration-500 brightness-90"
+                      className="object-cover group-hover:scale-104 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
                     
                     {/* Badge */}
-                    <div className="absolute top-4 left-4 px-3.5 py-1 bg-[#423887]/90 backdrop-blur-md rounded-full text-white text-[10px] font-black uppercase tracking-wider border border-purple-400/40">
+                    <div className="absolute top-4 left-4 px-3.5 py-1 bg-white/95 backdrop-blur-md rounded-full text-[#423887] text-[10px] font-black uppercase tracking-wider border border-purple-100 shadow-xs">
                       Engineering Leadership
                     </div>
 
                     {/* Founder Overlay Info */}
                     <div className="absolute bottom-5 left-5 right-5 text-white">
-                      <div className="text-xs uppercase tracking-widest text-[#863078] font-black bg-white px-2.5 py-0.5 rounded w-fit mb-1.5">
+                      <div className="text-[10px] uppercase tracking-widest text-[#863078] font-black bg-white px-2.5 py-0.5 rounded w-fit mb-1.5">
                         FOUNDER & PRINCIPAL ENGINEER
                       </div>
                       <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
@@ -340,8 +343,8 @@ export default function AboutPage() {
                       </p>
                       
                       <div className="mt-3 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
-                        <span className="text-slate-400">Direct Consultation:</span>
-                        <a href="tel:9848480868" className="font-bold text-amber-400 hover:underline">
+                        <span className="text-slate-400">Direct Engineer Line:</span>
+                        <a href="tel:9848480868" className="font-bold text-amber-300 hover:underline">
                           +91 98484 80868
                         </a>
                       </div>
@@ -350,8 +353,8 @@ export default function AboutPage() {
                 </div>
 
                 {/* Quality Accreditation Micro Strip */}
-                <div className="p-4 rounded-2xl bg-purple-50/70 border border-purple-100 text-xs text-[#423887] flex items-center gap-3">
-                  <span className="text-xl">🏆</span>
+                <div className="p-4 rounded-2xl bg-white border border-slate-200/90 text-xs text-slate-700 flex items-center gap-3 shadow-xs">
+                  <span className="text-2xl">🏆</span>
                   <div className="leading-snug">
                     <strong className="block text-slate-900 font-bold">100% Engineer-Supervised Installations</strong>
                     Zero third-party handoffs. Every lift is physically calibrated by our senior engineers before handover.
@@ -360,8 +363,8 @@ export default function AboutPage() {
               </div>
 
               {/* Right Column: Founder Vision & Philosophy */}
-              <div className="lg:col-span-7 space-y-5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider">
+              <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-[#863078] border border-purple-100 text-xs font-bold uppercase tracking-wider">
                   <span>Founder&apos;s Engineering Creed</span>
                 </div>
 
@@ -378,17 +381,17 @@ export default function AboutPage() {
                 </p>
 
                 {/* Signed Founder Quote Card */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-purple-50/50 border-l-4 border-[#863078] shadow-xs relative card-glow">
-                  <span className="text-4xl text-[#863078]/25 font-serif absolute top-3 right-4 select-none">“</span>
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-purple-100 border-l-4 border-l-[#863078] shadow-xs relative card-glow">
+                  <span className="text-4xl text-[#863078]/20 font-serif absolute top-3 right-4 select-none">“</span>
                   <p className="italic text-slate-800 text-sm sm:text-base leading-relaxed relative z-10 font-medium">
                     &ldquo;Every lift we commission carries our personal reputation. We treat every single passenger cab as if our own family travels in it every day.&rdquo;
                   </p>
-                  <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-purple-100">
+                  <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-purple-50">
                     <div>
                       <strong className="text-slate-900 block font-bold">Ramesh Vilasagar</strong>
                       <span className="text-slate-500">Founder & Principal Elevator Engineer</span>
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-wider text-[#863078] bg-white px-2 py-1 rounded border border-purple-200">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-[#863078] bg-purple-50 px-2.5 py-1 rounded-full border border-purple-100">
                       Karimnagar, TS
                     </span>
                   </div>
@@ -397,7 +400,7 @@ export default function AboutPage() {
                 {/* 4 Pillars Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   {leadershipPillars.map((p, i) => (
-                    <div key={i} className="p-3.5 rounded-xl border border-slate-200 bg-white hover:border-[#863078]/40 transition-all card-glow">
+                    <div key={i} className="p-3.5 rounded-xl border border-slate-200 bg-white hover:border-[#863078]/40 transition-all card-glow shadow-xs">
                       <div className="flex items-center justify-between mb-1.5">
                         <span className="text-lg">{p.icon}</span>
                         <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#863078] bg-purple-50 px-2 py-0.5 rounded">
@@ -420,7 +423,7 @@ export default function AboutPage() {
       {/* =========================================================================
           3. REGIONAL STRENGTH: STATEWIDE 33-DISTRICT INFRASTRUCTURE
           ========================================================================= */}
-      <section className="py-14 sm:py-20 bg-slate-50 border-b border-slate-100">
+      <section className="py-14 sm:py-20 bg-white border-b border-slate-100">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-12">
@@ -440,11 +443,11 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {regionalHubs.map((hub, i) => (
               <ScrollReveal key={i} animation="fadeInUp" delay={i * 0.08}>
-                <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between card-glow h-full hover:border-[#863078]/50 transition-all">
+                <div className="bg-slate-50/70 p-6 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between card-glow h-full hover:bg-white hover:border-[#863078]/50 transition-all">
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xl">📍</span>
-                      <span className="text-[10px] font-black uppercase tracking-wider text-[#423887] bg-purple-50 border border-purple-100 px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-[#423887] bg-white border border-purple-100 px-2 py-0.5 rounded-full shadow-xs">
                         {hub.badge}
                       </span>
                     </div>
@@ -462,8 +465,8 @@ export default function AboutPage() {
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
-                    <span className="text-slate-400">Direct Line:</span>
+                  <div className="pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs font-bold">
+                    <span className="text-slate-500">Direct Line:</span>
                     <a
                       href="tel:9848480868"
                       className="text-[#423887] hover:text-[#863078] transition-colors"
@@ -477,16 +480,16 @@ export default function AboutPage() {
           </div>
 
           {/* Statewide Emergency Hotline Strip */}
-          <div className="mt-8 p-5 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg font-bold shrink-0">
+          <div className="mt-8 p-6 rounded-3xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold shrink-0 border border-emerald-500/30">
                 📞
               </div>
               <div>
-                <div className="text-xs text-slate-300 font-semibold uppercase tracking-wider">
+                <div className="text-xs text-slate-300 font-bold uppercase tracking-wider">
                   24/7 All-Telangana Emergency Breakdown Helpline
                 </div>
-                <div className="text-lg sm:text-xl font-black text-white tracking-tight">
+                <div className="text-lg sm:text-2xl font-black text-white tracking-tight">
                   9700 123 878 / +91 98484 80868
                 </div>
               </div>
@@ -495,13 +498,14 @@ export default function AboutPage() {
             <div className="flex items-center gap-2.5 shrink-0">
               <a
                 href="tel:9700123878"
-                className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl transition-all shadow-xs"
+                className="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-md"
+                style={{ color: "#ffffff" }}
               >
                 Call Hotline Now
               </a>
               <Link
                 href="/telangana-network"
-                className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl border border-slate-700 transition-all"
+                className="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl border border-slate-700 transition-all"
               >
                 View 33 Districts Directory →
               </Link>
@@ -513,14 +517,14 @@ export default function AboutPage() {
       {/* =========================================================================
           4. SAFETY & COMPLIANCE WALL: IS 14665, NBC 2016 & RIGOROUS TESTING
           ========================================================================= */}
-      <section className="py-14 sm:py-20 bg-white border-b border-slate-100">
+      <section className="py-14 sm:py-20 bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
             
             {/* Left Image Showcase */}
             <div className="lg:col-span-5">
               <ScrollReveal animation="fadeIn">
-                <div className="relative h-96 sm:h-[440px] rounded-3xl overflow-hidden border border-slate-200 shadow-xl group card-glow bg-slate-900">
+                <div className="relative h-96 sm:h-[420px] rounded-3xl overflow-hidden border border-slate-200 shadow-xl group card-glow bg-slate-900">
                   <Image
                     src="/images/cabin-study.png"
                     alt="Precision Elevator Cabin Structural Study"
@@ -561,7 +565,7 @@ export default function AboutPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-4">
                   {complianceStandards.map((std, i) => (
-                    <div key={i} className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 card-glow">
+                    <div key={i} className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs card-glow">
                       <div className="flex items-center gap-2 mb-1.5">
                         <span className="text-lg">{std.icon}</span>
                         <span className="text-xs font-black text-[#423887]">{std.code}</span>
@@ -590,7 +594,7 @@ export default function AboutPage() {
       {/* =========================================================================
           5. 10+ YEARS TIMELINE & MILESTONES (2014 TO 2026)
           ========================================================================= */}
-      <section className="py-14 sm:py-20 bg-slate-50 border-b border-slate-100">
+      <section className="py-14 sm:py-20 bg-white border-b border-slate-100">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-2xl mx-auto mb-12">
@@ -610,7 +614,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             {milestones.map((m, i) => (
               <ScrollReveal key={i} animation="fadeInUp" delay={i * 0.08}>
-                <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between card-glow h-full hover:border-[#863078]/60 transition-all group">
+                <div className="bg-slate-50/70 p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between card-glow h-full hover:bg-white hover:border-[#863078]/60 transition-all group">
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xl font-black text-[#423887] group-hover:text-[#863078] transition-colors">
@@ -630,7 +634,7 @@ export default function AboutPage() {
                     </p>
                   </div>
 
-                  <div className="pt-2.5 border-t border-slate-100 text-[10px] font-semibold text-[#423887] bg-purple-50/40 p-2 rounded-lg">
+                  <div className="pt-2.5 border-t border-slate-200/80 text-[10px] font-semibold text-[#423887] bg-white p-2 rounded-lg shadow-2xs">
                     ✨ {m.highlight}
                   </div>
                 </div>

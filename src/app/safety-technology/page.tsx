@@ -77,35 +77,35 @@ export default function SafetyTechnologyPage() {
         <div className="ambient-orb w-96 h-96 -top-20 -left-20 bg-purple-200/35 animate-pulse-slow" />
         <div className="ambient-orb w-80 h-80 top-1/2 -right-16 bg-rose-200/25 animate-pulse-slow" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
             {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-4 sm:space-y-5">
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
                 <Link href="/" className="hover:text-slate-900 transition-colors">Home</Link>
                 <span>/</span>
                 <span className="text-[#423887] font-bold">Safety & Engineering</span>
               </div>
 
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-xs font-bold text-[#423887] uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50/80 border border-purple-100 text-[11px] sm:text-xs font-bold text-[#863078] uppercase tracking-wider">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#863078] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887]"></span>
                 </span>
-                IS 14665 & NBC 2016 Compliant Systems
+                <span>IS 14665 & NBC 2016 Compliant Systems</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.12]">
-                Safety systems <br />
-                built for <span className="text-shimmer-brand">peace of mind.</span>
+              <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[50px] font-black tracking-tight text-slate-900 leading-[1.14]">
+                Safety systems built for{" "}
+                <span className="text-shimmer-brand font-black">peace of mind.</span>
               </h1>
 
               {/* Dynamic Typewriter text loading */}
-              <div className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-50 border border-slate-200/80 px-4 py-2.5 rounded-2xl w-fit shadow-2xs">
-                <span className="text-slate-400 font-medium">Protection standards:</span>
+              <div className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-50 border border-slate-200/90 px-4 py-2 rounded-2xl w-fit shadow-2xs">
+                <span className="text-slate-400 font-medium">Protection Standards:</span>
                 <TypewriterText
                   words={[
-                    "Automatic Rescue Device (ARD) Anti-Trap",
+                    "Automatic Rescue Device (ARD) Anti-Trap Battery Backup",
                     "Infrared Full-Height 128-Beam Light Curtains",
                     "Instantaneous Mechanical Bi-Directional Safety Gear",
                     "Firefighter Emergency Recall & Overload Sensors",
@@ -116,41 +116,44 @@ export default function SafetyTechnologyPage() {
                 />
               </div>
 
-              <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
                 Elevator safety is not an optional accessory. At Vision Lifts & Solutions, every system installed across Telangana incorporates multi-layered mechanical fail-safes, real-time electronic diagnostics, and automatic battery rescue systems.
               </p>
-
-              {/* Metric Highlights */}
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100">
-                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 card-glow">
-                  <div className="text-2xl font-black text-slate-900">8-Tier</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Redundant Safety</div>
-                </div>
-                <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-100 card-glow">
-                  <div className="text-2xl font-black text-emerald-700">100%</div>
-                  <div className="text-xs text-emerald-700 font-medium mt-0.5">Anti-Trap ARD</div>
-                </div>
-                <div className="p-3.5 rounded-2xl bg-purple-50 border border-purple-100 card-glow">
-                  <div className="text-2xl font-black text-[#423887]">&lt; 30 ms</div>
-                  <div className="text-xs text-[#423887] font-medium mt-0.5">Sensor Reaction</div>
-                </div>
-              </div>
 
               {/* Action Buttons */}
               <div className="pt-2 flex flex-wrap gap-3">
                 <button
                   type="button"
                   onClick={() => setSurveyOpen(true)}
-                  className="btn-sheen px-7 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md hover:shadow-lg transition-all cursor-pointer"
+                  className="btn-sheen px-6 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-extrabold text-xs uppercase tracking-wider rounded-full shadow-md shadow-[#863078]/25 transition-all cursor-pointer active:scale-95"
+                  style={{ color: "#ffffff" }}
                 >
-                  Request On-Site Safety Inspection
+                  <span style={{ color: "#ffffff" }}>Request On-Site Safety Inspection →</span>
                 </button>
                 <a
-                  href={`tel:${COMPANY_INFO.phoneRaw}`}
-                  className="px-7 py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold text-xs uppercase tracking-wider rounded-full transition-all"
+                  href="tel:9700123878"
+                  className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center gap-2 shadow-sm active:scale-95 border border-slate-800"
+                  style={{ color: "#ffffff" }}
                 >
-                  Consult Chief Engineer
+                  <span className="text-emerald-400 text-sm">📞</span>
+                  <span style={{ color: "#ffffff" }}>Call 9700 123 878 Direct</span>
                 </a>
+              </div>
+
+              {/* Trust Metrics Bar */}
+              <div className="pt-3 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 border-t border-slate-100">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-emerald-500 font-bold">✓</span>
+                  <span>8-Tier Redundant Fail-Safes</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-emerald-500 font-bold">✓</span>
+                  <span>100% Anti-Trap ARD Standard</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-emerald-500 font-bold">✓</span>
+                  <span>IS 14665 & NBC 2016 Certified</span>
+                </div>
               </div>
             </div>
 
