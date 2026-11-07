@@ -228,27 +228,27 @@ export default function HomePage() {
 
             {/* Right Column: Elevator Visual Showcase & Free Site Survey Card */}
             <div className="lg:col-span-5 animate-fade-in-up stagger-2">
-              <div className="bg-slate-50/90 border border-slate-200 rounded-3xl p-4 sm:p-5 xl:p-6 shadow-xl relative backdrop-blur-sm card-glow">
+              <div className="luxury-glass rounded-3xl p-4 sm:p-5 xl:p-6 shadow-2xl relative card-glow">
                 
-                {/* Dynamic Elevator Preview Image */}
-                <div className="relative h-32 sm:h-36 xl:h-44 w-full rounded-2xl overflow-hidden mb-3 xl:mb-4 border border-slate-200/80 shadow-2xs group bg-slate-900">
+                {/* Dynamic Elevator Preview Image (High-Resolution Photorealistic Render) */}
+                <div className="relative h-36 sm:h-40 xl:h-48 w-full rounded-2xl overflow-hidden mb-3 xl:mb-4 border border-slate-200/80 shadow-xs group bg-slate-900">
                   <Image
                     src={activeBuilding.image}
                     alt={activeBuilding.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-104 transition-transform duration-700 ease-out"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-xs text-[9px] xl:text-[10px] font-bold text-[#423887] border border-purple-100 uppercase tracking-wider">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+                  <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-[9px] xl:text-[10px] font-black text-[#423887] border border-purple-100 uppercase tracking-wider shadow-xs">
                     {activeBuilding.series}
                   </div>
-                  <div className="absolute bottom-2 left-2.5 right-2.5 text-white flex items-end justify-between">
+                  <div className="absolute bottom-2.5 left-3 right-3 text-white flex items-end justify-between">
                     <div>
-                      <div className="text-[11px] xl:text-xs font-black tracking-tight">{activeBuilding.title}</div>
-                      <div className="text-[9px] xl:text-[10px] text-slate-300">Whisper-Quiet · Single Phase 220V</div>
+                      <div className="text-xs xl:text-sm font-black tracking-tight">{activeBuilding.title}</div>
+                      <div className="text-[9px] xl:text-[10px] text-slate-300 font-medium">Whisper-Quiet · Single Phase 220V</div>
                     </div>
-                    <span className="text-[9px] xl:text-[10px] font-bold text-emerald-400 bg-slate-900/80 px-2 py-0.5 rounded-md">Live Preview</span>
+                    <span className="text-[9px] xl:text-[10px] font-bold text-emerald-400 bg-slate-900/90 backdrop-blur-xs px-2 py-0.5 rounded-md border border-slate-700">Live Preview</span>
                   </div>
                 </div>
 
@@ -357,12 +357,13 @@ export default function HomePage() {
                     <div className="pt-1">
                       <button
                         type="submit"
-                        className="btn-sheen w-full py-2.5 xl:py-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 shadow-md shadow-[#863078]/25 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer"
+                        className="btn-sheen w-full py-2.5 xl:py-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 shadow-md shadow-[#863078]/25 text-white font-extrabold text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer active:scale-98"
+                        style={{ color: "#ffffff" }}
                       >
-                        Request a Call Back →
+                        <span style={{ color: "#ffffff" }}>Request a Call Back →</span>
                       </button>
-                      <p className="text-center text-[11px] text-slate-400 mt-2">
-                        🔒 Zero spam. Direct engineer consultation.
+                      <p className="text-center text-[10px] xl:text-[11px] text-slate-400 mt-2 font-medium">
+                        🔒 Zero spam guarantee. Direct technical consultation from Ramesh Vilasagar.
                       </p>
                     </div>
                   </form>

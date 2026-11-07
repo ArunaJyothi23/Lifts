@@ -291,18 +291,29 @@
 .ambient-orb {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(64px);
+  filter: blur(80px);
   pointer-events: none;
   z-index: 0;
+  opacity: 0.65;
 }
 
-/* Card Glow on Hover */
+/* Card Glow on Hover - Butter Smooth Apple/Linear Standard */
 .card-glow {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  box-shadow: 0 2px 10px -2px rgba(15, 23, 42, 0.04), 0 10px 25px -5px rgba(66, 56, 135, 0.05);
 }
 .card-glow:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 35px -10px rgba(134, 48, 120, 0.16), 0 0 0 1px rgba(134, 48, 120, 0.18);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -12px rgba(134, 48, 120, 0.14), 0 0 0 1px rgba(134, 48, 120, 0.15);
+}
+
+/* Ultra-Smooth Luxury Glass Container */
+.luxury-glass {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 16px 45px -8px rgba(66, 56, 135, 0.08);
 }
 
 /* Border Gradient Flow */
@@ -412,6 +423,9 @@ body {
   max-width: 100vw;
   width: 100%;
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 #main-content, main {
