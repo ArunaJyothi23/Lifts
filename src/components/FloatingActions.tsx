@@ -73,17 +73,17 @@ export default function FloatingActions() {
 
       {/* =========================================================================
           2. Floating Scroll-To-Top Button
-          Positioned above bottom dock on mobile, bottom-right on desktop
+          Positioned distinctly ABOVE the bottom quick-action docks (never hidden or overlapping)
           ========================================================================= */}
       {showScrollTop && (
         <button
           type="button"
           onClick={scrollToTop}
           aria-label="Scroll back to top"
-          className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40 w-10 h-10 rounded-full bg-[#423887] hover:bg-[#863078] text-white flex items-center justify-center transition-all hover:scale-105 shadow-xl shadow-purple-950/30 active:scale-90 cursor-pointer animate-in fade-in"
+          className="fixed bottom-16 sm:bottom-20 right-4 sm:right-6 z-50 w-11 h-11 rounded-full bg-slate-900/95 hover:bg-[#863078] text-white border border-slate-700/80 backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 shadow-2xl active:scale-95 cursor-pointer animate-in fade-in group"
           title="Scroll back to top"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-white group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </button>

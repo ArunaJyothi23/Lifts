@@ -963,23 +963,6 @@ export default function Navbar() {
                 </span>
               </Link>
 
-              {/* Showcase (11 Sections) */}
-              <Link
-                href="/presentation"
-                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
-                  isActive("/presentation") || isActive("/showcase")
-                    ? "text-[#423887] font-bold"
-                    : "text-slate-700 hover:text-[#423887]"
-                }`}
-              >
-                <span className="relative inline-block pb-1">
-                  Showcase
-                  {(isActive("/presentation") || isActive("/showcase")) && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] rounded-full" />
-                  )}
-                </span>
-              </Link>
-
               {/* Contact Dropdown with Telangana Network & 9700 123 878 */}
               <div
                 className="relative"
@@ -1201,26 +1184,27 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+      </header>
 
-        {/* Mobile Full-Screen Drawer */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-16 sm:top-20 z-50 bg-white overflow-y-auto px-5 py-5 border-t border-slate-100 animate-in fade-in slide-in-from-top-2 duration-200">
-            <div className="flex flex-col space-y-3.5 pb-24">
-              {/* Mobile Quick Contact Strip */}
-              <div className="p-3 bg-purple-50/70 border border-purple-100 rounded-2xl flex items-center justify-between gap-2 mb-1">
-                <div>
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#863078]">Telangana Helpline</div>
-                  <a href="tel:9700123878" className="text-sm font-black text-slate-900 hover:text-[#423887]">
-                    9700 123 878
-                  </a>
-                </div>
-                <a
-                  href="tel:9700123878"
-                  className="px-3 py-1.5 bg-slate-900 text-white rounded-xl text-[10px] font-bold uppercase tracking-wider shadow-2xs"
-                >
-                  Call Now
+      {/* Mobile Full-Screen Drawer (Outside <header> so it escapes backdrop-filter containing block) */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-x-0 top-16 sm:top-20 bottom-0 z-40 bg-white w-full h-[calc(100dvh-4rem)] sm:h-[calc(100dvh-5rem)] overflow-y-auto px-5 py-5 border-t border-slate-100 shadow-2xl">
+          <div className="flex flex-col space-y-3.5 pb-28">
+            {/* Mobile Quick Contact Strip */}
+            <div className="p-3 bg-purple-50/70 border border-purple-100 rounded-2xl flex items-center justify-between gap-2 mb-1">
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#863078]">Telangana Helpline</div>
+                <a href="tel:9700123878" className="text-sm font-black text-slate-900 hover:text-[#423887]">
+                  9700 123 878
                 </a>
               </div>
+              <a
+                href="tel:9700123878"
+                className="px-3 py-1.5 bg-slate-900 text-white rounded-xl text-[10px] font-bold uppercase tracking-wider shadow-2xs"
+              >
+                Call Now
+              </a>
+            </div>
               <Link
                 href="/"
                 className="text-base font-bold text-slate-900 hover:text-[#423887] py-2 border-b border-slate-50"
@@ -1366,13 +1350,6 @@ export default function Navbar() {
                 Safety & Technology
               </Link>
 
-              <Link
-                href="/presentation"
-                className="text-base font-bold text-slate-900 hover:text-[#423887] py-2 border-b border-slate-50"
-              >
-                Showcase (11 Sections)
-              </Link>
-
               {/* Mobile Contact Accordion */}
               <div className="border-b border-slate-50 py-2">
                 <button
@@ -1447,7 +1424,6 @@ export default function Navbar() {
             </div>
           </div>
         )}
-      </header>
 
       <SiteSurveyModal
         isOpen={surveyModalOpen}

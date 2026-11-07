@@ -20,7 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/projects", priority: 0.8, changeFrequency: "weekly" },
     { path: "/about", priority: 0.8, changeFrequency: "monthly" },
     { path: "/safety-tech", priority: 0.75, changeFrequency: "monthly" },
-    { path: "/presentation", priority: 0.75, changeFrequency: "monthly" },
     { path: "/b2b-enquiry", priority: 0.75, changeFrequency: "monthly" },
     { path: "/service-request", priority: 0.75, changeFrequency: "monthly" },
     { path: "/careers", priority: 0.7, changeFrequency: "weekly" },
@@ -33,3 +32,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: r.priority,
   }));
 }
+

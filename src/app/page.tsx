@@ -440,15 +440,12 @@ export default function HomePage() {
                 <div className="pt-2 flex items-center gap-4">
                   <Link
                     href="/solutions"
-                    className="btn-sheen px-6 py-2.5 bg-slate-900 text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-xs"
+                    className="btn-sheen px-6 py-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-extrabold text-xs uppercase tracking-wider rounded-full transition-all shadow-md shadow-[#863078]/25 inline-flex items-center gap-2 active:scale-95"
+                    style={{ color: "#ffffff" }}
                   >
-                    Explore Solutions →
-                  </Link>
-                  <Link
-                    href="/presentation"
-                    className="px-5 py-2.5 border border-slate-200 text-slate-700 hover:text-slate-900 hover:border-slate-400 rounded-full text-xs font-bold uppercase tracking-wider transition-all"
-                  >
-                    Design Showcase
+                    <span className="text-white font-black" style={{ color: "#ffffff" }}>
+                      Explore Solutions →
+                    </span>
                   </Link>
                 </div>
               </div>
