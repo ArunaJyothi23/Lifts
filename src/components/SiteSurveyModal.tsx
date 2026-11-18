@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { COMPANY_INFO } from "@/data/siteData";
 
 interface SiteSurveyModalProps {
@@ -20,6 +20,18 @@ export default function SiteSurveyModal({ isOpen, onClose }: SiteSurveyModalProp
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [leadId, setLeadId] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("modal-open");
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.classList.remove("modal-open");
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -56,9 +68,9 @@ export default function SiteSurveyModal({ isOpen, onClose }: SiteSurveyModalProp
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-sm animate-in fade-in duration-200">
       <div 
-        className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden max-h-[92vh] flex flex-col"
+        className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden max-h-[92vh] flex flex-col z-[10000]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Banner */}

@@ -102,7 +102,7 @@ export default function ProductsPage() {
               </div>
 
               {/* Trust Metrics Bar */}
-              <div className="pt-3 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 border-t border-slate-100">
+              <div className="pt-3 pb-2 sm:pb-0 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-500 border-t border-slate-100">
                 <div className="flex items-center gap-1.5">
                   <span className="text-emerald-500 font-bold">✓</span>
                   <span>PMSM Gearless Motors</span>
@@ -189,30 +189,54 @@ export default function ProductsPage() {
               <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                 Select Elevator Model:
               </h2>
-              {PRODUCTS_CATALOG.map((prod) => (
-                <button
-                  key={prod.id}
-                  onClick={() => setSelectedProduct(prod.id)}
-                  className={`w-full text-left p-4 rounded-2xl border transition-all flex flex-col justify-between cursor-pointer card-glow ${
-                    selectedProduct === prod.id
-                      ? "bg-slate-900 text-white border-slate-900 shadow-md ring-1 ring-[#863078]/40"
-                      : "bg-slate-50/70 hover:bg-slate-100 text-slate-800 border-slate-200"
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#863078]">
-                      {prod.category}
+
+              {/* Mobile Horizontal Swipable Selector (Smooth & Fast UX) */}
+              <div className="flex sm:hidden gap-2 overflow-x-auto pb-2 scrollbar-none mobile-scroll-x">
+                {PRODUCTS_CATALOG.map((prod) => (
+                  <button
+                    key={prod.id}
+                    onClick={() => setSelectedProduct(prod.id)}
+                    className={`shrink-0 whitespace-nowrap px-4 py-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
+                      selectedProduct === prod.id
+                        ? "bg-slate-900 text-white border-slate-900 shadow-sm"
+                        : "bg-slate-50 text-slate-700 border-slate-200"
+                    }`}
+                    style={selectedProduct === prod.id ? { color: "#ffffff" } : {}}
+                  >
+                    <span style={selectedProduct === prod.id ? { color: "#ffffff" } : {}}>
+                      {prod.name}
                     </span>
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${selectedProduct === prod.id ? "bg-white/20 text-white" : "bg-slate-200 text-slate-700"}`}>
-                      {prod.machineRoom}
-                    </span>
-                  </div>
-                  <div className="text-sm font-bold">{prod.name}</div>
-                  <div className={`text-xs mt-0.5 ${selectedProduct === prod.id ? "text-slate-300" : "text-slate-500"}`}>
-                    Cap: {prod.capacity} · {prod.speed}
-                  </div>
-                </button>
-              ))}
+                  </button>
+                ))}
+              </div>
+
+              {/* Desktop Full Stack */}
+              <div className="hidden sm:block space-y-2.5">
+                {PRODUCTS_CATALOG.map((prod) => (
+                  <button
+                    key={prod.id}
+                    onClick={() => setSelectedProduct(prod.id)}
+                    className={`w-full text-left p-4 rounded-2xl border transition-all flex flex-col justify-between cursor-pointer card-glow ${
+                      selectedProduct === prod.id
+                        ? "bg-slate-900 text-white border-slate-900 shadow-md ring-1 ring-[#863078]/40"
+                        : "bg-slate-50/70 hover:bg-slate-100 text-slate-800 border-slate-200"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#863078]">
+                        {prod.category}
+                      </span>
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${selectedProduct === prod.id ? "bg-white/20 text-white" : "bg-slate-200 text-slate-700"}`}>
+                        {prod.machineRoom}
+                      </span>
+                    </div>
+                    <div className="text-sm font-bold">{prod.name}</div>
+                    <div className={`text-xs mt-0.5 ${selectedProduct === prod.id ? "text-slate-300" : "text-slate-500"}`}>
+                      Cap: {prod.capacity} · {prod.speed}
+                    </div>
+                  </button>
+                ))}
+              </div>
 
               <div className="pt-4 p-5 rounded-2xl bg-purple-50 border border-purple-100 text-slate-800 card-glow">
                 <div className="text-xs font-bold uppercase tracking-wider text-[#423887] mb-1">

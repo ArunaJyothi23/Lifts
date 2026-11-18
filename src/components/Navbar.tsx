@@ -660,143 +660,49 @@ export default function Navbar() {
                   </svg>
                 </Link>
 
-                {/* Products Megamenu Card */}
+                {/* Products Dropdown - Clean & Compact matching Sneha style (Image 2) */}
                 {activeDropdown === "products" && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[790px] max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl shadow-purple-950/10 border border-slate-100 p-6 sm:p-7 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
-                    <div className="grid grid-cols-12 gap-6">
-                      <div className="col-span-7 space-y-4 pr-1">
-                        <div>
-                          <p className="text-[11px] font-bold uppercase tracking-wider text-[#863078] mb-2">
-                            By elevator series
-                          </p>
-                          <div className="space-y-1">
-                            {productsSeries.map((item) => {
-                              const isHovered = hoveredProductId === item.id;
-                              return (
-                                <Link
-                                  key={item.id}
-                                  href={item.href}
-                                  onMouseEnter={() => setHoveredProductId(item.id)}
-                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
-                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
-                                  }`}
-                                >
-                                  <div>
-                                    <div
-                                      className={`text-[13px] font-bold transition-colors leading-snug ${
-                                        isHovered
-                                          ? "text-[#423887]"
-                                          : "text-slate-900 group-hover:text-[#423887]"
-                                      }`}
-                                    >
-                                      {item.title}
-                                    </div>
-                                    <div className="text-[11px] text-slate-400 group-hover:text-slate-500 transition-colors">
-                                      {item.desc}
-                                    </div>
-                                  </div>
-                                  <span
-                                    className={`text-xs font-semibold pl-2 transition-all ${
-                                      isHovered
-                                        ? "text-[#423887] translate-x-1"
-                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
-                                    }`}
-                                  >
-                                    ›
-                                  </span>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
+                  <div className="absolute top-full left-0 mt-2 w-60 bg-white rounded-2xl shadow-2xl shadow-purple-950/15 border border-slate-100 p-2.5 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
+                    <div className="space-y-0.5">
+                      <Link
+                        href="/products#vl-commercial-mrl"
+                        onClick={() => setActiveDropdown(null)}
+                        className="block px-3.5 py-2.5 rounded-xl text-[13.5px] font-bold text-slate-800 hover:text-[#423887] hover:bg-purple-50/70 transition-all"
+                      >
+                        SL Series
+                      </Link>
+                      <Link
+                        href="/products#vl-home-luxe"
+                        onClick={() => setActiveDropdown(null)}
+                        className="block px-3.5 py-2.5 rounded-xl text-[13.5px] font-bold text-slate-800 hover:text-[#423887] hover:bg-purple-50/70 transition-all"
+                      >
+                        VL Series
+                      </Link>
+                      <Link
+                        href="/products#vl-medicare"
+                        onClick={() => setActiveDropdown(null)}
+                        className="block px-3.5 py-2.5 rounded-xl text-[13.5px] font-bold text-slate-800 hover:text-[#423887] hover:bg-purple-50/70 transition-all"
+                      >
+                        RMG Series
+                      </Link>
+                      <Link
+                        href="/products#cabins"
+                        onClick={() => setActiveDropdown(null)}
+                        className="block px-3.5 py-2.5 rounded-xl text-[13.5px] font-bold text-slate-800 hover:text-[#423887] hover:bg-purple-50/70 transition-all"
+                      >
+                        Cabins & Finishes
+                      </Link>
+                    </div>
 
-                        <div className="pt-2 border-t border-slate-100">
-                          <p className="text-[11px] font-bold uppercase tracking-wider text-[#863078] mb-2">
-                            B2B Components & Hub
-                          </p>
-                          <div className="space-y-1">
-                            {productsComponents.map((item) => {
-                              const isHovered = hoveredProductId === item.id;
-                              return (
-                                <Link
-                                  key={item.id}
-                                  href={item.href}
-                                  onMouseEnter={() => setHoveredProductId(item.id)}
-                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
-                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
-                                  }`}
-                                >
-                                  <div>
-                                    <div
-                                      className={`text-[13px] font-bold transition-colors leading-snug ${
-                                        isHovered
-                                          ? "text-[#423887]"
-                                          : "text-slate-900 group-hover:text-[#423887]"
-                                      }`}
-                                    >
-                                      {item.title}
-                                    </div>
-                                    <div className="text-[11px] text-slate-400 group-hover:text-slate-500 transition-colors">
-                                      {item.desc}
-                                    </div>
-                                  </div>
-                                  <span
-                                    className={`text-xs font-semibold pl-2 transition-all ${
-                                      isHovered
-                                        ? "text-[#423887] translate-x-1"
-                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
-                                    }`}
-                                  >
-                                    ›
-                                  </span>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Right Column: Dynamic Product Card */}
-                      <div className="col-span-5 border-l border-slate-100 pl-6 flex flex-col justify-between">
-                        <div>
-                          <div className="relative h-44 w-full rounded-2xl overflow-hidden shadow-sm border border-slate-100 bg-slate-900 transition-all">
-                            <Image
-                              key={activeProduct.image}
-                              src={activeProduct.image}
-                              alt={activeProduct.cardTitle}
-                              fill
-                              className="object-cover transition-opacity duration-300 animate-in fade-in"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                            <div className="absolute bottom-2.5 left-3 right-3 text-white text-[10px] font-semibold tracking-wider uppercase opacity-95">
-                              {activeProduct.badge}
-                            </div>
-                          </div>
-
-                          <h4 className="text-[15px] font-extrabold text-slate-900 mt-4 tracking-tight">
-                            {activeProduct.cardTitle}
-                          </h4>
-                          <p className="text-[12px] text-slate-500 leading-relaxed mt-1 line-clamp-3">
-                            {activeProduct.cardDesc}
-                          </p>
-
-                          <Link
-                            href={activeProduct.href}
-                            className="inline-flex items-center gap-1 text-[12px] font-bold text-[#423887] underline underline-offset-4 hover:text-[#863078] transition-colors mt-3"
-                          >
-                            Explore full product specs →
-                          </Link>
-                        </div>
-
-                        <div className="pt-4 border-t border-slate-100 mt-4">
-                          <Link
-                            href="/quote-request"
-                            className="block w-full py-2.5 px-3 bg-[#423887] hover:bg-[#342b6e] text-white rounded-xl text-xs font-bold text-center transition-colors shadow-xs"
-                          >
-                            Request Hoistway Blueprint
-                          </Link>
-                        </div>
-                      </div>
+                    <div className="pt-2 mt-1.5 border-t border-slate-100">
+                      <Link
+                        href="/products"
+                        onClick={() => setActiveDropdown(null)}
+                        className="btn-sheen block w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-black text-xs text-center transition-all shadow-sm active:scale-98"
+                        style={{ color: "#ffffff" }}
+                      >
+                        <span style={{ color: "#ffffff" }}>Compare All →</span>
+                      </Link>
                     </div>
                   </div>
                 )}
@@ -1242,31 +1148,43 @@ export default function Navbar() {
                   </span>
                 </button>
                 {mobileSubmenu === "products" && (
-                  <div className="mt-3 pl-3 space-y-2.5">
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#863078]">
-                      Elevator Series
-                    </p>
-                    {productsSeries.map((item) => (
-                      <Link
-                        key={item.id}
-                        href={item.href}
-                        className="block text-xs font-semibold text-slate-700 hover:text-[#423887] py-1"
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#863078] pt-2">
-                      B2B Components
-                    </p>
-                    {productsComponents.map((item) => (
-                      <Link
-                        key={item.id}
-                        href={item.href}
-                        className="block text-xs font-semibold text-slate-700 hover:text-[#423887] py-1"
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
+                  <div className="mt-3 pl-3 space-y-2">
+                    <Link
+                      href="/products#vl-commercial-mrl"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-xs font-bold text-slate-800 hover:text-[#423887] py-1"
+                    >
+                      SL Series
+                    </Link>
+                    <Link
+                      href="/products#vl-home-luxe"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-xs font-bold text-slate-800 hover:text-[#423887] py-1"
+                    >
+                      VL Series
+                    </Link>
+                    <Link
+                      href="/products#vl-medicare"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-xs font-bold text-slate-800 hover:text-[#423887] py-1"
+                    >
+                      RMG Series
+                    </Link>
+                    <Link
+                      href="/products#cabins"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-xs font-bold text-slate-800 hover:text-[#423887] py-1"
+                    >
+                      Cabins & Finishes
+                    </Link>
+                    <Link
+                      href="/products"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="btn-sheen inline-block mt-2 py-2 px-4 rounded-xl bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white text-xs font-black text-center shadow-xs"
+                      style={{ color: "#ffffff" }}
+                    >
+                      <span style={{ color: "#ffffff" }}>Compare All →</span>
+                    </Link>
                   </div>
                 )}
               </div>

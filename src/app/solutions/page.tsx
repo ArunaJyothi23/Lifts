@@ -141,7 +141,7 @@ export default function SolutionsPage() {
               </div>
 
               {/* Trust Metrics Bar */}
-              <div className="pt-3 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 border-t border-slate-100">
+              <div className="pt-3 pb-2 sm:pb-0 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-500 border-t border-slate-100">
                 <div className="flex items-center gap-1.5">
                   <span className="text-emerald-500 font-bold">✓</span>
                   <span>150mm Pitless Options</span>
@@ -219,22 +219,31 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      {/* Filter Tabs (Rounded-Full) */}
-      <section className="py-6 bg-slate-50 border-b border-slate-100 sticky top-20 z-30 shadow-xs backdrop-blur-md bg-slate-50/90">
+      {/* Filter Tabs (Rounded-Full with Untruncated Mobile Horizontal Scroll) */}
+      <section className="py-4 sm:py-6 bg-slate-50 border-b border-slate-100 sticky top-16 sm:top-20 z-30 shadow-xs backdrop-blur-md bg-slate-50/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
-              {["all", "Residential", "Commercial", "Hospital", "Industrial"].map((tab) => (
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none mobile-scroll-x w-full sm:w-auto">
+              {[
+                { id: "all", label: "All Solutions" },
+                { id: "Residential", label: "Residential" },
+                { id: "Commercial", label: "Commercial" },
+                { id: "Hospital", label: "Hospital" },
+                { id: "Industrial", label: "Industrial" },
+              ].map((tab) => (
                 <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`btn-sheen px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                    activeTab.toLowerCase() === tab.toLowerCase()
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`btn-sheen shrink-0 whitespace-nowrap px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                    activeTab.toLowerCase() === tab.id.toLowerCase()
                       ? "bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white shadow-xs"
-                      : "bg-white text-slate-700 hover:bg-slate-200 border border-slate-200"
+                      : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
                   }`}
+                  style={activeTab.toLowerCase() === tab.id.toLowerCase() ? { color: "#ffffff" } : {}}
                 >
-                  {tab === "all" ? "All Solutions" : tab}
+                  <span style={activeTab.toLowerCase() === tab.id.toLowerCase() ? { color: "#ffffff" } : {}}>
+                    {tab.label}
+                  </span>
                 </button>
               ))}
             </div>
@@ -242,9 +251,10 @@ export default function SolutionsPage() {
             <button
               type="button"
               onClick={() => setSurveyOpen(true)}
-              className="btn-sheen px-5 py-2 bg-slate-900 text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-slate-800 transition-all cursor-pointer"
+              className="btn-sheen shrink-0 w-full sm:w-auto px-5 py-2.5 bg-slate-900 text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-slate-800 transition-all cursor-pointer shadow-xs text-center"
+              style={{ color: "#ffffff" }}
             >
-              Request Hoistway Blueprint
+              <span style={{ color: "#ffffff" }}>Request Hoistway Blueprint →</span>
             </button>
           </div>
         </div>

@@ -115,7 +115,7 @@ export default function ProjectsPage() {
               </div>
 
               {/* Trust Metrics Bar */}
-              <div className="pt-3 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 border-t border-slate-100">
+              <div className="pt-3 pb-2 sm:pb-0 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-500 border-t border-slate-100">
                 <div className="flex items-center gap-1.5">
                   <span className="text-emerald-500 font-bold">✓</span>
                   <span>100% On-Time Handover</span>
@@ -193,22 +193,25 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Filter Tabs (Rounded-Full) */}
-      <section className="py-6 bg-slate-50 border-b border-slate-100 sticky top-20 z-30 shadow-xs backdrop-blur-md bg-slate-50/90">
+      {/* Filter Tabs (Rounded-Full with Untruncated Mobile Horizontal Scroll) */}
+      <section className="py-4 sm:py-6 bg-slate-50 border-b border-slate-100 sticky top-16 sm:top-20 z-30 shadow-xs backdrop-blur-md bg-slate-50/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none mobile-scroll-x w-full sm:w-auto">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
-                  className={`btn-sheen px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  className={`btn-sheen shrink-0 whitespace-nowrap px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                     filter === cat
                       ? "bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white shadow-xs"
-                      : "bg-white text-slate-700 hover:bg-slate-200 border border-slate-200"
+                      : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
                   }`}
+                  style={filter === cat ? { color: "#ffffff" } : {}}
                 >
-                  {cat === "All" ? "All Projects" : `${cat} Lifts`}
+                  <span style={filter === cat ? { color: "#ffffff" } : {}}>
+                    {cat === "All" ? "All Projects" : `${cat} Lifts`}
+                  </span>
                 </button>
               ))}
             </div>
@@ -216,9 +219,10 @@ export default function ProjectsPage() {
             <button
               type="button"
               onClick={() => setSurveyOpen(true)}
-              className="btn-sheen px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-full transition-all cursor-pointer"
+              className="btn-sheen shrink-0 w-full sm:w-auto px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-xs text-center"
+              style={{ color: "#ffffff" }}
             >
-              Survey My Site
+              <span style={{ color: "#ffffff" }}>Survey My Site →</span>
             </button>
           </div>
         </div>

@@ -179,7 +179,7 @@ export default function ServicesPage() {
               </div>
 
               {/* Trust Metrics Bar */}
-              <div className="pt-3 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 border-t border-slate-100">
+              <div className="pt-3 pb-2 sm:pb-0 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-500 border-t border-slate-100">
                 <div className="flex items-center gap-1.5">
                   <span className="text-emerald-500 font-bold">✓</span>
                   <span>&lt;30m Emergency SLA</span>

@@ -24,7 +24,7 @@ export default function ConditionalLayout({
         className={
           isAdminOrPortal
             ? "flex-1 w-full bg-[#f8fafc] text-slate-800"
-            : "flex-1 pt-20 pb-16 sm:pb-0 overflow-x-hidden max-w-full w-full"
+            : "flex-1 pt-20 pb-24 sm:pb-0 overflow-x-hidden max-w-full w-full"
         }
       >
         {children}

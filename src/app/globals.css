@@ -395,6 +395,17 @@
   }
 }
 
+/* Modal Open: Hide all floating actions, docks, and scroll-to-top buttons */
+body.modal-open aside[aria-label="Quick contact and navigation"],
+body.modal-open nav[aria-label="Mobile quick actions"],
+body.modal-open button[aria-label="Scroll back to top"],
+body.modal-open .scroll-top-btn {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
 @theme inline {
   --color-background: var(--white);
   --color-foreground: var(--ink);
