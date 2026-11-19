@@ -18,7 +18,7 @@ interface DistrictInfo {
 }
 
 const TELANGANA_DISTRICTS: DistrictInfo[] = [
-  { name: "Karimnagar", zone: "North Telangana", engineer: "Ramesh Vilasagar & Sr. Field Team", responseEta: "< 1 Hour (Central HQ)", phone: "9700 123 878", landmarks: "Gandhi Road, Collectorate, Kothapalli, Mankammathota" },
+  { name: "Karimnagar", zone: "North Telangana", engineer: "Central HQ Senior Field Team", responseEta: "< 1 Hour (Central HQ)", phone: "9700 123 878", landmarks: "Kisan Nagar, Collectorate, Kothapalli, Mankammathota" },
   { name: "Hyderabad", zone: "Greater Hyderabad", engineer: "Ramesh Reddy & Metro Mobile Crew", responseEta: "< 2 Hours", phone: "9700 123 878", landmarks: "Banjara Hills, Jubilee Hills, Gachibowli, Kukatpally, Madhapur, Kondapur" },
   { name: "Warangal", zone: "East Telangana", engineer: "Srinivas Rao & Tri-City Team", responseEta: "< 2 Hours", phone: "9700 123 878", landmarks: "Kazipet, Hanamkonda, Hunter Road, Narsampet" },
   { name: "Hanamkonda", zone: "East Telangana", engineer: "Srinivas Rao & Tri-City Team", responseEta: "< 2 Hours", phone: "9700 123 878", landmarks: "Subedari, Nakkalagutta, Kakatiya University Road" },
@@ -168,9 +168,10 @@ export default function ContactPage() {
                 <span className="text-slate-400 font-medium">Direct Support For:</span>
                 <TypewriterText
                   words={[
-                    "Karimnagar Central HQ & Workshop (Gandhi Road)",
+                    "Karimnagar Central HQ & Workshop (Kisan Nagar)",
+                    "Hyderabad Regional Hub Desk",
                     "Direct Central Line: 9700 123 878",
-                    "Founder Direct: +91 98484 80868 (Ramesh Vilasagar)",
+                    "Engineering Desk: +91 98484 80868",
                     "Greater Hyderabad Luxury Villa Lifts & Capsules",
                     "Warangal Commercial & Hospital Stretcher Elevators",
                     "Nizamabad, Jagtial & North Telangana Rapid AMC",
@@ -183,28 +184,30 @@ export default function ContactPage() {
 
               {/* Executive Subtitle */}
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Have an upcoming construction project, need a free laser hoistway survey, or require urgent 24/7 elevator maintenance? Reach out directly to <strong>Ramesh Vilasagar</strong> or our senior engineering desk.
+                Have an upcoming construction project, need a free laser hoistway survey, or require urgent 24/7 elevator maintenance? Reach out directly to our central engineering command desk or certified field engineering team.
               </p>
 
               {/* 4 Direct Channels: 2x2 Clean Architectural Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                {/* 1. Ramesh Vilasagar Direct */}
+                {/* 1. Engineering Consultation Direct */}
                 <a
                   href="tel:9848480868"
                   className="p-3.5 rounded-2xl bg-white hover:bg-purple-50/70 border border-slate-200/90 hover:border-purple-200 transition-all flex items-center justify-between group shadow-sm card-glow"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-purple-100 text-[#423887] flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
-                      📞
+                      <svg className="w-5 h-5 text-[#863078]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
                     </div>
                     <div>
                       <div className="text-[10px] font-black uppercase tracking-wider text-[#863078]">
-                        Founder & Principal
+                        Chief Engineering Desk
                       </div>
                       <div className="text-sm font-black text-slate-900 group-hover:text-[#423887] transition-colors">
                         +91 98484 80868
                       </div>
-                      <div className="text-[10px] text-slate-500 font-medium">Ramesh Vilasagar</div>
+                      <div className="text-[10px] text-slate-500 font-medium">Technical Consultation</div>
                     </div>
                   </div>
                   <span className="text-slate-400 group-hover:text-[#423887] font-bold text-sm transition-transform group-hover:translate-x-1">
@@ -219,7 +222,9 @@ export default function ContactPage() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
-                      🕒
+                      <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
                     </div>
                     <div>
                       <div className="text-[10px] font-black uppercase tracking-wider text-emerald-700">
@@ -245,7 +250,9 @@ export default function ContactPage() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-105 transition-transform">
-                      💬
+                      <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                      </svg>
                     </div>
                     <div>
                       <div className="text-[10px] font-black uppercase tracking-wider text-emerald-700">
@@ -265,16 +272,19 @@ export default function ContactPage() {
                 {/* 4. Karimnagar Central HQ */}
                 <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm card-glow flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-purple-100 text-[#423887] flex items-center justify-center font-bold text-base shrink-0">
-                    📍
+                    <svg className="w-5 h-5 text-[#863078]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
                   </div>
                   <div>
                     <div className="text-[10px] font-black uppercase tracking-wider text-[#863078]">
-                      Central HQ & Spares
+                      Central HQ & Workshop
                     </div>
-                    <div className="text-xs font-black text-slate-900">
-                      Gandhi Road, Karimnagar
+                    <div className="text-xs font-black text-slate-900 truncate max-w-[170px]" title="Kisan Nagar, Near Surya Paper">
+                      Kisan Nagar, Karimnagar
                     </div>
-                    <div className="text-[10px] text-slate-500 font-medium">Experience Center</div>
+                    <div className="text-[10px] text-slate-500 font-medium">Near Surya Paper · 505001</div>
                   </div>
                 </div>
               </div>
@@ -325,7 +335,7 @@ export default function ContactPage() {
                     </div>
                     <h3 className="text-xl font-black text-slate-900">Enquiry Successfully Dispatched!</h3>
                     <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
-                      Thank you, <strong>{formData.name}</strong>. Ramesh Vilasagar or our regional engineer for <strong>{formData.city}</strong> will contact you within 2 business hours.
+                      Thank you, <strong>{formData.name}</strong>. Our regional elevator engineering team for <strong>{formData.city}</strong> will contact you within 2 business hours.
                     </p>
                     <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
                       <a
@@ -335,7 +345,9 @@ export default function ContactPage() {
                         className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-all inline-flex items-center gap-2"
                         style={{ color: "#ffffff" }}
                       >
-                        <span>💬</span>
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.584 1.761.884 2.796.885h.005c3.179 0 5.766-2.587 5.767-5.766 0-3.18-2.588-5.772-5.772zm3.397 8.192c-.145.408-.847.785-1.177.834-.33.049-.757.068-2.457-.638-1.7-.706-2.776-2.441-2.86-2.553-.085-.112-.693-.923-.693-1.761s.437-1.25.592-1.423c.155-.172.338-.216.45-.216.113 0 .226.002.324.007.104.005.244-.04.381.29.145.352.497 1.214.54 1.302.043.088.072.19.014.305-.058.115-.088.187-.175.29-.087.102-.183.228-.261.306-.089.088-.182.184-.078.362.103.178.461.761 1.054 1.291.764.681 1.408.892 1.609.992.201.1.32.083.438-.052.119-.136.508-.591.644-.793.136-.203.272-.17.458-.102.186.068 1.182.557 1.385.659.203.102.339.153.39.237.051.085.051.493-.094.901z" />
+                        </svg>
                         <span style={{ color: "#ffffff" }}>Connect on WhatsApp Instantly</span>
                       </a>
                       <button
@@ -391,7 +403,7 @@ export default function ContactPage() {
                         <input
                           type="text"
                           required
-                          placeholder="e.g. Ramesh Reddy"
+                          placeholder="e.g. Suresh Reddy"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all shadow-2xs"
@@ -502,8 +514,11 @@ export default function ContactPage() {
                           {loading ? "Submitting Enquiry..." : "Submit Project Enquiry & Free Survey →"}
                         </span>
                       </button>
-                      <p className="text-center text-[10px] text-slate-400 mt-2 font-medium">
-                        🔒 Zero spam guarantee. Direct technical response from Ramesh Vilasagar or senior engineer within 2 hours.
+                      <p className="text-center text-[10px] text-slate-400 mt-2 font-medium flex items-center justify-center gap-1.5">
+                        <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <span>Zero spam guarantee. Direct technical response from our certified engineering team within 2 hours.</span>
                       </p>
                     </div>
                   </form>
@@ -516,80 +531,214 @@ export default function ContactPage() {
       </section>
 
       {/* =========================================================================
-          2. CENTRAL KARIMNAGAR HQ & GOOGLE MAPS SHOWCASE
+          2. TWO BRANCH LOCATIONS: KARIMNAGAR CENTRAL HQ & HYDERABAD REGIONAL HUB
+          (Matches Document Requirements Section 6 Exactly)
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
-            <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
               <div>
                 <span className="text-[10px] font-black uppercase tracking-wider text-[#863078] bg-purple-50 px-3 py-1 rounded-full border border-purple-100">
-                  Headquarters & Experience Center
+                  Branch Locations & Engineering Depots
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-2">
-                  Visit our Karimnagar headquarters
+                  Visit our branches in Telangana
                 </h2>
                 <p className="text-slate-500 text-xs sm:text-sm mt-0.5 leading-relaxed">
-                  Gandhi Road central office & manufacturing workshop. Walk-ins welcome between 9:00 AM and 7:30 PM on weekdays.
+                  Headquartered in Karimnagar with central manufacturing and testing, and a dedicated regional hub in Hyderabad.
                 </p>
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
                 <a
-                  href="https://maps.google.com/?q=Gandhi+Road,+Karimnagar,+Telangana+505001"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-sheen py-2.5 px-4 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white rounded-xl text-xs font-bold text-center flex items-center gap-1.5 shadow-sm"
+                  href="tel:9700123878"
+                  className="btn-sheen py-2.5 px-4 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white rounded-xl text-xs font-bold text-center flex items-center gap-2 shadow-sm"
                   style={{ color: "#ffffff" }}
                 >
-                  <span style={{ color: "#ffffff" }}>Open in Google Maps ↗</span>
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span style={{ color: "#ffffff" }}>Central Line: 9700 123 878</span>
                 </a>
               </div>
             </div>
 
-            {/* Interactive Map Card */}
-            <div className="relative w-full h-80 sm:h-96 rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-slate-100">
-              <iframe
-                title="Vision Lifts & Solutions Karimnagar Office"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3785.4984242686127!2d79.128841!3d18.438555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccd9198b1e4f4b%3A0x6b4ef8d4d8ef8c9a!2sGandhi%20Rd%2C%20Karimnagar%2C%20Telangana%20505001!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                className="w-full h-full border-0 filter contrast-[1.02]"
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-
-              {/* Floating Location Card */}
-              <div className="absolute top-4 left-4 max-w-xs sm:max-w-sm bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-slate-200/90 shadow-xl">
-                <div className="flex items-start gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-purple-50 text-[#863078] flex items-center justify-center font-bold text-sm shrink-0">
-                    📍
+            {/* Two Distinct Location Cards (Karimnagar and Hyderabad) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              
+              {/* Branch 1: Karimnagar Central HQ & Workshop */}
+              <div className="bg-slate-50/70 rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:bg-white hover:border-[#863078]/50 hover:shadow-xl transition-all duration-500 group">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-10 h-10 rounded-2xl bg-purple-100 text-[#863078] flex items-center justify-center font-bold text-base">
+                        <svg className="w-5 h-5 text-[#863078]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-black uppercase tracking-wider text-[#863078] bg-purple-50 px-2 py-0.5 rounded border border-purple-100">
+                          Central Headquarters & Workshop
+                        </span>
+                        <h3 className="text-base sm:text-lg font-black text-slate-900 mt-0.5">
+                          Karimnagar Central HQ
+                        </h3>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 shrink-0">
+                      Walk-ins Welcome
+                    </span>
                   </div>
-                  <div>
-                    <h3 className="text-xs font-black text-slate-900">
-                      Karimnagar Central Office & Workshop
-                    </h3>
-                    <p className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                      Gandhi Road Commercial Zone, Karimnagar, Telangana - 505001
+
+                  {/* Verified Address */}
+                  <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 mb-4 space-y-1">
+                    <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Verified Address</div>
+                    <p className="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
+                      0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar, Telangana – 505001
                     </p>
+                    <div className="text-[11px] text-slate-500 pt-1 flex items-center gap-2">
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>Mon – Sat: 9:00 AM – 7:30 PM</span>
+                      <span>•</span>
+                      <span>Sunday: Emergency Support</span>
+                    </div>
+                  </div>
+
+                  {/* Map Embed for Karimnagar */}
+                  <div className="relative w-full h-56 rounded-2xl overflow-hidden border border-slate-200 shadow-inner bg-slate-100 mb-4">
+                    <iframe
+                      title="Vision Lifts Karimnagar HQ"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3785.4984242686127!2d79.128841!3d18.438555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccd9198b1e4f4b%3A0x6b4ef8d4d8ef8c9a!2sKarimnagar%2C%20Telangana%20505001!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                      className="w-full h-full border-0 filter contrast-[1.02]"
+                      allowFullScreen={false}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
                   </div>
                 </div>
 
-                <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center gap-2">
+                <div className="pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="tel:9700123878"
+                      className="py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold text-center inline-flex items-center gap-1.5"
+                      style={{ color: "#ffffff" }}
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      <span style={{ color: "#ffffff" }}>Helpline: 9700 123 878</span>
+                    </a>
+                    <a
+                      href="tel:9848480868"
+                      className="py-2 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 rounded-xl text-xs font-bold"
+                    >
+                      Engineering: 98484 80868
+                    </a>
+                  </div>
+
                   <a
-                    href="tel:9700123878"
-                    className="flex-1 py-1.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-[10px] font-bold text-center"
-                    style={{ color: "#ffffff" }}
+                    href="https://maps.google.com/?q=0-5-240,+Kisan+Nagar,+Near+Surya+Paper,+Karimnagar,+Telangana+505001"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2 px-3 bg-white hover:bg-purple-50 text-[#863078] border border-purple-200 rounded-xl text-xs font-bold flex items-center gap-1 shadow-2xs"
                   >
-                    <span style={{ color: "#ffffff" }}>📞 Helpline: 9700 123 878</span>
-                  </a>
-                  <a
-                    href="tel:9848480868"
-                    className="py-1.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg text-[10px] font-bold text-center"
-                  >
-                    Direct: 98484 80868
+                    <span>Get Directions ↗</span>
                   </a>
                 </div>
               </div>
+
+              {/* Branch 2: Hyderabad Regional Hub */}
+              <div className="bg-slate-50/70 rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:bg-white hover:border-[#423887]/50 hover:shadow-xl transition-all duration-500 group">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-10 h-10 rounded-2xl bg-indigo-100 text-[#423887] flex items-center justify-center font-bold text-base">
+                        <svg className="w-5 h-5 text-[#423887]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-black uppercase tracking-wider text-[#423887] bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100">
+                          Regional Operations Hub
+                        </span>
+                        <h3 className="text-base sm:text-lg font-black text-slate-900 mt-0.5">
+                          Hyderabad Regional Hub
+                        </h3>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold text-[#423887] bg-purple-50 px-2.5 py-1 rounded-full border border-purple-200 shrink-0">
+                      Consultation Hub
+                    </span>
+                  </div>
+
+                  {/* Verified Address */}
+                  <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 mb-4 space-y-1">
+                    <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Regional Address</div>
+                    <p className="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
+                      Hyderabad Regional Hub, Telangana
+                    </p>
+                    <div className="text-[11px] text-slate-500 pt-1 flex items-center gap-2">
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>Mon – Sat: 9:30 AM – 6:30 PM</span>
+                      <span>•</span>
+                      <span>By Technical Appointment</span>
+                    </div>
+                  </div>
+
+                  {/* Map Embed for Hyderabad */}
+                  <div className="relative w-full h-56 rounded-2xl overflow-hidden border border-slate-200 shadow-inner bg-slate-100 mb-4">
+                    <iframe
+                      title="Vision Lifts Hyderabad Regional Hub"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121808.64817457912!2d78.384698!3d17.443649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                      className="w-full h-full border-0 filter contrast-[1.02]"
+                      allowFullScreen={false}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="tel:9700123878"
+                      className="py-2 px-3 bg-[#423887] hover:bg-[#342c6e] text-white rounded-xl text-xs font-bold text-center inline-flex items-center gap-1.5"
+                      style={{ color: "#ffffff" }}
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      <span style={{ color: "#ffffff" }}>Hub Line: 9700 123 878</span>
+                    </a>
+                    <a
+                      href="https://wa.me/919700123878?text=Hello%20Vision%20Lifts%2C%20I%20need%20elevator%20quotation%20and%20hoistway%20information."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold"
+                      style={{ color: "#ffffff" }}
+                    >
+                      <span style={{ color: "#ffffff" }}>WhatsApp Desk</span>
+                    </a>
+                  </div>
+
+                  <a
+                    href="https://maps.google.com/?q=Hyderabad,+Telangana"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2 px-3 bg-white hover:bg-indigo-50 text-[#423887] border border-indigo-200 rounded-xl text-xs font-bold flex items-center gap-1 shadow-2xs"
+                  >
+                    <span>Get Directions ↗</span>
+                  </a>
+                </div>
+              </div>
+
             </div>
           </ScrollReveal>
         </div>
@@ -631,8 +780,10 @@ export default function ContactPage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#863078]/40 transition-all"
               />
-              <span className="absolute left-3.5 top-3 text-slate-400 text-sm">
-                🔍
+              <span className="absolute left-3.5 top-3 text-slate-400">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
               </span>
             </div>
 
@@ -692,10 +843,13 @@ export default function ContactPage() {
                   <div className="pt-3 border-t border-slate-100 mt-3 flex items-center gap-2">
                     <a
                       href="tel:9700123878"
-                      className="btn-sheen flex-1 py-2 px-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-[11px] font-bold text-center transition-colors"
+                      className="btn-sheen flex-1 py-2 px-3 bg-gradient-to-r from-[#2e1236] to-[#1c143d] hover:opacity-95 text-white rounded-xl text-[11px] font-bold text-center transition-all inline-flex items-center justify-center gap-1.5 shadow-2xs border border-purple-900/40"
                       style={{ color: "#ffffff" }}
                     >
-                      <span style={{ color: "#ffffff" }}>📞 9700 123 878</span>
+                      <svg className="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      <span style={{ color: "#ffffff" }}>9700 123 878</span>
                     </a>
                     <button
                       type="button"

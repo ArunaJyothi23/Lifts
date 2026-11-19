@@ -62,7 +62,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 text-xs">
               <div className="font-bold text-slate-900">{COMPANY_INFO.name}</div>
-              <div>Gandhi Road, Karimnagar, Telangana - 505001</div>
+              <div>0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar, Telangana – 505001</div>
               <div>Email: {COMPANY_INFO.email} · Phone: {COMPANY_INFO.phone}</div>
             </div>
           </section>

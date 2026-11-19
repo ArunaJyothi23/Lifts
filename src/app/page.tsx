@@ -63,52 +63,73 @@ export default function HomePage() {
     {
       id: "villa",
       title: "Villas & Homes",
-      icon: "🏡",
       series: "VL-Home Luxe Series",
       desc: "Zero machine room, minimal 150mm pit or ramp, runs on single-phase 220V household electricity. Perfect for luxury duplexes and existing homes.",
       highlights: ["Pitless / Shallow 150mm Pit", "Whisper Silent <48 dB", "Glass / Rose Gold Cabin", "ARD Auto-Rescue Included"],
       link: "/solutions#residential",
       image: "/images/residential.png",
+      renderIcon: () => (
+        <svg className="w-5 h-5 text-[#863078]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+      ),
     },
     {
       id: "apartment",
       title: "Apartments",
-      icon: "🏢",
       series: "VL-Commercial Gearless MRL",
       desc: "Fast, energy-efficient passenger movement designed for multi-family buildings and gated societies. Regenerative drive saves 40% energy.",
       highlights: ["MRL Space Saving", "Up to 1.75 m/s Speed", "Durable SS 304 Finish", "Full Collective Dispatch"],
       link: "/solutions#residential",
       image: "/images/hero-lobby.png",
+      renderIcon: () => (
+        <svg className="w-5 h-5 text-[#423887]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      ),
     },
     {
       id: "commercial",
       title: "Commercial",
-      icon: "🏬",
       series: "VL-Commercial Gearless Series",
       desc: "Engineered for intense passenger flow during rush hours. Smart group supervisory controls, RFID access, and luxury glass/stainless cabins.",
       highlights: ["Heavy Duty 16-20 Pax", "TFT Screen Indicators", "Regenerative Power", "Infrared Light Curtain"],
       link: "/solutions#commercial",
       image: "/images/commercial.png",
+      renderIcon: () => (
+        <svg className="w-5 h-5 text-[#a22b51]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
     },
     {
       id: "hospital",
       title: "Hospitals",
-      icon: "🏥",
       series: "VL-Medicare Stretcher Lift",
       desc: "Deep car dimensions accommodating intensive care stretchers and beds. S-curve smooth leveling prevents jerks for critical patients.",
       highlights: ["Stretcher / ICU Bed Depth", "Millimeter Leveling Precision", "Priority Medical Override", "Anti-microbial SS Finish"],
       link: "/solutions#hospital",
       image: "/images/hospital.png",
+      renderIcon: () => (
+        <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
     },
     {
       id: "industrial",
       title: "Industrial",
-      icon: "🏭",
       series: "VL-Heavy Freight Series",
       desc: "Built to withstand forklift loading and pallet trucks. Reinforced structural steel sling and checkered steel flooring up to 5,000 kg.",
       highlights: ["500 kg to 5,000 kg Payload", "Chequered Steel Flooring", "Bi-Parting Steel Gates", "Impact Absorbing Buffers"],
       link: "/solutions#industrial",
       image: "/images/industrial.png",
+      renderIcon: () => (
+        <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
     },
   ];
 
@@ -146,7 +167,7 @@ export default function HomePage() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#863078] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887]"></span>
                 </span>
-                VISION LIFTS & SOLUTIONS / TELANGANA, INDIA
+                OPERATING SINCE 2014 · TELANGANA, INDIA
               </div>
 
               <h1 className="text-2xl sm:text-3xl lg:text-[34px] xl:text-[46px] font-black tracking-tight text-slate-900 leading-[1.12]">
@@ -215,7 +236,7 @@ export default function HomePage() {
                             : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
                         } ${idx === 4 ? "col-span-2 sm:col-span-1" : ""}`}
                       >
-                        <span className="text-base xl:text-lg transform group-hover:scale-110 transition-transform">{type.icon}</span>
+                        <span className="transform group-hover:scale-110 transition-transform">{type.renderIcon()}</span>
                         <span className={`text-[10px] xl:text-[11px] font-bold ${isSelected ? "text-[#423887]" : "text-slate-700"}`}>
                           {type.title}
                         </span>
@@ -257,7 +278,7 @@ export default function HomePage() {
                     Get Free Site Survey & Quote
                   </h3>
                   <p className="text-[10px] xl:text-[11px] text-slate-500 mt-0.5">
-                    Share your details — Ramesh Vilasagar or our senior elevator engineer will call you back.
+                    Share your details — Our senior elevator engineering team will call you back.
                   </p>
                 </div>
 
@@ -300,7 +321,7 @@ export default function HomePage() {
                       <input
                         type="text"
                         required
-                        placeholder="e.g. Ramesh Reddy"
+                        placeholder="e.g. Suresh Reddy"
                         value={leadForm.name}
                         onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
                         className="w-full px-3 py-1.5 xl:py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40 text-slate-800 transition-all"
@@ -362,8 +383,11 @@ export default function HomePage() {
                       >
                         <span style={{ color: "#ffffff" }}>Request a Call Back →</span>
                       </button>
-                      <p className="text-center text-[10px] xl:text-[11px] text-slate-400 mt-2 font-medium">
-                        🔒 Zero spam guarantee. Direct technical consultation from Ramesh Vilasagar.
+                      <p className="text-center text-[10px] xl:text-[11px] text-slate-400 mt-2 font-medium flex items-center justify-center gap-1.5">
+                        <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <span>Zero spam guarantee. Direct technical consultation from certified elevator engineers.</span>
                       </p>
                     </div>
                   </form>
@@ -662,107 +686,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CANVA SECTION: RESPONSIVE VIEWS */}
-      <section className="py-10 sm:py-12 bg-slate-50 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal animation="fadeInUp">
-            <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#863078] bg-purple-50 px-3 py-1 rounded-full border border-purple-100">
-                Responsive Experience
-              </span>
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-                A consistent experience at every scale.
-              </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                The same white canvas, clear hierarchy and logo-derived accents adapt across desktop, tablet and mobile presentation frames.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <ScrollReveal animation="fadeInUp" delay={0.1}>
-              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3 card-glow h-full">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-900">🖥️ Desktop Frame</span>
-                  <span className="text-[10px] font-bold text-slate-400">1440 × 900</span>
-                </div>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Generous editorial layout, full horizontal navigation, two-column quote configurator, and floating hotline docks.
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal animation="fadeInUp" delay={0.2}>
-              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3 card-glow h-full">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-900">📱 Tablet View</span>
-                  <span className="text-[10px] font-bold text-slate-400">768 × 1024</span>
-                </div>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Adaptive two-column grids, collapsible feature cards, and finger-friendly tap targets across touch screens.
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal animation="fadeInUp" delay={0.3}>
-              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3 card-glow h-full">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-900">📱 Mobile Handset</span>
-                  <span className="text-[10px] font-bold text-slate-400">375 × 812</span>
-                </div>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Full-screen architectural drawer with 3-line toggle, sticky WhatsApp/Call bar, and single-column form flow.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* CANVA SECTION: ADMIN PORTAL PROTOTYPE DEMO */}
-      <section className="py-10 sm:py-12 bg-slate-900 text-white border-t border-slate-800 relative overflow-hidden">
-        <div className="ambient-orb w-96 h-96 -bottom-10 -right-20 bg-purple-900/40 animate-pulse-slow" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollReveal animation="fadeInUp">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-8 space-y-4">
-                <div className="inline-block px-3 py-1 bg-white/10 text-purple-300 rounded-full text-xs font-bold uppercase tracking-wider">
-                  VISION LIFTS & SOLUTIONS / DEMO
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                  Admin Portal
-                </h2>
-                <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
-                  Preview the dashboard layout and sample workflows. This is a public prototype, not a sign-in or protected admin area.
-                </p>
-                <p className="text-xs text-slate-400 italic">
-                  ✦ No email, password, account, or real credentials are needed. Entering the demo does not authenticate you.
-                </p>
-                <div className="pt-2">
-                  <Link
-                    href="/admin"
-                    className="btn-sheen inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-95 transition-all"
-                  >
-                    <span>Enter demo dashboard →</span>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="lg:col-span-4 p-6 rounded-2xl bg-[#0b2834] border border-[#143e4f] space-y-2 card-glow">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  VISION / CONTROL CENTER
-                </div>
-                <h3 className="text-base font-bold text-white">
-                  A closer look behind the experience.
-                </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Explore the illustrative content-management experience in the same design language as the website.
-                </p>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
       {/* 7. TESTIMONIALS (Clean White Cards) */}
       <section className="py-16 bg-slate-50 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -808,30 +731,39 @@ export default function HomePage() {
         <div className="ambient-orb w-96 h-96 -top-20 -left-20 bg-purple-200/30 animate-pulse-slow" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="scaleUp">
-            <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-xl card-glow border border-slate-800">
-              <span className="inline-block px-3 py-1 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887]/20 text-rose-300 border border-rose-500/30 rounded-full text-xs font-bold uppercase tracking-wider mb-3 animate-pulse-badge">
-                Ready to Upgrade Your Building?
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-3">
-                Schedule Your Free On-Site Inspection Today
-              </h2>
-              <p className="text-slate-300 text-sm max-w-xl mx-auto mb-6 leading-relaxed">
-                Our engineering team based on Gandhi Road, Karimnagar will visit your site, measure hoistway dimensions, evaluate power availability, and prepare a custom blueprint & quote within 24 hours.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-                <button
-                  type="button"
-                  onClick={() => setSurveyModalOpen(true)}
-                  className="btn-sheen px-7 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 shadow-md shadow-[#863078]/25 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow transition-all cursor-pointer"
-                >
-                  Book a Free Site Survey
-                </button>
-                <a
-                  href={`tel:${COMPANY_INFO.phoneRaw}`}
-                  className="px-7 py-3.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold text-xs uppercase tracking-wider rounded-full transition-all"
-                >
-                  Call +91 98484 80868
-                </a>
+            <div className="bg-gradient-to-br from-[#2e1236] via-[#1c143d] to-[#251333] text-white rounded-3xl p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-2xl border border-purple-400/25 relative overflow-hidden">
+              <div className="ambient-orb w-64 h-64 -top-10 -left-10 bg-[#a22b51]/20 pointer-events-none" />
+              <div className="ambient-orb w-64 h-64 -bottom-10 -right-10 bg-[#423887]/25 pointer-events-none" />
+              <div className="relative z-10">
+                <span className="inline-block px-3.5 py-1 bg-white/10 text-purple-200 border border-white/20 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                  Ready to Upgrade Your Building?
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-3 text-white">
+                  Schedule Your Free On-Site Inspection Today
+                </h2>
+                <p className="text-purple-100/90 text-sm max-w-xl mx-auto mb-6 leading-relaxed">
+                  Our engineering team based at Kisan Nagar, Karimnagar will visit your site, measure hoistway dimensions, evaluate power availability, and prepare a custom blueprint & quote within 24 hours.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setSurveyModalOpen(true)}
+                    className="btn-sheen px-7 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 shadow-md shadow-[#863078]/25 text-white font-extrabold text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer"
+                    style={{ color: "#ffffff" }}
+                  >
+                    <span style={{ color: "#ffffff" }}>Book a Free Site Survey →</span>
+                  </button>
+                  <a
+                    href={`tel:${COMPANY_INFO.phoneRaw}`}
+                    className="px-7 py-3.5 bg-white/15 hover:bg-white/25 text-white border border-white/30 font-extrabold text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center justify-center gap-2"
+                    style={{ color: "#ffffff" }}
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span style={{ color: "#ffffff" }}>Call Helpline</span>
+                  </a>
+                </div>
               </div>
             </div>
           </ScrollReveal>

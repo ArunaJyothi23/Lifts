@@ -104,7 +104,7 @@ export default function SiteSurveyModal({ isOpen, onClose }: SiteSurveyModalProp
               </div>
               <h4 className="text-lg font-bold text-slate-900 mb-1">Survey Request Received!</h4>
               <p className="text-xs text-slate-600 mb-6">
-                Thank you, <strong>{formData.name}</strong>. Ramesh Vilasagar or our senior technical engineer will call you shortly at <strong>{formData.phone}</strong> to coordinate the site survey.
+                Thank you, <strong>{formData.name}</strong>. Our senior technical engineer will call you shortly at <strong>{formData.phone}</strong> to coordinate the site survey.
               </p>
               <div className="flex flex-col sm:flex-row gap-2.5 justify-center">
                 <a
@@ -133,7 +133,7 @@ export default function SiteSurveyModal({ isOpen, onClose }: SiteSurveyModalProp
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Ramesh Reddy"
+                  placeholder="e.g. Suresh Reddy"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#863078]/40"
@@ -225,8 +225,11 @@ export default function SiteSurveyModal({ isOpen, onClose }: SiteSurveyModalProp
                 >
                   Confirm Free Site Survey Request
                 </button>
-                <p className="text-center text-[10px] text-slate-400 mt-2">
-                  🔒 We respect your privacy. No spam. Direct technical consultation.
+                <p className="text-center text-[10px] text-slate-400 mt-2 flex items-center justify-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                  <span>We respect your privacy. No spam. Direct technical consultation.</span>
                 </p>
               </div>
             </form>

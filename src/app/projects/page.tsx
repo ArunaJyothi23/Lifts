@@ -106,10 +106,12 @@ export default function ProjectsPage() {
 
                 <a
                   href="tel:9700123878"
-                  className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center gap-2 shadow-sm active:scale-95 border border-slate-800"
+                  className="px-6 py-3.5 bg-gradient-to-r from-[#2e1236] to-[#1c143d] hover:opacity-95 text-white font-black text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center gap-2 shadow-sm active:scale-95 border border-purple-900/40"
                   style={{ color: "#ffffff" }}
                 >
-                  <span className="text-emerald-400 text-sm">📞</span>
+                  <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
                   <span style={{ color: "#ffffff" }}>Call 9700 123 878 Direct</span>
                 </a>
               </div>
@@ -146,14 +148,16 @@ export default function ProjectsPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
-                  {/* Floating Badges */}
-                  <div className="absolute top-3 left-3 px-3 py-1 bg-white/95 backdrop-blur-md rounded-full text-[10px] font-black text-[#423887] border border-purple-100 shadow-xs flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>500+ Landmark Sites Commissioned</span>
-                  </div>
+                  {/* Floating Badges (Responsive & Non-overlapping) */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none z-10">
+                    <div className="px-2.5 sm:px-3 py-1 bg-white/95 backdrop-blur-md rounded-full text-[10px] font-black text-[#423887] border border-purple-100 shadow-xs flex items-center gap-1.5 shrink min-w-0">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+                      <span className="truncate">500+ Landmark Sites</span>
+                    </div>
 
-                  <div className="absolute top-3 right-3 px-2.5 py-1 bg-slate-900/90 backdrop-blur-md rounded-full text-[10px] font-bold text-amber-300 border border-slate-700 shadow-xs">
-                    Statewide Portfolio
+                    <div className="shrink-0 px-2.5 py-1 bg-slate-900/90 backdrop-blur-md rounded-full text-[10px] font-bold text-amber-300 border border-slate-700 shadow-xs">
+                      Statewide Portfolio
+                    </div>
                   </div>
 
                   {/* Bottom Image Overlay Strip */}
@@ -194,26 +198,30 @@ export default function ProjectsPage() {
       </section>
 
       {/* Filter Tabs (Rounded-Full with Untruncated Mobile Horizontal Scroll) */}
-      <section className="py-4 sm:py-6 bg-slate-50 border-b border-slate-100 sticky top-16 sm:top-20 z-30 shadow-xs backdrop-blur-md bg-slate-50/90">
+      <section className="py-3 sm:py-5 bg-slate-50 border-b border-slate-100 sticky top-16 sm:top-20 z-30 shadow-xs backdrop-blur-md bg-slate-50/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none mobile-scroll-x w-full sm:w-auto">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setFilter(cat)}
-                  className={`btn-sheen shrink-0 whitespace-nowrap px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                    filter === cat
-                      ? "bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white shadow-xs"
-                      : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
-                  }`}
-                  style={filter === cat ? { color: "#ffffff" } : {}}
-                >
-                  <span style={filter === cat ? { color: "#ffffff" } : {}}>
-                    {cat === "All" ? "All Projects" : `${cat} Lifts`}
-                  </span>
-                </button>
-              ))}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto pb-1.5 sm:pb-0 scrollbar-none mobile-scroll-x w-full sm:w-auto">
+              {categories.map((cat) => {
+                const label = cat === "All" ? "All Projects" : `${cat} Lifts`;
+                const isSelected = filter === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setFilter(cat)}
+                    className={`shrink-0 whitespace-nowrap min-w-fit px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-2xs leading-none inline-flex items-center justify-center ${
+                      isSelected
+                        ? "bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white shadow-xs"
+                        : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+                    }`}
+                    style={isSelected ? { color: "#ffffff" } : {}}
+                  >
+                    <span style={isSelected ? { color: "#ffffff" } : {}}>
+                      {label}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
             <button
@@ -254,20 +262,23 @@ export default function ProjectsPage() {
 
                   <div className="p-6 flex-1 flex flex-col justify-between">
                     <div>
-                      <div className="text-xs text-[#423887] font-semibold mb-1 flex items-center gap-1">
-                        <span>📍</span>
+                      <div className="text-xs text-[#423887] font-semibold mb-1 flex items-center gap-1.5">
+                        <svg className="w-3.5 h-3.5 text-[#863078]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                         <span>{project.location}</span>
                       </div>
                       <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#423887] transition-colors">
                         {project.title}
                       </h3>
                       
-                      <div className="flex flex-wrap gap-2 text-xs font-medium text-slate-600 mb-4">
+                      <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-700 mb-4">
                         <span className="bg-slate-50 px-3 py-1 rounded-full border border-slate-200">
-                          🏢 {project.floors}
+                          {project.floors}
                         </span>
                         <span className="bg-slate-50 px-3 py-1 rounded-full border border-slate-200">
-                          👥 {project.capacity}
+                          {project.capacity}
                         </span>
                       </div>
 
@@ -324,8 +335,11 @@ export default function ProjectsPage() {
                     </div>
                     <h4 className="text-base font-bold text-slate-900">{client.name}</h4>
                   </div>
-                  <div className="text-xs text-slate-400 mt-3 pt-3 border-t border-slate-100 flex items-center gap-1">
-                    <span>📍</span>
+                  <div className="text-xs text-slate-400 mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
                     <span>{client.city}</span>
                   </div>
                 </div>

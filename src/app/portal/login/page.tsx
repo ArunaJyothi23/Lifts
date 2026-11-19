@@ -206,7 +206,7 @@ export default function CustomerPortalLoginPage() {
             </form>
 
             <div className="mt-8 pt-6 border-t border-[#143e4f] text-center text-xs text-slate-400">
-              Need account access? Contact Ramesh Vilasagar or our central desk.{" "}
+              Need account access? Contact our customer support desk.{" "}
               <Link href="/contact" className="text-emerald-400 hover:underline">
                 Contact Us
               </Link>

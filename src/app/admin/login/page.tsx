@@ -240,7 +240,7 @@ export default function AdminLoginPage() {
       {/* Footer */}
       <footer className="py-4 px-6 text-center text-xs text-slate-600 border-t border-slate-900 z-10 flex flex-col sm:flex-row items-center justify-between gap-2">
         <span>Vision Lifts & Solutions · Telangana Operations Command</span>
-        <span className="text-[11px] text-slate-600">HQ: Gandhi Road, Karimnagar - 505001</span>
+        <span className="text-[11px] text-slate-600">HQ: 0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar - 505001</span>
       </footer>
     </div>
   );

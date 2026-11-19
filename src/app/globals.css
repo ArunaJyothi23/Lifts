@@ -1827,3 +1827,13 @@ h3 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Hide all floating docks and scroll-to-top buttons when mobile navigation drawer is open */
+body.mobile-menu-active nav[aria-label="Mobile quick actions"],
+body.mobile-menu-active aside[aria-label="Quick contact and navigation"],
+body.mobile-menu-active .scroll-top-btn {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

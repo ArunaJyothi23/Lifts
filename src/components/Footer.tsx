@@ -170,7 +170,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Address */}
+            {/* Address & Two Branches */}
             <div className="flex items-start gap-3 text-xs">
               <span className="text-[#863078] mt-0.5 shrink-0">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,10 +178,18 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </span>
-              <div>
-                <div className="font-semibold text-slate-800">Address</div>
-                <div className="text-slate-500 leading-relaxed">
-                  {COMPANY_INFO.address}
+              <div className="space-y-1.5">
+                <div>
+                  <div className="font-bold text-slate-900">Karimnagar Central HQ & Workshop:</div>
+                  <div className="text-slate-500 leading-relaxed">
+                    0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar, Telangana – 505001
+                  </div>
+                </div>
+                <div>
+                  <div className="font-bold text-slate-900">Hyderabad Regional Hub:</div>
+                  <div className="text-slate-500 leading-relaxed">
+                    Hyderabad Regional Hub, Telangana
+                  </div>
                 </div>
               </div>
             </div>

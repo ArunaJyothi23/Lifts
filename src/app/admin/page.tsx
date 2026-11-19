@@ -608,7 +608,7 @@ export default function AdminDashboardPage() {
     phone: "+91 98484 80868",
     founder: "Ramesh Vilasagar",
     email: "visionliftsandsolutions@gmail.com",
-    address: "Gandhi Road, Karimnagar, Telangana - 505001",
+    address: "0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar, Telangana – 505001",
     operatingHours: "Mon - Sat: 9:00 AM - 7:30 PM",
     emergencyDesk: "24 Hours / 365 Days Emergency Breakdown Support",
   });

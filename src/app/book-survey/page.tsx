@@ -186,7 +186,7 @@ export default function BookSurveyPage() {
                   Reference: {leadId}
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                  Thank you, <strong>{formData.name}</strong>. Senior technical engineer Ramesh Vilasagar or our district field engineer will reach out at <strong>{formData.phone}</strong> to confirm your site visit for <strong>{formData.city}</strong>.
+                  Thank you, <strong>{formData.name}</strong>. Our senior district field engineering specialist will reach out at <strong>{formData.phone}</strong> to confirm your site visit for <strong>{formData.city}</strong>.
                 </p>
 
                 <div className="p-4 bg-purple-50/60 rounded-2xl border border-purple-100 text-left text-xs text-slate-600 space-y-2 mt-4">
@@ -249,7 +249,7 @@ export default function BookSurveyPage() {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Ramesh Reddy"
+                      placeholder="e.g. Suresh Reddy"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#863078]/30 transition-all"
@@ -454,8 +454,11 @@ export default function BookSurveyPage() {
                   >
                     {loading ? "Scheduling Survey Dispatch..." : "Schedule Free Site Survey →"}
                   </button>
-                  <p className="text-[11px] text-center text-slate-400 mt-2">
-                    🔒 No credit card required. 100% free with no obligation to purchase.
+                  <p className="text-[11px] text-center text-slate-400 mt-2 flex items-center justify-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span>No credit card required. 100% free with no obligation to purchase.</span>
                   </p>
                 </div>
               </form>
@@ -478,7 +481,7 @@ export default function BookSurveyPage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-slate-900">Direct Senior Engineer Desk</h3>
-                  <p className="text-xs text-slate-500">Ramesh Vilasagar & Technical Team</p>
+                  <p className="text-xs text-slate-500">Chief Engineering Desk & Field Team</p>
                 </div>
               </div>
 
@@ -507,7 +510,9 @@ export default function BookSurveyPage() {
                   className="flex items-center justify-between p-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold border border-emerald-200 transition-colors"
                 >
                   <span className="flex items-center gap-2">
-                    <span className="text-emerald-600 font-bold">💬</span>
+                    <svg className="w-4 h-4 text-emerald-600 fill-current" viewBox="0 0 24 24">
+                      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.584 1.761.884 2.796.885h.005c3.179 0 5.766-2.587 5.767-5.766 0-3.18-2.588-5.772-5.772zm3.397 8.192c-.145.408-.847.785-1.177.834-.33.049-.757.068-2.457-.638-1.7-.706-2.776-2.441-2.86-2.553-.085-.112-.693-.923-.693-1.761s.437-1.25.592-1.423c.155-.172.338-.216.45-.216.113 0 .226.002.324.007.104.005.244-.04.381.29.145.352.497 1.214.54 1.302.043.088.072.19.014.305-.058.115-.088.187-.175.29-.087.102-.183.228-.261.306-.089.088-.182.184-.078.362.103.178.461.761 1.054 1.291.764.681 1.408.892 1.609.992.201.1.32.083.438-.052.119-.136.508-.591.644-.793.136-.203.272-.17.458-.102.186.068 1.182.557 1.385.659.203.102.339.153.39.237.051.085.051.493-.094.901z" />
+                    </svg>
                     <span>WhatsApp Engineer Desk</span>
                   </span>
                   <span className="text-emerald-700 text-xs">Chat Now →</span>
@@ -550,7 +555,7 @@ export default function BookSurveyPage() {
             </div>
 
             {/* Regional Coverage */}
-            <div className="bg-gradient-to-br from-slate-900 to-[#423887] text-white rounded-3xl p-6 shadow-sm space-y-3">
+            <div className="bg-gradient-to-br from-[#2e1236] to-[#1c143d] text-white rounded-3xl p-6 shadow-sm space-y-3 border border-purple-900/40">
               <span className="text-[10px] font-bold uppercase tracking-wider text-purple-300">
                 Regional Hubs
               </span>
@@ -558,10 +563,14 @@ export default function BookSurveyPage() {
                 Serving All Districts in Telangana
               </h4>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Headquartered at Gandhi Road, Karimnagar with rapid engineer dispatch stations across Hyderabad, Warangal, Jagtial, Peddapalli, and Khammam.
+                Headquartered at 0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar with regional hub support in Hyderabad and statewide field stations.
               </p>
-              <div className="pt-2 text-[11px] text-purple-200 flex items-center gap-2">
-                <span>📍 Gandhi Road, Karimnagar - 505001</span>
+              <div className="pt-2 text-[11px] text-purple-200 flex items-center gap-1.5">
+                <svg className="w-3.5 h-3.5 text-purple-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar - 505001</span>
               </div>
             </div>
 

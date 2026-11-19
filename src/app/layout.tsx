@@ -84,7 +84,7 @@ const jsonLd = {
   priceRange: "₹₹₹",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Gandhi Road Commercial Zone",
+    streetAddress: "0-5-240, Kisan Nagar, Near Surya Paper",
     addressLocality: "Karimnagar",
     addressRegion: "Telangana",
     postalCode: "505001",

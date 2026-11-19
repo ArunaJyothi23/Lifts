@@ -63,26 +63,67 @@ export default function ProductionHubPage() {
         </div>
       </section>
 
-      {/* B2B Advantage Ribbons */}
+      {/* B2B Advantage Ribbons with Slow Animated Elevation */}
       <section className="py-8 bg-slate-50 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs">
+            <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs hover:border-purple-300 hover:shadow-md hover:-translate-y-1 transition-all duration-500">
               <div className="text-2xl font-black text-[#423887]">Direct Factory</div>
-              <div className="text-xs text-slate-500 font-medium mt-1">Wholesale Pricing in Karimnagar</div>
+              <div className="text-xs text-slate-500 font-medium mt-1">Wholesale Pricing at Karimnagar Hub</div>
             </div>
-            <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs">
+            <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs hover:border-purple-300 hover:shadow-md hover:-translate-y-1 transition-all duration-500">
               <div className="text-2xl font-black text-[#423887]">IS 14665</div>
               <div className="text-xs text-slate-500 font-medium mt-1">Certified Batch Quality Testing</div>
             </div>
-            <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs">
+            <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs hover:border-purple-300 hover:shadow-md hover:-translate-y-1 transition-all duration-500">
               <div className="text-2xl font-black text-[#423887]">Ready Stock</div>
               <div className="text-xs text-slate-500 font-medium mt-1">Machines, Rails & Panels On Demand</div>
             </div>
-            <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs">
+            <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs hover:border-purple-300 hover:shadow-md hover:-translate-y-1 transition-all duration-500">
               <div className="text-2xl font-black text-[#423887]">Engineering</div>
               <div className="text-xs text-slate-500 font-medium mt-1">Free Wiring & Parameter Support</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Smooth Animated Horizontal Scrolling Showcase Ribbon (Image 4 "scrolling effect") */}
+      <section className="py-6 bg-white border-b border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[10px] font-black uppercase tracking-wider text-[#863078] bg-purple-50 px-2.5 py-1 rounded-full border border-purple-100">
+              Components Carousel & Fast Access
+            </span>
+            <span className="text-xs text-slate-400 font-medium">← Scroll horizontally →</span>
+          </div>
+
+          <div className="flex gap-4 overflow-x-auto pb-3 pt-1 scrollbar-none mobile-scroll-x">
+            {B2B_COMPONENTS.map((item, idx) => (
+              <div
+                key={idx}
+                className="shrink-0 w-72 sm:w-80 bg-slate-50/80 p-4 rounded-2xl border border-slate-200/90 shadow-2xs hover:bg-white hover:border-[#863078]/50 hover:shadow-lg hover:-translate-y-1.5 transition-all duration-500 cursor-pointer group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#423887] bg-white border border-purple-100 px-2 py-0.5 rounded">
+                      {item.category}
+                    </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  </div>
+                  <h4 className="text-sm font-black text-slate-900 group-hover:text-[#423887] transition-colors line-clamp-1">
+                    {item.name}
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                    {item.shortDesc}
+                  </p>
+                </div>
+
+                <div className="mt-3 pt-2.5 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-bold text-[#863078]">
+                  <span>Ready Stock</span>
+                  <span className="group-hover:translate-x-1 transition-transform">Inquire Wholesale →</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

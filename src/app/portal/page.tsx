@@ -878,7 +878,7 @@ export default function CustomerPortalDashboard() {
 
       {/* Footer */}
       <footer className="border-t border-[#143e4f] bg-[#071d27] py-4 px-4 sm:px-8 text-center text-xs text-slate-500">
-        Vision Lifts & Solutions · Dedicated Client Support · Gandhi Road, Karimnagar, Telangana ·{" "}
+        Vision Lifts & Solutions · Dedicated Client Support · 0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar, Telangana ·{" "}
         <Link href="/privacy-policy" className="hover:text-slate-300">Privacy Policy</Link> ·{" "}
         <Link href="/terms" className="hover:text-slate-300">Terms & Conditions</Link>
       </footer>

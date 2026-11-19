@@ -24,7 +24,11 @@ export default function ServicesPage() {
         "Load-bearing wall and counterweight clearance analysis",
         "Electrical panel and single/3-phase cabling coordination",
       ],
-      icon: "📐",
+      renderIcon: () => (
+        <svg className="w-6 h-6 text-[#863078]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      ),
     },
     {
       id: "installation",
@@ -37,7 +41,12 @@ export default function ServicesPage() {
         "Pre-commissioning 125% overload testing and brake burnishing",
         "Complete government lift inspector certification documentation",
       ],
-      icon: "⚙️",
+      renderIcon: () => (
+        <svg className="w-6 h-6 text-[#423887]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
     },
     {
       id: "modernization",
@@ -50,7 +59,11 @@ export default function ServicesPage() {
         "Addition of modern Automatic Rescue Device (ARD) for power cuts",
         "Aesthetic cabin redesign (Rose Gold / Titanium / LED false ceiling)",
       ],
-      icon: "🔄",
+      renderIcon: () => (
+        <svg className="w-6 h-6 text-[#a22b51]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+      ),
     },
     {
       id: "24-7-emergency",
@@ -61,9 +74,13 @@ export default function ServicesPage() {
         "Guaranteed 30-minute rapid emergency response in Karimnagar",
         "Fully stocked service vans with common contactors, relays & sensors",
         "Two-way intercom integration with our 24/7 helpline",
-        "Direct founder escalation to Ramesh Vilasagar (+91 9848480868)",
+        "Direct senior engineering escalation (+91 98484 80868)",
       ],
-      icon: "🚨",
+      renderIcon: () => (
+        <svg className="w-6 h-6 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
+      ),
       isEmergency: true,
     },
   ];
@@ -111,7 +128,7 @@ export default function ServicesPage() {
 
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
-            
+
             {/* Left Column: Service Capabilities & Actions */}
             <div className="lg:col-span-7 space-y-4 sm:space-y-4.5">
               {/* Breadcrumbs */}
@@ -170,10 +187,12 @@ export default function ServicesPage() {
 
                 <a
                   href="tel:9700123878"
-                  className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center gap-2 shadow-sm active:scale-95 border border-slate-800"
+                  className="px-6 py-3.5 bg-gradient-to-r from-[#2e1236] to-[#1c143d] hover:opacity-95 text-white font-black text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center gap-2 shadow-sm active:scale-95 border border-purple-900/40"
                   style={{ color: "#ffffff" }}
                 >
-                  <span className="text-emerald-400 text-sm">📞</span>
+                  <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
                   <span style={{ color: "#ffffff" }}>Call 9700 123 878 Direct</span>
                 </a>
               </div>
@@ -198,7 +217,7 @@ export default function ServicesPage() {
             {/* Right Column: Architectural Rapid Service Showcase Card */}
             <div className="lg:col-span-5 animate-fade-in-up stagger-2">
               <div className="relative bg-white/95 rounded-3xl p-4 sm:p-5 shadow-xl border border-slate-200/90 overflow-hidden card-glow group backdrop-blur-sm">
-                
+
                 {/* Elevated Image Frame */}
                 <div className="relative h-64 sm:h-72 xl:h-80 w-full rounded-2xl overflow-hidden shadow-xs border border-slate-100 bg-slate-900">
                   <Image
@@ -210,14 +229,16 @@ export default function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
-                  {/* Floating Badges */}
-                  <div className="absolute top-3 left-3 px-3 py-1 bg-white/95 backdrop-blur-md rounded-full text-[10px] font-black text-[#423887] border border-purple-100 shadow-xs flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>24/7 Rapid Emergency Dispatch</span>
-                  </div>
+                  {/* Floating Badges (Responsive & Non-overlapping) */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none z-10">
+                    <div className="px-2.5 sm:px-3 py-1 bg-white/95 backdrop-blur-md rounded-full text-[10px] font-black text-[#423887] border border-purple-100 shadow-xs flex items-center gap-1.5 shrink min-w-0">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+                      <span className="truncate">24/7 Rapid Dispatch</span>
+                    </div>
 
-                  <div className="absolute top-3 right-3 px-2.5 py-1 bg-slate-900/90 backdrop-blur-md rounded-full text-[10px] font-bold text-amber-300 border border-slate-700 shadow-xs">
-                    &lt; 30m Response SLA
+                    <div className="shrink-0 px-2.5 py-1 bg-slate-900/90 backdrop-blur-md rounded-full text-[10px] font-bold text-amber-300 border border-slate-700 shadow-xs">
+                      &lt; 30m SLA
+                    </div>
                   </div>
 
                   {/* Bottom Image Overlay Strip */}
@@ -264,16 +285,15 @@ export default function ServicesPage() {
             {servicesList.map((srv, idx) => (
               <ScrollReveal key={srv.id} animation="fadeInUp" delay={idx * 0.1}>
                 <div
-                  className={`p-8 rounded-3xl border shadow-xs card-glow transition-all flex flex-col justify-between h-full ${
-                    srv.isEmergency
+                  className={`p-8 rounded-3xl border shadow-xs card-glow transition-all flex flex-col justify-between h-full ${srv.isEmergency
                       ? "bg-gradient-to-br from-rose-50/40 via-white to-purple-50/40 border-rose-200"
                       : "bg-slate-50/70 border-slate-200"
-                  }`}
+                    }`}
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 rounded-2xl bg-white text-2xl flex items-center justify-center shadow-xs border border-slate-200">
-                        {srv.icon}
+                      <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-xs border border-slate-200">
+                        {srv.renderIcon()}
                       </div>
                       {srv.isEmergency && (
                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-[10px] font-extrabold uppercase tracking-wider">
@@ -388,19 +408,25 @@ export default function ServicesPage() {
 
           {/* Emergency 24/7 Hotline Strip */}
           <ScrollReveal animation="scaleUp" delay={0.2}>
-            <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-5 max-w-5xl mx-auto shadow-xl card-glow border border-slate-800">
-              <div className="flex items-center gap-4">
-                <span className="text-3xl p-3 bg-white/10 rounded-2xl">🚨</span>
+            <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#2e1236] via-[#1c143d] to-[#251333] text-white flex flex-col sm:flex-row items-center justify-between gap-5 max-w-5xl mx-auto shadow-2xl card-glow border border-purple-500/30 relative overflow-hidden">
+              <div className="ambient-orb w-48 h-48 -top-10 -left-10 bg-[#a22b51]/20 pointer-events-none" />
+              <div className="flex items-center gap-4 relative z-10">
+                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
+                  <svg className="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                </div>
                 <div>
-                  <div className="font-extrabold text-base sm:text-lg">Elevator Breakdown Emergency?</div>
-                  <div className="text-xs text-slate-300">Our Karimnagar technical response van is on call 24 hours a day, 365 days a year.</div>
+                  <div className="font-extrabold text-base sm:text-lg text-white">Elevator Breakdown Emergency?</div>
+                  <div className="text-xs text-purple-100/80">Our Karimnagar technical response van is on call 24 hours a day, 365 days a year.</div>
                 </div>
               </div>
               <a
                 href={`tel:${COMPANY_INFO.phoneRaw}`}
-                className="btn-sheen px-7 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow transition-all whitespace-nowrap"
+                className="btn-sheen px-7 py-3.5 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white font-extrabold text-xs uppercase tracking-wider rounded-full shadow-lg transition-all whitespace-nowrap relative z-10 shrink-0"
+                style={{ color: "#ffffff" }}
               >
-                Emergency Call: {COMPANY_INFO.phone}
+                <span style={{ color: "#ffffff" }}>Emergency Call: {COMPANY_INFO.phone}</span>
               </a>
             </div>
           </ScrollReveal>

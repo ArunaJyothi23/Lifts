@@ -410,7 +410,7 @@ export const PRESENTATION_SECTIONS: PresentationSection[] = [
                 <strong>1. Hero Showcase:</strong> Instant value prop with free consultation CTA.
               </div>
               <div className="p-3 bg-white rounded-xl border border-slate-200">
-                <strong>2. Trust Strip:</strong> 15+ years experience, 1,200+ lifts, 24/7 care.
+                <strong>2. Trust Strip:</strong> Operating Since 2014, 500+ lifts, 24/7 care.
               </div>
               <div className="p-3 bg-white rounded-xl border border-slate-200">
                 <strong>3. Solutions Matrix:</strong> Residential, commercial, hospital, industrial.
@@ -618,7 +618,7 @@ export const PRESENTATION_SECTIONS: PresentationSection[] = [
                 <strong className="text-slate-900 block mb-1">Contact</strong>
                 <div>Phone: +91 94401 80868</div>
                 <div>Email: visionlifts@gmail.com</div>
-                <div>Gandhi Road, Karimnagar</div>
+                <div>0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar</div>
               </div>
             </div>
             <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
@@ -1759,13 +1759,13 @@ export const PRESENTATION_SECTIONS: PresentationSection[] = [
       {
         id: "cta-locations",
         title: "5. Office & Spares Hub Locations",
-        tagline: "Gandhi Road, Karimnagar & Regional Depots",
+        tagline: "Kisan Nagar, Karimnagar & Regional Depots",
         categoryBadge: "Offices",
         content: (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
               <strong className="text-slate-900 block">Head Office & Central Warehouse:</strong>
-              <p className="text-slate-600">Gandhi Road, Near Tower Circle, Karimnagar, Telangana 505001</p>
+              <p className="text-slate-600">0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar, Telangana – 505001</p>
               <p className="text-slate-500 pt-1">Phone: +91 94401 80868 / +91 98484 80868</p>
             </div>
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
