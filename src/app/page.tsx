@@ -183,7 +183,7 @@ export default function HomePage() {
         <div className="ambient-orb w-96 h-96 -top-20 -left-20 bg-purple-200/35 animate-pulse-slow" />
         <div className="ambient-orb w-80 h-80 top-1/2 -right-16 bg-rose-200/25 animate-pulse-slow" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8 items-center">
             {/* Left Column: Canva & Figma Official Branding */}
             <div className="lg:col-span-7 space-y-3 xl:space-y-4 animate-fade-in-up">

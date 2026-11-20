@@ -404,7 +404,7 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-md border-b border-slate-100 shadow-2xs"
         suppressHydrationWarning
       >
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-5 xl:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Standalone Official Logo */}
             <Link
@@ -412,7 +412,7 @@ export default function Navbar() {
               className="flex items-center shrink-0 py-1.5 group"
               aria-label="Vision Lifts & Solutions Home"
             >
-              <div className="relative h-12 sm:h-14 lg:h-15 w-44 sm:w-56 lg:w-60 xl:w-64 transition-transform group-hover:scale-[1.02]">
+              <div className="relative h-12 sm:h-14 lg:h-14 w-44 sm:w-52 lg:w-48 xl:w-56 transition-transform group-hover:scale-[1.02]">
                 <Image
                   src="/images/vision-lifts-logo.png"
                   alt="Vision Lifts & Solutions"
@@ -431,11 +431,10 @@ export default function Navbar() {
               {/* Home */}
               <Link
                 href="/"
-                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
-                  isActive("/")
-                    ? "text-[#423887] font-bold"
-                    : "text-slate-700 hover:text-[#423887]"
-                }`}
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${isActive("/")
+                  ? "text-[#423887] font-bold"
+                  : "text-slate-700 hover:text-[#423887]"
+                  }`}
               >
                 <span className="relative inline-block pb-1">
                   Home
@@ -448,11 +447,10 @@ export default function Navbar() {
               {/* About Us */}
               <Link
                 href="/about"
-                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
-                  isActive("/about")
-                    ? "text-[#423887] font-bold"
-                    : "text-slate-700 hover:text-[#423887]"
-                }`}
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${isActive("/about")
+                  ? "text-[#423887] font-bold"
+                  : "text-slate-700 hover:text-[#423887]"
+                  }`}
               >
                 <span className="relative inline-block pb-1">
                   About
@@ -470,11 +468,10 @@ export default function Navbar() {
               >
                 <Link
                   href="/solutions"
-                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
-                    isActive("/solutions")
-                      ? "text-[#423887] font-bold"
-                      : "text-slate-700 hover:text-[#423887]"
-                  }`}
+                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${isActive("/solutions")
+                    ? "text-[#423887] font-bold"
+                    : "text-slate-700 hover:text-[#423887]"
+                    }`}
                 >
                   <span className="relative inline-block pb-1">
                     Solutions
@@ -483,9 +480,8 @@ export default function Navbar() {
                     )}
                   </span>
                   <svg
-                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                      activeDropdown === "solutions" ? "rotate-180 text-[#423887]" : ""
-                    }`}
+                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "solutions" ? "rotate-180 text-[#423887]" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -512,17 +508,15 @@ export default function Navbar() {
                                   key={item.id}
                                   href={item.href}
                                   onMouseEnter={() => setHoveredSolutionId(item.id)}
-                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
-                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
-                                  }`}
+                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
+                                    }`}
                                 >
                                   <div>
                                     <div
-                                      className={`text-[13px] font-bold transition-colors leading-snug ${
-                                        isHovered
-                                          ? "text-[#423887]"
-                                          : "text-slate-900 group-hover:text-[#423887]"
-                                      }`}
+                                      className={`text-[13px] font-bold transition-colors leading-snug ${isHovered
+                                        ? "text-[#423887]"
+                                        : "text-slate-900 group-hover:text-[#423887]"
+                                        }`}
                                     >
                                       {item.title}
                                     </div>
@@ -531,11 +525,10 @@ export default function Navbar() {
                                     </div>
                                   </div>
                                   <span
-                                    className={`text-xs font-semibold pl-2 transition-all ${
-                                      isHovered
-                                        ? "text-[#423887] translate-x-1"
-                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
-                                    }`}
+                                    className={`text-xs font-semibold pl-2 transition-all ${isHovered
+                                      ? "text-[#423887] translate-x-1"
+                                      : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
+                                      }`}
                                   >
                                     ›
                                   </span>
@@ -557,17 +550,15 @@ export default function Navbar() {
                                   key={item.id}
                                   href={item.href}
                                   onMouseEnter={() => setHoveredSolutionId(item.id)}
-                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
-                                    isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
-                                  }`}
+                                  className={`group flex items-center justify-between p-2 rounded-xl transition-all ${isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
+                                    }`}
                                 >
                                   <div>
                                     <div
-                                      className={`text-[13px] font-bold transition-colors leading-snug ${
-                                        isHovered
-                                          ? "text-[#423887]"
-                                          : "text-slate-900 group-hover:text-[#423887]"
-                                      }`}
+                                      className={`text-[13px] font-bold transition-colors leading-snug ${isHovered
+                                        ? "text-[#423887]"
+                                        : "text-slate-900 group-hover:text-[#423887]"
+                                        }`}
                                     >
                                       {item.title}
                                     </div>
@@ -576,11 +567,10 @@ export default function Navbar() {
                                     </div>
                                   </div>
                                   <span
-                                    className={`text-xs font-semibold pl-2 transition-all ${
-                                      isHovered
-                                        ? "text-[#423887] translate-x-1"
-                                        : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
-                                    }`}
+                                    className={`text-xs font-semibold pl-2 transition-all ${isHovered
+                                      ? "text-[#423887] translate-x-1"
+                                      : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
+                                      }`}
                                   >
                                     ›
                                   </span>
@@ -649,11 +639,10 @@ export default function Navbar() {
               >
                 <Link
                   href="/products"
-                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
-                    isActive("/products")
-                      ? "text-[#423887] font-bold"
-                      : "text-slate-700 hover:text-[#423887]"
-                  }`}
+                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${isActive("/products")
+                    ? "text-[#423887] font-bold"
+                    : "text-slate-700 hover:text-[#423887]"
+                    }`}
                 >
                   <span className="relative inline-block pb-1">
                     Products
@@ -662,9 +651,8 @@ export default function Navbar() {
                     )}
                   </span>
                   <svg
-                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                      activeDropdown === "products" ? "rotate-180 text-[#423887]" : ""
-                    }`}
+                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "products" ? "rotate-180 text-[#423887]" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -705,14 +693,6 @@ export default function Navbar() {
                       >
                         Cabins & Finishes
                       </Link>
-                      <Link
-                        href="/production-hub"
-                        onClick={() => setActiveDropdown(null)}
-                        className="block px-3.5 py-2.5 rounded-xl text-[13.5px] font-bold text-slate-800 hover:text-[#423887] hover:bg-purple-50/70 transition-all flex items-center justify-between"
-                      >
-                        <span>Production Hub (B2B)</span>
-                        <span className="text-[10px] font-bold text-white bg-gradient-to-r from-[#a22b51] to-[#863078] px-2 py-0.5 rounded-full">B2B Hub</span>
-                      </Link>
                     </div>
 
                     <div className="pt-2 mt-1.5 border-t border-slate-100">
@@ -729,14 +709,13 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Production Hub (B2B) - Prominently Visible on Desktop Navbar */}
+              {/* Production Hub Link */}
               <Link
                 href="/production-hub"
-                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
-                  isActive("/production-hub")
-                    ? "text-[#423887] font-bold"
-                    : "text-slate-700 hover:text-[#423887]"
-                }`}
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${isActive("/production-hub")
+                  ? "text-[#423887] font-bold"
+                  : "text-slate-700 hover:text-[#423887]"
+                  }`}
               >
                 <span className="relative inline-block pb-1">
                   Production Hub
@@ -754,11 +733,10 @@ export default function Navbar() {
               >
                 <Link
                   href="/services"
-                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
-                    isActive("/services")
-                      ? "text-[#423887] font-bold"
-                      : "text-slate-700 hover:text-[#423887]"
-                  }`}
+                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${isActive("/services")
+                    ? "text-[#423887] font-bold"
+                    : "text-slate-700 hover:text-[#423887]"
+                    }`}
                 >
                   <span className="relative inline-block pb-1">
                     Services
@@ -767,9 +745,8 @@ export default function Navbar() {
                     )}
                   </span>
                   <svg
-                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                      activeDropdown === "services" ? "rotate-180 text-[#423887]" : ""
-                    }`}
+                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180 text-[#423887]" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -794,17 +771,15 @@ export default function Navbar() {
                                 key={item.id}
                                 href={item.href}
                                 onMouseEnter={() => setHoveredServiceId(item.id)}
-                                className={`group flex items-center justify-between p-2 rounded-xl transition-all ${
-                                  isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
-                                }`}
+                                className={`group flex items-center justify-between p-2 rounded-xl transition-all ${isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
+                                  }`}
                               >
                                 <div>
                                   <div
-                                    className={`text-[13px] font-bold transition-colors leading-snug ${
-                                      isHovered
-                                        ? "text-[#423887]"
-                                        : "text-slate-900 group-hover:text-[#423887]"
-                                    }`}
+                                    className={`text-[13px] font-bold transition-colors leading-snug ${isHovered
+                                      ? "text-[#423887]"
+                                      : "text-slate-900 group-hover:text-[#423887]"
+                                      }`}
                                   >
                                     {item.title}
                                   </div>
@@ -813,11 +788,10 @@ export default function Navbar() {
                                   </div>
                                 </div>
                                 <span
-                                  className={`text-xs font-semibold pl-2 transition-all ${
-                                    isHovered
-                                      ? "text-[#423887] translate-x-1"
-                                      : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
-                                  }`}
+                                  className={`text-xs font-semibold pl-2 transition-all ${isHovered
+                                    ? "text-[#423887] translate-x-1"
+                                    : "text-slate-300 group-hover:text-[#423887] group-hover:translate-x-0.5"
+                                    }`}
                                 >
                                   ›
                                 </span>
@@ -876,11 +850,10 @@ export default function Navbar() {
               {/* Projects */}
               <Link
                 href="/projects"
-                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
-                  isActive("/projects")
-                    ? "text-[#423887] font-bold"
-                    : "text-slate-700 hover:text-[#423887]"
-                }`}
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${isActive("/projects")
+                  ? "text-[#423887] font-bold"
+                  : "text-slate-700 hover:text-[#423887]"
+                  }`}
               >
                 <span className="relative inline-block pb-1">
                   Projects
@@ -893,11 +866,10 @@ export default function Navbar() {
               {/* Safety & Tech */}
               <Link
                 href="/safety-tech"
-                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${
-                  isActive("/safety-tech") || isActive("/safety-technology")
-                    ? "text-[#423887] font-bold"
-                    : "text-slate-700 hover:text-[#423887]"
-                }`}
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap inline-flex items-center ${isActive("/safety-tech") || isActive("/safety-technology")
+                  ? "text-[#423887] font-bold"
+                  : "text-slate-700 hover:text-[#423887]"
+                  }`}
               >
                 <span className="relative inline-block pb-1">
                   Safety & Tech
@@ -915,11 +887,10 @@ export default function Navbar() {
               >
                 <Link
                   href="/contact"
-                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${
-                    isActive("/contact") || isActive("/telangana-network")
-                      ? "text-[#423887] font-bold"
-                      : "text-slate-700 hover:text-[#423887]"
-                  }`}
+                  className={`px-2 xl:px-2.5 py-1.5 text-[13px] xl:text-[13.5px] font-medium transition-colors whitespace-nowrap flex items-center gap-1 ${isActive("/contact") || isActive("/telangana-network")
+                    ? "text-[#423887] font-bold"
+                    : "text-slate-700 hover:text-[#423887]"
+                    }`}
                 >
                   <span className="relative inline-block pb-1">
                     Contact
@@ -928,9 +899,8 @@ export default function Navbar() {
                     )}
                   </span>
                   <svg
-                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                      activeDropdown === "contact" ? "rotate-180 text-[#423887]" : ""
-                    }`}
+                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "contact" ? "rotate-180 text-[#423887]" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1042,28 +1012,6 @@ export default function Navbar() {
 
             {/* Right Action Cluster (Logo Color Theme - No Red) */}
             <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
-              {/* Admin Console Link */}
-              <Link
-                href="/admin"
-                className="flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs font-semibold text-slate-700 hover:text-[#423887] border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-2xs whitespace-nowrap"
-                title="Admin Console Access"
-              >
-                <svg
-                  className="w-3.5 h-3.5 text-[#863078]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  />
-                </svg>
-                <span>Admin</span>
-              </Link>
-
               {/* Book Site Survey CTA Button - Signature Logo Brand Gradient */}
               <Link
                 href="/book-survey"
@@ -1108,7 +1056,7 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-x-0 top-16 sm:top-20 bottom-0 z-[100] bg-white w-full h-[calc(100dvh-4rem)] sm:h-[calc(100dvh-5rem)] overflow-y-auto px-5 py-4 border-t border-slate-100 shadow-2xl">
           <div className="flex flex-col space-y-4 pb-36">
-            
+
             {/* 1. Executive Quick Contact Strip - Clean Architectural Style, No Emojis */}
             <div className="p-3.5 bg-slate-50 border border-slate-200/90 rounded-2xl flex items-center justify-between gap-3">
               <div>
@@ -1168,9 +1116,8 @@ export default function Navbar() {
                 >
                   <span>Products & Series</span>
                   <svg
-                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                      mobileSubmenu === "products" ? "rotate-180 text-[#863078]" : ""
-                    }`}
+                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${mobileSubmenu === "products" ? "rotate-180 text-[#863078]" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1218,18 +1165,6 @@ export default function Navbar() {
                     </Link>
 
                     <Link
-                      href="/production-hub"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block p-2 rounded-xl bg-purple-50/70 hover:bg-purple-100/70 border border-purple-200/80 transition-all"
-                    >
-                      <div className="text-xs font-bold text-[#423887] flex items-center justify-between">
-                        <span>Production Hub (B2B)</span>
-                        <span className="text-[10px] text-white bg-gradient-to-r from-[#a22b51] to-[#863078] px-2 py-0.5 rounded-full font-bold">B2B Hub</span>
-                      </div>
-                      <div className="text-[11px] text-slate-500 font-normal">Component Supply, Raw Materials & Bulk Manufacturing</div>
-                    </Link>
-
-                    <Link
                       href="/products"
                       onClick={() => setMobileMenuOpen(false)}
                       className="inline-block pt-1 text-xs font-bold text-[#863078] hover:text-[#423887]"
@@ -1239,18 +1174,6 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-
-              {/* Direct Link: Production Hub (B2B) */}
-              <Link
-                href="/production-hub"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between py-3 hover:text-[#423887] transition-colors"
-              >
-                <span>Production Hub (B2B)</span>
-                <span className="text-[10px] font-bold text-white bg-gradient-to-r from-[#a22b51] to-[#863078] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                  B2B Hub
-                </span>
-              </Link>
 
               {/* Solutions Submenu */}
               <div className="py-2.5">
@@ -1263,9 +1186,8 @@ export default function Navbar() {
                 >
                   <span>Solutions</span>
                   <svg
-                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                      mobileSubmenu === "solutions" ? "rotate-180 text-[#863078]" : ""
-                    }`}
+                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${mobileSubmenu === "solutions" ? "rotate-180 text-[#863078]" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1301,9 +1223,8 @@ export default function Navbar() {
                 >
                   <span>Services & AMC</span>
                   <svg
-                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                      mobileSubmenu === "services" ? "rotate-180 text-[#863078]" : ""
-                    }`}
+                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${mobileSubmenu === "services" ? "rotate-180 text-[#863078]" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1327,6 +1248,17 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
+
+              <Link
+                href="/production-hub"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between py-3 hover:text-[#423887] transition-colors"
+              >
+                <span>Production Hub</span>
+                <span className="text-[10px] font-bold text-[#863078] bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100 uppercase tracking-wider">
+                  Facility
+                </span>
+              </Link>
 
               <Link
                 href="/projects"

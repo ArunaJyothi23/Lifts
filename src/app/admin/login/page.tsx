@@ -80,30 +80,23 @@ export default function AdminLoginPage() {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-purple-900/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[350px] h-[350px] bg-amber-600/5 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Top Header - Fixed and Minimalist */}
-      <header className="px-6 py-3.5 flex items-center justify-between z-10 shrink-0">
-        <Link href="/" className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-          <span className="text-sm font-black tracking-tight text-white">VISION LIFTS & SOLUTIONS</span>
-          <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-slate-800 text-purple-300 border border-slate-700">
-            Control Portal
-          </span>
-        </Link>
-
-        <Link
-          href="/"
-          className="text-xs font-semibold text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-800 bg-slate-900/80 hover:bg-slate-800"
-        >
-          <span>← Back to Website</span>
-        </Link>
-      </header>
-
       {/* Main Login Card - Fixed 100% In-Viewport (Zero Page Scroll) */}
       <main className="flex-1 flex items-center justify-center p-3 sm:p-4 z-10">
-        <div className="w-full max-w-[390px]">
+        <div className="w-full max-w-[420px]">
           <div className="bg-[#111827]/95 border border-slate-800/90 rounded-3xl p-6 sm:p-7 shadow-2xl backdrop-blur-md">
-            {/* White Square Logo Container */}
-            <div className="flex justify-center mb-4">
-              <div className="bg-white rounded-2xl p-2.5 w-26 h-20 flex items-center justify-center shadow-lg border border-slate-700/50">
+            {/* Top row inside card: Centered Logo with clean Back button */}
+            <div className="relative flex items-center justify-center mb-5 pt-1">
+              <Link
+                href="/"
+                className="absolute left-0 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-slate-400 hover:text-white bg-slate-800/60 hover:bg-slate-800 border border-slate-700/50 rounded-lg transition-all active:scale-95 group"
+                title="Return to website"
+              >
+                <span className="text-amber-400 group-hover:-translate-x-0.5 transition-transform text-xs">←</span>
+                <span>Back</span>
+              </Link>
+
+              {/* Centered White Logo Container */}
+              <div className="bg-white rounded-2xl p-2.5 w-26 h-18 sm:w-28 sm:h-20 flex items-center justify-center shadow-lg border border-slate-700/50">
                 <div className="relative w-full h-full">
                   <Image
                     src="/images/vision-lifts-logo.png"
@@ -230,11 +223,6 @@ export default function AdminLoginPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="py-2.5 px-6 text-center text-[11px] text-slate-600 border-t border-slate-900 z-10 flex flex-col sm:flex-row items-center justify-between gap-1 shrink-0">
-        <span>Vision Lifts & Solutions · Operations & Compliance Command Centre</span>
-        <span className="text-slate-600">HQ: 0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar - 505001</span>
-      </footer>
     </div>
   );
 }

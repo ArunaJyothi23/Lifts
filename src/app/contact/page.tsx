@@ -135,7 +135,7 @@ export default function ContactPage() {
         <div className="ambient-orb w-96 h-96 -top-24 -left-24 bg-purple-100/50 animate-pulse-slow" />
         <div className="ambient-orb w-96 h-96 top-1/3 -right-20 bg-rose-100/40 animate-pulse-slow" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-start">
             
             {/* LEFT COLUMN: Executive Headline, Typewriter, & 4 Direct Channels */}
@@ -528,7 +528,7 @@ export default function ContactPage() {
           (Matches Document Requirements Section 6 Exactly)
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
               <div>
@@ -741,7 +741,7 @@ export default function ContactPage() {
           3. TELANGANA 33 DISTRICTS INTERACTIVE DIRECTORY & SEARCH
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-slate-50/60 border-b border-slate-100">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <ScrollReveal animation="fadeInUp">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">

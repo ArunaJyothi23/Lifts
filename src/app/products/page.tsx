@@ -164,7 +164,7 @@ export default function ProductsPage() {
         <div className="ambient-orb w-96 h-96 -top-24 -left-24 bg-purple-100/50 animate-pulse-slow" />
         <div className="ambient-orb w-96 h-96 top-1/3 -right-20 bg-rose-100/40 animate-pulse-slow" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
             
             {/* Left Column: Product Story & Specifications */}
@@ -642,7 +642,7 @@ export default function ProductsPage() {
           MODEL COMPARISON MATRIX: EXPLAINING DIFFERENCES (Docx Requirement 5)
           ========================================================================= */}
       <section className="py-16 bg-slate-50/70 border-t border-slate-200">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
               <span className="text-xs font-black uppercase tracking-wider text-[#863078] bg-purple-50 border border-purple-100 px-3.5 py-1.5 rounded-full shadow-2xs">

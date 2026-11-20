@@ -167,7 +167,7 @@ export default function CabinsFinishesPage() {
         <div className="ambient-orb w-96 h-96 -top-24 -left-24 bg-purple-100/50 animate-pulse-slow pointer-events-none" />
         <div className="ambient-orb w-96 h-96 top-1/3 -right-20 bg-rose-100/40 animate-pulse-slow pointer-events-none" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
             
             {/* Left Column: Hero Story, Badges, Pills & CTAs */}
@@ -315,7 +315,7 @@ export default function CabinsFinishesPage() {
           2. KEY HIGHLIGHTS SECTION (Image 2 Exact Architecture)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-slate-50/60 border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-[#a22b51] uppercase tracking-wider mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#a22b51]" />
@@ -353,7 +353,7 @@ export default function CabinsFinishesPage() {
           3. 4-CARD FEATURE GRID (Image 3 Exact Architecture)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-white border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-100 text-xs font-bold text-[#863078] uppercase tracking-wider mb-3">
               Master Craftsmanship
@@ -393,7 +393,7 @@ export default function CabinsFinishesPage() {
           4. TECHNICAL SPECIFICATIONS TABLE (Image 4 Exact Architecture)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-slate-50/60 border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-start">
             
             <div className="lg:col-span-5 space-y-4 sm:space-y-6">
@@ -487,7 +487,7 @@ export default function CabinsFinishesPage() {
           5. APPLICATIONS SECTION (Screenshot 1 Exact Architecture)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-white border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-[#a22b51] uppercase tracking-wider mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#a22b51]" />
@@ -520,7 +520,7 @@ export default function CabinsFinishesPage() {
           6. PERSONALISATION CHOICES (Screenshots 1 & 2 Exact Architecture)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-slate-50/60 border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-[#a22b51] uppercase tracking-wider mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#a22b51]" />
@@ -561,7 +561,7 @@ export default function CabinsFinishesPage() {
           7. SAFETY FEATURES GRID (Screenshots 3 & 4 Exact Architecture)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-white border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-[#a22b51] uppercase tracking-wider mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#a22b51]" />
@@ -598,7 +598,7 @@ export default function CabinsFinishesPage() {
           8. BOTTOM HERO CTA BANNER (Rich Brand Velvet Gradient, Zero Harsh Black)
           ========================================================================= */}
       <section className="py-10 sm:py-14 bg-white relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative rounded-3xl bg-gradient-to-br from-[#2e1236] via-[#1c143d] to-[#251333] p-8 sm:p-12 md:p-16 text-center text-white overflow-hidden shadow-2xl border border-purple-400/25 transition-all duration-700">
             <div className="ambient-orb w-80 h-80 -top-16 -left-16 bg-[#a22b51]/30 pointer-events-none animate-pulse-slow" />
             <div className="ambient-orb w-80 h-80 -bottom-16 -right-16 bg-[#863078]/35 pointer-events-none animate-pulse-slow" />

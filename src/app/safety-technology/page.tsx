@@ -79,7 +79,7 @@ export default function SafetyTechnologyPage() {
         <div className="ambient-orb w-96 h-96 -top-20 -left-20 bg-purple-200/35 animate-pulse-slow" />
         <div className="ambient-orb w-80 h-80 top-1/2 -right-16 bg-rose-200/25 animate-pulse-slow" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-4 sm:space-y-5">
@@ -258,7 +258,7 @@ export default function SafetyTechnologyPage() {
         <div className="ambient-orb w-96 h-96 -top-20 right-10 bg-purple-100/40 pointer-events-none animate-pulse-slow" />
         <div className="ambient-orb w-96 h-96 bottom-10 left-10 bg-rose-100/30 pointer-events-none animate-pulse-slow" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <span className="text-xs font-black uppercase tracking-wider text-[#863078] bg-purple-50/90 border border-purple-200/80 px-4 py-1.5 rounded-full shadow-2xs inline-flex items-center gap-2">
@@ -356,7 +356,7 @@ export default function SafetyTechnologyPage() {
       <section className="py-16 sm:py-20 bg-slate-50/80 border-t border-slate-200/80 relative overflow-hidden">
         <div className="ambient-orb w-80 h-80 top-1/2 -left-20 bg-purple-200/30 animate-pulse-slow pointer-events-none" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-5 space-y-4 sm:space-y-5">

@@ -135,7 +135,7 @@ export default function AboutPage() {
         <div className="ambient-orb w-96 h-96 -top-24 -left-24 bg-purple-100/50 animate-pulse-slow pointer-events-none" />
         <div className="ambient-orb w-96 h-96 top-1/3 -right-20 bg-rose-100/40 animate-pulse-slow pointer-events-none" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
             
             {/* Left Column: Brand Story & Executive Intro */}
@@ -283,7 +283,7 @@ export default function AboutPage() {
           2. COMPANY CONCEPT & BACKGROUND: WHY WE STARTED
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-slate-50/60 border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="max-w-3xl mb-10">
               <span className="text-xs font-black uppercase tracking-wider text-[#863078] bg-purple-50 border border-purple-100 px-3.5 py-1.5 rounded-full">
@@ -342,7 +342,7 @@ export default function AboutPage() {
           3. SINGLE CONCISE LEADERSHIP PROFILE (Founder Mentioned ONCE Here)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-white border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
               
@@ -453,7 +453,7 @@ export default function AboutPage() {
           4. CUSTOMER GUIDANCE JOURNEY: 8-STEP LIFECYCLE (As Mandated in Docx)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <span className="text-xs font-black uppercase tracking-wider text-[#863078] bg-purple-50 border border-purple-100 px-3.5 py-1.5 rounded-full">
@@ -507,7 +507,7 @@ export default function AboutPage() {
           5. VISION, MISSION, VALUES & LONG-TERM GOALS
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-white border-b border-slate-100 relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <span className="text-xs font-black uppercase tracking-wider text-[#863078] bg-purple-50 border border-purple-100 px-3 py-1 rounded-full">
@@ -591,7 +591,7 @@ export default function AboutPage() {
           6. COMPANY JOURNEY TIMELINE (Operating Since 2014)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-slate-50/60 border-b border-slate-100">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <span className="text-xs font-black uppercase tracking-wider text-[#863078] bg-purple-50 border border-purple-100 px-3 py-1 rounded-full">
@@ -645,7 +645,7 @@ export default function AboutPage() {
           (Matches Document Requirements 4.2 & 6 Exactly)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-white border-b border-slate-100">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <span className="text-xs font-black uppercase tracking-wider text-[#863078] bg-purple-50 border border-purple-100 px-3.5 py-1.5 rounded-full">
@@ -724,7 +724,7 @@ export default function AboutPage() {
           8. EXECUTIVE CLOSING CTA BANNER (Rich Brand Velvet Gradient, No Pitch Black)
           ========================================================================= */}
       <section className="py-14 sm:py-16 bg-white relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#2e1236] via-[#1c143d] to-[#251333] text-white shadow-2xl relative overflow-hidden text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-8 border border-purple-400/20">
             
             {/* Subtle Glow Orbs */}

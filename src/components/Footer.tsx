@@ -126,10 +126,6 @@ export default function Footer() {
                 <Link href="/quote-request" className="text-[#863078] hover:text-[#423887] font-semibold text-[11px]">
                   Quote
                 </Link>
-                <span className="text-slate-300">•</span>
-                <Link href="/portal/login" className="text-[#863078] hover:text-[#423887] font-semibold text-[11px]">
-                  Portal
-                </Link>
               </li>
             </ul>
           </div>
@@ -207,52 +203,55 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright, Links, Back to top & Engineered For Every Journey */}
-        <div className="border-t border-slate-200 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div>
-            © 2026 Vision Lifts & Solutions. All Rights Reserved.
+        <div className="border-t border-slate-200 pt-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs">
+          <div className="font-semibold text-slate-700">
+            © {new Date().getFullYear()} Vision Lifts & Solutions. All Rights Reserved.
           </div>
 
-          <div className="flex items-center gap-4 text-slate-400">
-            <Link href="/privacy-policy" className="hover:text-[#423887] transition-colors">
+          {/* Highlighted Footer Buttons (Not Gray) */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            <Link
+              href="/privacy-policy"
+              className="px-3.5 py-1.5 text-xs font-bold text-[#423887] bg-purple-50 hover:bg-purple-100 hover:text-[#863078] border border-purple-200/90 rounded-full transition-all shadow-2xs hover:scale-105 active:scale-95"
+            >
               Privacy Policy
             </Link>
-            <span>•</span>
-            <Link href="/terms" className="hover:text-[#423887] transition-colors">
+            <Link
+              href="/terms"
+              className="px-3.5 py-1.5 text-xs font-bold text-[#423887] bg-purple-50 hover:bg-purple-100 hover:text-[#863078] border border-purple-200/90 rounded-full transition-all shadow-2xs hover:scale-105 active:scale-95"
+            >
               Terms & Conditions
             </Link>
-            <span>•</span>
-            <Link href="/portal" className="hover:text-[#423887] transition-colors">
-              Client Portal
-            </Link>
-            <span>•</span>
-            <Link href="/admin/dashboard" className="hover:text-[#423887] transition-colors font-medium">
-              Admin Console
+            <Link
+              href="/admin/login"
+              className="px-3.5 py-1.5 text-xs font-black text-white bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 rounded-full transition-all shadow-xs flex items-center gap-1.5 hover:scale-105 active:scale-95"
+            >
+              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <span>Admin Console</span>
             </Link>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
-              ENGINEERED FOR EVERY JOURNEY.
-            </div>
-
-            {/* Up arrow to move to top page directly (Modern Websites Standard) */}
-            <button
+          <div className="flex items-center gap-3">
+            {/* Up arrow to move to top page directly */}
+          {/* /  <button
               type="button"
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-[#423887] text-slate-600 hover:text-white text-xs font-semibold transition-all group shadow-2xs"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#423887] hover:bg-[#863078] text-white text-xs font-bold transition-all group shadow-sm active:scale-95 cursor-pointer"
               aria-label="Scroll to top of page"
               title="Back to top"
-            >
-              <span>Back to top</span>
-              <svg
+            > */}
+              {/* <span>Back to top</span> */}
+              {/* <svg
                 className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-              </svg>
-            </button>
+              > */}
+                {/* <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg> */}
+            {/* </button> */}
           </div>
         </div>
       </div>

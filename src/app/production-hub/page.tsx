@@ -65,7 +65,7 @@ export default function ProductionHubPage() {
         <div className="ambient-orb w-96 h-96 top-1/2 -right-24 bg-[#a22b51]/20 pointer-events-none" />
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
             
             {/* Left Column: Heading, Subtitle & B2B Action Buttons */}
@@ -164,7 +164,7 @@ export default function ProductionHubPage() {
           2. STATS & COMPLIANCE RIBBON (Image 1 Bottom Header Strip)
           ========================================================================= */}
       <section className="bg-gradient-to-r from-[#863078] via-[#a22b51] to-[#423887] text-white py-4 shadow-md">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs sm:text-sm font-bold divide-y sm:divide-y-0 sm:divide-x divide-white/20">
             <div className="p-2 flex items-center justify-center gap-2">
               <span className="text-base">📦</span>
@@ -190,7 +190,7 @@ export default function ProductionHubPage() {
           3. SOURCING PIPELINE & MANUFACTURING OVERVIEW (Section 2 in Image 1)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-white border-b border-slate-100">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <span className="text-[10px] font-black uppercase tracking-wider text-[#863078] bg-purple-50 border border-purple-100 px-3.5 py-1.5 rounded-full">
@@ -296,7 +296,7 @@ export default function ProductionHubPage() {
           4. CONFIRMED PRODUCT RANGE & COMPONENT CATALOGUE (Section 3 in Image 1)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-100" id="component-catalogue">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-10">
@@ -420,7 +420,7 @@ export default function ProductionHubPage() {
           5. DOCUMENTATION BEFORE DECISIONS (Section 4 in Image 1)
           ========================================================================= */}
       <section className="py-14 sm:py-20 bg-white border-b border-slate-100">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <ScrollReveal animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -552,7 +552,7 @@ export default function ProductionHubPage() {
         <div className="ambient-orb w-96 h-96 -top-24 -left-24 bg-purple-500/20 pointer-events-none" />
         <div className="ambient-orb w-96 h-96 -bottom-24 -right-24 bg-[#a22b51]/20 pointer-events-none" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
             
             {/* Left Column: Requirements Partnership Narrative & Checkmarks */}
