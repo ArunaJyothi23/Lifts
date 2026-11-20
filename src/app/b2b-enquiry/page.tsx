@@ -78,15 +78,6 @@ export default function B2BBulkEnquiryPage() {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] pt-6 sm:pt-8 pb-16">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <div className="mb-6 flex flex-wrap items-center gap-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-[#423887] transition-colors">Home</Link>
-          <span>/</span>
-          <Link href="/production-hub" className="hover:text-[#423887] transition-colors">Production Hub</Link>
-          <span>/</span>
-          <span className="text-[#863078] font-semibold">B2B Bulk Enquiry</span>
-        </div>
-
         <div className="mb-10">
           <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#863078] mb-2">
             VISION LIFTS & SOLUTIONS / PRODUCTION HUB

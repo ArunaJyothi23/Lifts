@@ -4,103 +4,106 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { auth, isFirebaseConfigured } from "@/lib/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  // Fixed standard administrative credentials as requested
+  const [username, setUsername] = useState("admin123@gmail.com");
+  const [password, setPassword] = useState("admin123");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
     setLoading(true);
 
-    setTimeout(() => {
-      // Accept admin or demo credentials
-      if (
-        username.toLowerCase().includes("admin") ||
-        username.toLowerCase().includes("vision") ||
-        username.toLowerCase().includes("triora") ||
-        username.toLowerCase().includes("ramesh") ||
-        password === "admin123" ||
-        password === "Triora_labs@5642" ||
-        password.length >= 6
-      ) {
-        if (typeof window !== "undefined") {
-          localStorage.setItem(
-            "vl_admin_session",
-            JSON.stringify({
-              adminUser: username || "admin@visionlifts.com",
-              role: "ADMINISTRATOR",
-              loggedAt: new Date().toISOString(),
-            })
-          );
-        }
-        router.push("/admin");
-      } else {
-        setErrorMessage("Invalid credentials. Please enter your administrator email/username.");
-        setLoading(false);
-      }
-    }, 450);
-  };
+    const cleanUser = username.trim();
+    const cleanPass = password.trim();
 
-  const handleQuickLogin = () => {
-    setUsername("admin@visionlifts.com");
-    setPassword("Triora_labs@5642");
-    if (typeof window !== "undefined") {
-      localStorage.setItem(
-        "vl_admin_session",
-        JSON.stringify({
-          adminUser: "admin@visionlifts.com",
-          role: "ADMINISTRATOR",
-          loggedAt: new Date().toISOString(),
-        })
-      );
+    if (!cleanUser || !cleanPass) {
+      setErrorMessage("Please enter both administrator email and password.");
+      setLoading(false);
+      return;
     }
-    router.push("/admin");
+
+    // STRICT FIREBASE AUTHENTICATION ENFORCED - NO BACKDOORS
+    if (!isFirebaseConfigured || !auth) {
+      setErrorMessage("Firebase is not initialized. Please ensure your environment is configured.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, cleanUser, cleanPass);
+      const user = userCredential.user;
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem(
+          "vl_admin_session",
+          JSON.stringify({
+            adminUser: user.email || cleanUser,
+            role: "ADMINISTRATOR",
+            uid: user.uid,
+            source: "firebase_auth",
+            loggedAt: new Date().toISOString(),
+          })
+        );
+      }
+      router.push("/admin");
+    } catch (fbErr: any) {
+      console.error("Firebase Auth failed:", fbErr.code);
+      let friendlyError = "Invalid administrator credentials. Access restricted.";
+      if (
+        fbErr.code === "auth/invalid-credential" ||
+        fbErr.code === "auth/user-not-found" ||
+        fbErr.code === "auth/wrong-password"
+      ) {
+        friendlyError = "Access denied: Incorrect email or password. Only registered Firebase administrators can enter.";
+      } else if (fbErr.code === "auth/too-many-requests") {
+        friendlyError = "Too many failed attempts. Temporary lockout engaged for security. Please try again later.";
+      } else if (fbErr.code === "auth/invalid-email") {
+        friendlyError = "Please enter a valid administrator email address.";
+      }
+      setErrorMessage(friendlyError);
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between font-sans antialiased selection:bg-[#a22b51] selection:text-white relative overflow-hidden">
-      
+    <div className="h-screen w-screen overflow-hidden bg-[#080c14] text-slate-100 flex flex-col justify-between font-sans antialiased selection:bg-[#a22b51] selection:text-white relative">
       {/* Background Ambient Lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-amber-600/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-purple-900/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[350px] h-[350px] bg-amber-600/5 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Top Header */}
-      <header className="px-6 py-4 flex items-center justify-between z-10">
-        <Link href="/" className="inline-block">
-          <div className="relative h-9 w-40">
-            <Image
-              src="/images/vision-lifts-logo.png"
-              alt="Vision Lifts & Solutions"
-              fill
-              className="object-contain object-left brightness-125"
-              priority
-            />
-          </div>
+      {/* Top Header - Fixed and Minimalist */}
+      <header className="px-6 py-3.5 flex items-center justify-between z-10 shrink-0">
+        <Link href="/" className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+          <span className="text-sm font-black tracking-tight text-white">VISION LIFTS & SOLUTIONS</span>
+          <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-slate-800 text-purple-300 border border-slate-700">
+            Control Portal
+          </span>
         </Link>
 
         <Link
           href="/"
-          className="text-xs font-semibold text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-800 bg-slate-900/60"
+          className="text-xs font-semibold text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-800 bg-slate-900/80 hover:bg-slate-800"
         >
           <span>← Back to Website</span>
         </Link>
       </header>
 
-      {/* Main Login Card - Designed 1:1 with samkocentral.com Image 5 */}
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 z-10">
-        <div className="w-full max-w-[420px]">
-          <div className="bg-[#111827]/90 border border-slate-800/90 rounded-3xl p-7 sm:p-9 shadow-2xl backdrop-blur-md">
-            
-            {/* White Square Logo Container (Matching Image 5) */}
-            <div className="flex justify-center mb-5">
-              <div className="bg-white rounded-2xl p-3 w-28 h-24 flex items-center justify-center shadow-lg border border-slate-700/50">
+      {/* Main Login Card - Fixed 100% In-Viewport (Zero Page Scroll) */}
+      <main className="flex-1 flex items-center justify-center p-3 sm:p-4 z-10">
+        <div className="w-full max-w-[390px]">
+          <div className="bg-[#111827]/95 border border-slate-800/90 rounded-3xl p-6 sm:p-7 shadow-2xl backdrop-blur-md">
+            {/* White Square Logo Container */}
+            <div className="flex justify-center mb-4">
+              <div className="bg-white rounded-2xl p-2.5 w-26 h-20 flex items-center justify-center shadow-lg border border-slate-700/50">
                 <div className="relative w-full h-full">
                   <Image
                     src="/images/vision-lifts-logo.png"
@@ -114,55 +117,55 @@ export default function AdminLoginPage() {
             </div>
 
             {/* Title & Subtitle */}
-            <div className="text-center mb-7">
-              <h1 className="text-2xl font-black text-white tracking-tight">
+            <div className="text-center mb-5">
+              <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                 Admin Login
               </h1>
-              <p className="text-xs text-slate-400 mt-1.5">
+              <p className="text-[11px] text-slate-400 mt-1">
                 Operations & Compliance Command Centre
               </p>
             </div>
 
             {errorMessage && (
-              <div className="mb-5 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs font-medium text-rose-300 flex items-center gap-2">
+              <div className="mb-4 p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs font-medium text-rose-300 flex items-center gap-2">
                 <span>⚠️</span>
                 <span>{errorMessage}</span>
               </div>
             )}
 
             {/* Login Form */}
-            <form onSubmit={handleLogin} className="space-y-4 text-xs">
+            <form onSubmit={handleLogin} className="space-y-3.5 text-xs">
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
-                  USERNAME
+                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                  USERNAME / EMAIL
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Enter your username or email"
+                  placeholder="admin@visionlifts.com"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#0c121d] border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/90 focus:ring-1 focus:ring-amber-400/90 transition-all text-xs"
+                  className="w-full px-3.5 py-2.5 bg-[#0c121d] border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/90 focus:ring-1 focus:ring-amber-400/90 transition-all text-xs font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                   PASSWORD
                 </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     required
-                    placeholder="Enter your password"
+                    placeholder="Enter password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 pr-10 bg-[#0c121d] border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/90 focus:ring-1 focus:ring-amber-400/90 transition-all text-xs"
+                    className="w-full px-3.5 py-2.5 pr-10 bg-[#0c121d] border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/90 focus:ring-1 focus:ring-amber-400/90 transition-all text-xs font-medium"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
                     aria-label="Toggle password visibility"
                   >
                     {showPassword ? (
@@ -180,26 +183,27 @@ export default function AdminLoginPage() {
               </div>
 
               {/* Remember Me & SSO Protected */}
-              <div className="flex items-center justify-between pt-1 pb-2">
-                <label className="flex items-center gap-2 cursor-pointer text-slate-400 text-xs">
+              <div className="flex items-center justify-between pt-0.5">
+                <label className="flex items-center gap-2 cursor-pointer text-slate-400 text-[11px]">
                   <input
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="w-4 h-4 rounded bg-[#0c121d] border-slate-700 text-[#f5c35b] focus:ring-0 cursor-pointer"
+                    className="w-3.5 h-3.5 rounded bg-[#0c121d] border-slate-700 text-[#f5c35b] focus:ring-0 cursor-pointer"
                   />
-                  <span>Remember me</span>
+                  <span>Remember session</span>
                 </label>
-                <span className="text-[11px] text-slate-500 italic">
-                  Vision SSO Protected
+                <span className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  Firebase Auth Only
                 </span>
               </div>
 
-              {/* Login Button (Matching Image 5 Gold Button) */}
+              {/* Login Button */}
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3.5 bg-[#f5c35b] hover:bg-[#eab348] active:scale-[0.99] text-slate-950 font-black text-xs uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-amber-500/10 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-3 bg-[#f5c35b] hover:bg-[#eab348] active:scale-[0.99] text-slate-950 font-black text-xs uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-amber-500/10 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-1"
               >
                 {loading ? (
                   <>
@@ -208,39 +212,28 @@ export default function AdminLoginPage() {
                   </>
                 ) : (
                   <>
-                    <span>🔒</span>
                     <span>LOGIN</span>
                   </>
                 )}
               </button>
-
-              {/* Demo 1-Click Access for development review */}
-              <button
-                type="button"
-                onClick={handleQuickLogin}
-                className="w-full py-2 bg-slate-800/50 hover:bg-slate-800 text-slate-300 text-[11px] font-semibold rounded-xl border border-slate-700/60 transition-all cursor-pointer flex items-center justify-center gap-1.5 mt-2"
-              >
-                <span>⚡</span>
-                <span>Quick Access Demo Admin</span>
-              </button>
             </form>
 
             {/* Bottom Footer Info */}
-            <div className="mt-7 pt-5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500">
-              <span className="flex items-center gap-1.5">
-                <span className="text-emerald-400">🛡️</span>
-                <span>256-bit SSL Encrypted</span>
+            <div className="mt-5 pt-3.5 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500">
+              <span className="flex items-center gap-1">
+                <span className="text-emerald-400">●</span>
+                <span>VisionCentral Command</span>
               </span>
-              <span>VisionCentral Command v2.4</span>
+              <span>256-bit SSL Encrypted</span>
             </div>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="py-4 px-6 text-center text-xs text-slate-600 border-t border-slate-900 z-10 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>Vision Lifts & Solutions · Telangana Operations Command</span>
-        <span className="text-[11px] text-slate-600">HQ: 0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar - 505001</span>
+      <footer className="py-2.5 px-6 text-center text-[11px] text-slate-600 border-t border-slate-900 z-10 flex flex-col sm:flex-row items-center justify-between gap-1 shrink-0">
+        <span>Vision Lifts & Solutions · Operations & Compliance Command Centre</span>
+        <span className="text-slate-600">HQ: 0-5-240, Kisan Nagar, Near Surya Paper, Karimnagar - 505001</span>
       </footer>
     </div>
   );

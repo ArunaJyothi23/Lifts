@@ -131,13 +131,6 @@ export default function ServicesPage() {
 
             {/* Left Column: Service Capabilities & Actions */}
             <div className="lg:col-span-7 space-y-4 sm:space-y-4.5">
-              {/* Breadcrumbs */}
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-                <Link href="/" className="hover:text-slate-900 transition-colors">Home</Link>
-                <span>/</span>
-                <span className="text-[#423887] font-bold">Services & AMC</span>
-              </div>
-
               {/* Verified Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50/80 border border-purple-100 text-[11px] sm:text-xs font-bold text-[#863078] uppercase tracking-wider">
                 <span className="relative flex h-2 w-2">

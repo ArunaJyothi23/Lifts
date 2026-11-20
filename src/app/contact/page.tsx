@@ -141,13 +141,6 @@ export default function ContactPage() {
             {/* LEFT COLUMN: Executive Headline, Typewriter, & 4 Direct Channels */}
             <div className="lg:col-span-6 space-y-4 sm:space-y-5 animate-fade-in-up">
               
-              {/* Breadcrumb Navigation */}
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-                <Link href="/" className="hover:text-slate-900 transition-colors">Home</Link>
-                <span>/</span>
-                <span className="text-[#423887] font-bold">Contact & Engineering Desks</span>
-              </div>
-
               {/* Status Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50/80 border border-purple-100 text-[11px] sm:text-xs font-bold text-[#863078] uppercase tracking-wider">
                 <span className="relative flex h-2 w-2">

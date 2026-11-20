@@ -85,13 +85,6 @@ export default function BookSurveyPage() {
     <div className="min-h-screen bg-[#fcfcfe] text-slate-800 pt-6 sm:pt-8 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-[#423887] transition-colors">Home</Link>
-          <span className="text-slate-300">/</span>
-          <span className="text-[#863078] font-semibold">Book a Free Site Survey</span>
-        </nav>
-
         {/* Hero Header */}
         <div className="mb-10 text-center max-w-3xl mx-auto relative overflow-hidden py-4">
           <div className="ambient-orb w-72 h-72 -top-16 -left-16 bg-purple-200/30 animate-pulse-slow" />

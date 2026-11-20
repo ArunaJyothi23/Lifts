@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PROJECTS_DATA, COMPANY_INFO } from "@/data/siteData";
@@ -12,13 +12,29 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 export default function ProjectsPage() {
   const [surveyOpen, setSurveyOpen] = useState(false);
   const [filter, setFilter] = useState<string>("All");
+  const [projectsList, setProjectsList] = useState(PROJECTS_DATA);
+
+  // Sync real-time edits from Admin CMS
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("vl_cms_projects");
+      if (stored) {
+        const cmsProjects = JSON.parse(stored);
+        if (Array.isArray(cmsProjects) && cmsProjects.length > 0) {
+          setProjectsList(cmsProjects);
+        }
+      }
+    } catch (e) {
+      console.warn("Could not sync CMS projects:", e);
+    }
+  }, []);
 
   const categories = ["All", "Residential", "Commercial", "Hospital", "Industrial"];
 
   const filteredProjects =
     filter === "All"
-      ? PROJECTS_DATA
-      : PROJECTS_DATA.filter((p) => p.category === filter);
+      ? projectsList
+      : projectsList.filter((p: any) => p.category?.toLowerCase() === filter.toLowerCase());
 
   const clientList = [
     { name: "Vasavi Group", city: "Hyderabad & Karimnagar", segment: "Gated Communities" },
@@ -50,13 +66,6 @@ export default function ProjectsPage() {
             
             {/* Left Column: Projects Story & Executed Landmarks */}
             <div className="lg:col-span-7 space-y-4 sm:space-y-4.5">
-              {/* Breadcrumbs */}
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-                <Link href="/" className="hover:text-slate-900 transition-colors">Home</Link>
-                <span>/</span>
-                <span className="text-[#423887] font-bold">Projects Gallery</span>
-              </div>
-
               {/* Verified Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50/80 border border-purple-100 text-[11px] sm:text-xs font-bold text-[#863078] uppercase tracking-wider">
                 <span className="relative flex h-2 w-2">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PRODUCTS_CATALOG, COMPANY_INFO } from "@/data/siteData";
@@ -12,7 +12,51 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 export default function ProductsPage() {
   const [surveyOpen, setSurveyOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [catalog, setCatalog] = useState(PRODUCTS_CATALOG);
   const [selectedProduct, setSelectedProduct] = useState<string>(PRODUCTS_CATALOG[0].id);
+
+  // Sync real-time edits from Admin CMS
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("vl_cms_products");
+      if (stored) {
+        const cmsProducts = JSON.parse(stored);
+        if (Array.isArray(cmsProducts) && cmsProducts.length > 0) {
+          setCatalog((prev) => {
+            return prev.map((p) => {
+              const cmsMatch = cmsProducts.find(
+                (cp: any) =>
+                  cp.id === p.id ||
+                  cp.name?.toLowerCase() === p.name?.toLowerCase() ||
+                  (p.id === "vl-home-luxe" && cp.id === "prod-1") ||
+                  (p.id === "vl-commercial-mrl" && cp.id === "prod-2") ||
+                  (p.id === "vl-medicare-hospital" && cp.id === "prod-3") ||
+                  (p.id === "vl-freight-industrial" && cp.id === "prod-4") ||
+                  (p.id === "vl-panoramic-capsule" && cp.id === "prod-5") ||
+                  (p.id === "vl-hydraulic-villa" && cp.id === "prod-6")
+              );
+              if (cmsMatch) {
+                return {
+                  ...p,
+                  name: cmsMatch.name || p.name,
+                  tagline: cmsMatch.tagline || p.tagline,
+                  description: cmsMatch.description || p.description,
+                  capacity: cmsMatch.capacity || p.capacity,
+                  speed: cmsMatch.speed || p.speed,
+                  floors: cmsMatch.floors || p.floors,
+                  machineRoom: cmsMatch.machineRoom || p.machineRoom,
+                  image: cmsMatch.image || p.image,
+                };
+              }
+              return p;
+            });
+          });
+        }
+      }
+    } catch (e) {
+      console.warn("Could not sync CMS products:", e);
+    }
+  }, []);
 
   const categories = [
     "All",
@@ -98,8 +142,8 @@ export default function ProductsPage() {
 
   const filteredCatalog =
     selectedCategory === "All"
-      ? PRODUCTS_CATALOG
-      : PRODUCTS_CATALOG.filter((p) => p.category.toLowerCase() === selectedCategory.toLowerCase());
+      ? catalog
+      : catalog.filter((p) => p.category.toLowerCase() === selectedCategory.toLowerCase());
 
   const cabinFinishes = [
     { title: "Rose Gold Mirror Titanium", desc: "Luxury PVD coated reflective finish for high-end villas & boutique hotels.", image: "/images/cabin-study.png" },
@@ -108,7 +152,7 @@ export default function ProductsPage() {
     { title: "Etched Gold Patterned SS", desc: "Artistic laser-etched floral and geometric panels for grand residential lobbies.", image: "/images/residential.png" },
   ];
 
-  const currentProd = PRODUCTS_CATALOG.find((p) => p.id === selectedProduct) || PRODUCTS_CATALOG[0];
+  const currentProd = catalog.find((p) => p.id === selectedProduct) || catalog[0];
 
   return (
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
@@ -125,13 +169,6 @@ export default function ProductsPage() {
             
             {/* Left Column: Product Story & Specifications */}
             <div className="lg:col-span-7 space-y-4 sm:space-y-4.5">
-              {/* Breadcrumbs */}
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-                <Link href="/" className="hover:text-slate-900 transition-colors">Home</Link>
-                <span>/</span>
-                <span className="text-[#423887] font-bold">Products & Catalog</span>
-              </div>
-
               {/* Verified Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50/80 border border-purple-100 text-[11px] sm:text-xs font-bold text-[#863078] uppercase tracking-wider">
                 <span className="relative flex h-2 w-2">
@@ -401,7 +438,7 @@ export default function ProductsPage() {
                     onClick={() => {
                       setSelectedCategory(cat);
                       if (cat !== "All") {
-                        const firstInCat = PRODUCTS_CATALOG.find((p) => p.category.toLowerCase() === cat.toLowerCase());
+                        const firstInCat = catalog.find((p) => p.category.toLowerCase() === cat.toLowerCase());
                         if (firstInCat) setSelectedProduct(firstInCat.id);
                       }
                     }}

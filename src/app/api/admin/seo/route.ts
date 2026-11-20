@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server";
+import {
+  getSeoConfigsFromFirestore,
+  saveSeoConfigToFirestore,
+} from "@/lib/firestoreService";
 
 export interface SeoPageConfig {
   slug: string;
@@ -188,9 +192,27 @@ let SEO_STORE: Record<string, SeoPageConfig> = {
 };
 
 export async function GET() {
+  try {
+    const dbPages = await getSeoConfigsFromFirestore();
+    if (dbPages && dbPages.length > 0) {
+      const merged: Record<string, SeoPageConfig> = { ...SEO_STORE };
+      for (const p of dbPages) {
+        merged[p.slug] = p;
+      }
+      return NextResponse.json({
+        success: true,
+        pages: Object.values(merged),
+        storage: "firebase_firestore",
+      });
+    }
+  } catch (err) {
+    console.warn("Falling back to local SEO store:", err);
+  }
+
   return NextResponse.json({
     success: true,
     pages: Object.values(SEO_STORE),
+    storage: "in_memory_fallback",
   });
 }
 
@@ -215,16 +237,22 @@ export async function POST(req: Request) {
       lastUpdated: new Date().toISOString(),
     };
 
-    SEO_STORE[body.slug] = {
+    const updatedConfig: SeoPageConfig = {
       ...current,
       ...body,
       lastUpdated: new Date().toISOString(),
     };
 
+    SEO_STORE[body.slug] = updatedConfig;
+
+    // Save to Firestore
+    const savedToFirestore = await saveSeoConfigToFirestore(updatedConfig);
+
     return NextResponse.json({
       success: true,
       message: `SEO settings for ${body.slug} saved successfully.`,
-      config: SEO_STORE[body.slug],
+      config: updatedConfig,
+      persistedToDb: savedToFirestore,
     });
   } catch (err: any) {
     return NextResponse.json({ success: false, error: err.message }, { status: 500 });

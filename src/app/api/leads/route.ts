@@ -1,4 +1,9 @@
 import { NextResponse } from "next/server";
+import {
+  addLeadToFirestore,
+  getLeadsFromFirestore,
+  updateLeadStatusInFirestore,
+} from "@/lib/firestoreService";
 
 export interface LeadSubmission {
   id: string;
@@ -26,7 +31,7 @@ export interface LeadSubmission {
   status: "New" | "Contacted" | "Site Survey Scheduled" | "Survey Completed" | "Quote Sent";
 }
 
-// In-memory lead storage for demonstration & admin retrieval
+// In-memory lead storage for demonstration & fallback
 const LEADS_STORE: LeadSubmission[] = [
   {
     id: "LEAD-DEMO-024",
@@ -98,7 +103,7 @@ export async function POST(req: Request) {
     }
 
     const newLead: LeadSubmission = {
-      id: `LEAD-DEMO-${String(Math.floor(100 + Math.random() * 900))}`,
+      id: `LEAD-VL-${Date.now().toString().slice(-6)}`,
       createdAt: new Date().toISOString(),
       formType: body.formType || "quote-request",
       name: body.name.trim(),
@@ -123,6 +128,10 @@ export async function POST(req: Request) {
       status: "New",
     };
 
+    // Save to Firestore (persists to cloud if configured)
+    const savedToFirestore = await addLeadToFirestore(newLead);
+
+    // Keep in in-memory list as local cache / fallback
     LEADS_STORE.unshift(newLead);
 
     // Build prefilled WhatsApp direct URL
@@ -136,6 +145,7 @@ export async function POST(req: Request) {
       message: "Enquiry submitted successfully. Our team will review your requirements and contact you.",
       leadId: newLead.id,
       whatsappLink,
+      persistedToDb: savedToFirestore,
     });
   } catch (error) {
     console.error("Failed to submit lead:", error);
@@ -147,9 +157,44 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
-  return NextResponse.json({
-    success: true,
-    leads: LEADS_STORE,
-    total: LEADS_STORE.length,
-  });
+  try {
+    const firestoreLeads = await getLeadsFromFirestore();
+    const leads = firestoreLeads && firestoreLeads.length > 0 ? firestoreLeads : LEADS_STORE;
+
+    return NextResponse.json({
+      success: true,
+      leads,
+      total: leads.length,
+      storage: firestoreLeads && firestoreLeads.length > 0 ? "firebase_firestore" : "in_memory_fallback",
+    });
+  } catch (err) {
+    return NextResponse.json({
+      success: true,
+      leads: LEADS_STORE,
+      total: LEADS_STORE.length,
+      storage: "in_memory_fallback",
+    });
+  }
+}
+
+export async function PATCH(req: Request) {
+  try {
+    const body = await req.json();
+    const { id, status } = body;
+
+    if (!id || !status) {
+      return NextResponse.json({ success: false, error: "Lead id and status are required" }, { status: 400 });
+    }
+
+    await updateLeadStatusInFirestore(id, status);
+
+    const existing = LEADS_STORE.find((l) => l.id === id);
+    if (existing) {
+      existing.status = status;
+    }
+
+    return NextResponse.json({ success: true, message: `Lead ${id} status updated to ${status}` });
+  } catch (err: any) {
+    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+  }
 }

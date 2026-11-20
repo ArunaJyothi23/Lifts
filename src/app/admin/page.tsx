@@ -5,6 +5,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { SeoPageConfig } from "@/app/api/admin/seo/route";
+import { isFirebaseConfigured, auth } from "@/lib/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import {
+  getProductsFromFirestore,
+  saveProductToFirestore,
+  deleteProductFromFirestore,
+  getProjectsFromFirestore,
+  saveProjectToFirestore,
+  deleteProjectFromFirestore,
+  seedInitialFirestoreData,
+} from "@/lib/firestoreService";
 
 type AdminSection =
   | "dashboard"
@@ -612,41 +623,126 @@ export default function AdminDashboardPage() {
     operatingHours: "Mon - Sat: 9:00 AM - 7:30 PM",
     emergencyDesk: "24 Hours / 365 Days Emergency Breakdown Support",
   });
+  const [isSeeding, setIsSeeding] = useState(false);
+
+  const handleSeedDatabase = async () => {
+    setIsSeeding(true);
+    try {
+      const res = await seedInitialFirestoreData({
+        products,
+        projects,
+        seoPages,
+        leads,
+      });
+      showToast(res.message);
+    } catch (err: any) {
+      showToast(err.message || "Failed to sync to Firestore.");
+    } finally {
+      setIsSeeding(false);
+    }
+  };
 
   // Session Authentication Check
   const [sessionChecked, setSessionChecked] = useState(false);
   const [adminUser, setAdminUser] = useState("admin@visionlifts.com");
 
+  // Strict Firebase Authentication Listener & Session Check
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("vl_admin_session");
-      if (!stored) {
-        router.push("/admin/login");
-        return;
-      }
-      try {
-        const parsed = JSON.parse(stored);
-        if (parsed?.adminUser) {
-          setAdminUser(parsed.adminUser);
+      if (isFirebaseConfigured && auth) {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (!user) {
+            localStorage.removeItem("vl_admin_session");
+            router.push("/admin/login");
+          } else {
+            setAdminUser(user.email || "admin@visionlifts.com");
+            setSessionChecked(true);
+          }
+        });
+        return () => unsubscribe();
+      } else {
+        const stored = localStorage.getItem("vl_admin_session");
+        if (!stored) {
+          router.push("/admin/login");
+          return;
         }
-      } catch {
-        // use default
+        try {
+          const parsed = JSON.parse(stored);
+          if (parsed?.adminUser) {
+            setAdminUser(parsed.adminUser);
+          }
+        } catch {
+          // fallback
+        }
+        setSessionChecked(true);
       }
-      setSessionChecked(true);
     }
   }, [router]);
 
-  // Fetch SEO data and Leads on mount
+  // Fetch SEO data, Leads, and Cloud Catalog on mount
   useEffect(() => {
     if (sessionChecked) {
       fetchSeoPages();
       fetchLeads();
+      fetchCatalogData();
     }
   }, [sessionChecked]);
 
   const showToast = (msg: string) => {
     setActionToast(msg);
     setTimeout(() => setActionToast(""), 4000);
+  };
+
+  const fetchCatalogData = async () => {
+    // 1. Sync from local CMS storage if previously edited
+    if (typeof window !== "undefined") {
+      try {
+        const storedProds = localStorage.getItem("vl_cms_products");
+        if (storedProds) {
+          const parsed = JSON.parse(storedProds);
+          if (Array.isArray(parsed) && parsed.length > 0) setProducts(parsed);
+        }
+        const storedServs = localStorage.getItem("vl_cms_services");
+        if (storedServs) {
+          const parsed = JSON.parse(storedServs);
+          if (Array.isArray(parsed) && parsed.length > 0) setServices(parsed);
+        }
+        const storedProjs = localStorage.getItem("vl_cms_projects");
+        if (storedProjs) {
+          const parsed = JSON.parse(storedProjs);
+          if (Array.isArray(parsed) && parsed.length > 0) setProjects(parsed);
+        }
+      } catch (e) {
+        console.warn("Could not parse local CMS cache:", e);
+      }
+    }
+    // 2. Sync from Firestore if available
+    try {
+      const dbProds = await getProductsFromFirestore<ProductItem>();
+      if (dbProds && dbProds.length > 0) {
+        setProducts(dbProds);
+      }
+      const dbProjects = await getProjectsFromFirestore<ProjectItem>();
+      if (dbProjects && dbProjects.length > 0) {
+        setProjects(dbProjects);
+      }
+    } catch (err) {
+      console.warn("Could not load catalog from Firestore:", err);
+    }
+  };
+
+  const handleUpdateLeadStatus = async (id: string, newStatus: any) => {
+    setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, status: newStatus } : l)));
+    showToast(`Lead survey status updated to ${newStatus}`);
+    try {
+      await fetch("/api/leads", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status: newStatus }),
+      });
+    } catch (err) {
+      console.error("Failed to update status on server:", err);
+    }
   };
 
   const fetchSeoPages = async () => {
@@ -720,29 +816,50 @@ export default function AdminDashboardPage() {
     }
   };
 
-  // Product Actions
+  // Product Actions (Synced to LocalStorage & Firestore for Instant Live Reflection)
   const toggleProductStatus = (id: string) => {
-    setProducts((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, status: p.status === "Live" ? "Draft" : "Live" } : p))
-    );
-    showToast("Product publication status updated.");
+    setProducts((prev) => {
+      const updated = prev.map((p) => {
+        if (p.id === id) {
+          const u = { ...p, status: p.status === "Live" ? ("Draft" as const) : ("Live" as const) };
+          saveProductToFirestore(u);
+          return u;
+        }
+        return p;
+      });
+      if (typeof window !== "undefined") {
+        localStorage.setItem("vl_cms_products", JSON.stringify(updated));
+      }
+      return updated;
+    });
+    showToast("Product publication status updated on live site.");
   };
 
   const deleteProduct = (id: string) => {
     if (confirm("Are you sure you want to delete this elevator product?")) {
-      setProducts((prev) => prev.filter((p) => p.id !== id));
-      showToast("Product deleted from CMS.");
+      setProducts((prev) => {
+        const updated = prev.filter((p) => p.id !== id);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("vl_cms_products", JSON.stringify(updated));
+        }
+        return updated;
+      });
+      deleteProductFromFirestore(id);
+      showToast("Product deleted from live CMS.");
     }
   };
 
   const handleSaveProduct = (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingProduct) return;
-    setProducts((prev) =>
-      prev.map((p) => (p.id === editingProduct.id ? editingProduct : p))
-    );
+    const updated = products.map((p) => (p.id === editingProduct.id ? editingProduct : p));
+    setProducts(updated);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("vl_cms_products", JSON.stringify(updated));
+    }
+    saveProductToFirestore(editingProduct);
     setEditingProduct(null);
-    showToast(`"${editingProduct.name}" updated successfully!`);
+    showToast(`"${editingProduct.name}" updated successfully and live on site!`);
   };
 
   const handleCreateProduct = (e: React.FormEvent) => {
@@ -762,22 +879,37 @@ export default function AdminDashboardPage() {
       slug: form.slug.value || "/products",
       status: "Live",
     };
-    setProducts([newProduct, ...products]);
+    const updated = [newProduct, ...products];
+    setProducts(updated);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("vl_cms_products", JSON.stringify(updated));
+    }
+    saveProductToFirestore(newProduct);
     setIsAddProductOpen(false);
-    showToast(`"${newProduct.name}" added to product catalog!`);
+    showToast(`"${newProduct.name}" published live to product catalog!`);
   };
 
   // Service Actions
   const toggleServiceStatus = (id: string) => {
-    setServices((prev) =>
-      prev.map((s) => (s.id === id ? { ...s, status: s.status === "Live" ? "Draft" : "Live" } : s))
-    );
+    setServices((prev) => {
+      const updated = prev.map((s) => (s.id === id ? { ...s, status: s.status === "Live" ? ("Draft" as const) : ("Live" as const) } : s));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("vl_cms_services", JSON.stringify(updated));
+      }
+      return updated;
+    });
     showToast("Service status updated.");
   };
 
   const deleteService = (id: string) => {
     if (confirm("Are you sure you want to delete this service?")) {
-      setServices((prev) => prev.filter((s) => s.id !== id));
+      setServices((prev) => {
+        const updated = prev.filter((s) => s.id !== id);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("vl_cms_services", JSON.stringify(updated));
+        }
+        return updated;
+      });
       showToast("Service deleted from CMS.");
     }
   };
@@ -785,9 +917,11 @@ export default function AdminDashboardPage() {
   const handleSaveService = (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingService) return;
-    setServices((prev) =>
-      prev.map((s) => (s.id === editingService.id ? editingService : s))
-    );
+    const updated = services.map((s) => (s.id === editingService.id ? editingService : s));
+    setServices(updated);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("vl_cms_services", JSON.stringify(updated));
+    }
     setEditingService(null);
     showToast(`"${editingService.name}" updated successfully!`);
   };
@@ -807,12 +941,23 @@ export default function AdminDashboardPage() {
       slug: form.slug.value || "/services",
       status: "Live",
     };
-    setServices([newService, ...services]);
+    const updated = [newService, ...services];
+    setServices(updated);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("vl_cms_services", JSON.stringify(updated));
+    }
     setIsAddServiceOpen(false);
     showToast(`"${newService.name}" published to services!`);
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    if (auth) {
+      try {
+        await signOut(auth);
+      } catch (err) {
+        console.error("Sign out error:", err);
+      }
+    }
     if (typeof window !== "undefined") {
       localStorage.removeItem("vl_admin_session");
     }
@@ -994,9 +1139,11 @@ export default function AdminDashboardPage() {
                 <div className="text-xs font-bold text-slate-900 truncate" title={adminUser}>
                   {adminUser}
                 </div>
-                <div className="text-[9px] font-bold tracking-wider text-emerald-600 uppercase flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  ADMINISTRATOR
+                <div className="text-[9px] font-bold tracking-wider uppercase flex items-center gap-1">
+                  <span className={`w-1.5 h-1.5 rounded-full ${isFirebaseConfigured ? "bg-emerald-500 animate-pulse" : "bg-emerald-500"}`}></span>
+                  <span className={isFirebaseConfigured ? "text-emerald-600 font-extrabold" : "text-slate-500"}>
+                    {isFirebaseConfigured ? "FIREBASE CLOUD" : "ADMINISTRATOR"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -1661,6 +1808,7 @@ export default function AdminDashboardPage() {
                         onClick={() => {
                           if (confirm("Delete this project?")) {
                             setProjects(projects.filter((p) => p.id !== proj.id));
+                            deleteProjectFromFirestore(proj.id);
                             showToast("Project deleted.");
                           }
                         }}
@@ -1864,10 +2012,7 @@ export default function AdminDashboardPage() {
                           <td className="py-3.5 text-right pr-2">
                             <select
                               value={lead.status || "New"}
-                              onChange={(e) => {
-                                setLeads(leads.map((l) => (l.id === lead.id ? { ...l, status: e.target.value } : l)));
-                                showToast("Lead survey status updated.");
-                              }}
+                              onChange={(e) => handleUpdateLeadStatus(lead.id, e.target.value)}
                               className="px-2.5 py-1 text-xs font-bold rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer"
                             >
                               <option value="New">New</option>
@@ -2233,6 +2378,36 @@ export default function AdminDashboardPage() {
                 <p className="text-xs sm:text-sm text-slate-500 mt-1">
                   Update primary business phone lines, 9700 123 878 statewide hotline, and office coordinates.
                 </p>
+              </div>
+
+              {/* Cloud Firestore Management Hub */}
+              <div className="bg-gradient-to-r from-[#0b1120] to-[#1e1b4b] text-white rounded-2xl p-6 sm:p-7 border border-indigo-900/50 shadow-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-2xl">🔥</span>
+                      <h2 className="text-base font-bold text-white tracking-tight">
+                        Cloud Firestore (vision-lifts-portal)
+                      </h2>
+                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${isFirebaseConfigured ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40" : "bg-amber-500/20 text-amber-300"}`}>
+                        {isFirebaseConfigured ? "Connected" : "Local Mode"}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 max-w-xl leading-relaxed">
+                      Sync your entire elevator catalog, projects, SEO configurations, and demo leads directly into your live Firebase Firestore database with one click.
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleSeedDatabase}
+                    disabled={isSeeding}
+                    className="shrink-0 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-xs rounded-xl shadow-lg transition-all active:scale-95 disabled:opacity-50 cursor-pointer flex items-center gap-2"
+                  >
+                    <span>{isSeeding ? "⏳" : "⚡"}</span>
+                    <span>{isSeeding ? "Syncing..." : "Seed All Data to Firestore"}</span>
+                  </button>
+                </div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs">
@@ -2987,9 +3162,14 @@ export default function AdminDashboardPage() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                setProjects(projects.map((p) => (p.id === editingProject.id ? editingProject : p)));
+                const updated = projects.map((p) => (p.id === editingProject.id ? editingProject : p));
+                setProjects(updated);
+                if (typeof window !== "undefined") {
+                  localStorage.setItem("vl_cms_projects", JSON.stringify(updated));
+                }
+                saveProjectToFirestore(editingProject);
                 setEditingProject(null);
-                showToast("Project updated successfully!");
+                showToast("Project updated successfully and live!");
               }}
               className="space-y-4 text-xs"
             >
@@ -3111,9 +3291,14 @@ export default function AdminDashboardPage() {
                   slug: "/projects",
                   status: "Live",
                 };
-                setProjects([newProj, ...projects]);
+                const updated = [newProj, ...projects];
+                setProjects(updated);
+                if (typeof window !== "undefined") {
+                  localStorage.setItem("vl_cms_projects", JSON.stringify(updated));
+                }
+                saveProjectToFirestore(newProj);
                 setIsAddProjectOpen(false);
-                showToast("New project published to portfolio!");
+                showToast("New project published to live portfolio!");
               }}
               className="space-y-4 text-xs"
             >

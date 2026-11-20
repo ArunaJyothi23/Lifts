@@ -492,9 +492,9 @@ export default function AboutPage() {
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-[#863078]">
-                    <span>Step {j.step}</span>
-                    <span className="group-hover:translate-x-1 transition-transform">Complete Guidance →</span>
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400">
+                    <span className="text-[#863078]">Step {j.step}</span>
+                    <span className="text-slate-400 font-semibold">Standard Process</span>
                   </div>
                 </div>
               </ScrollReveal>

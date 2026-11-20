@@ -49,13 +49,6 @@ export default function CareersPage() {
     <div className="min-h-screen bg-[#fcfcfe] text-slate-800 pt-6 sm:pt-8 pb-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-[#423887] transition-colors">Home</Link>
-          <span className="text-slate-300">/</span>
-          <span className="text-[#863078] font-semibold">Careers</span>
-        </nav>
-
         {/* Hero Header */}
         <div className="mb-12 text-center max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-[11px] font-bold uppercase tracking-wider text-[#863078] mb-3">

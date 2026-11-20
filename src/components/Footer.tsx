@@ -22,9 +22,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12">
           {/* Column 1: Brand & Executive Summary */}
-          <div className="lg:col-span-4 space-y-3">
-            <Link href="/" className="inline-block">
-              <div className="relative h-12 w-44">
+          <div className="lg:col-span-4 space-y-3.5">
+            <Link href="/" className="inline-block transition-transform hover:scale-[1.02]">
+              <div className="relative h-14 sm:h-16 w-52 sm:w-60">
                 <Image
                   src="/images/vision-lifts-logo.png"
                   alt="Vision Lifts & Solutions"
