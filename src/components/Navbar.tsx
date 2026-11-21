@@ -507,6 +507,7 @@ export default function Navbar() {
                                 <Link
                                   key={item.id}
                                   href={item.href}
+                                  onClick={() => setActiveDropdown(null)}
                                   onMouseEnter={() => setHoveredSolutionId(item.id)}
                                   className={`group flex items-center justify-between p-2 rounded-xl transition-all ${isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
                                     }`}
@@ -549,6 +550,7 @@ export default function Navbar() {
                                 <Link
                                   key={item.id}
                                   href={item.href}
+                                  onClick={() => setActiveDropdown(null)}
                                   onMouseEnter={() => setHoveredSolutionId(item.id)}
                                   className={`group flex items-center justify-between p-2 rounded-xl transition-all ${isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
                                     }`}
@@ -605,22 +607,26 @@ export default function Navbar() {
                             {activeSolution.cardDesc}
                           </p>
 
+                          {/* High-visibility primary action button */}
                           <Link
                             href={activeSolution.href}
-                            className="inline-flex items-center gap-1 text-[12px] font-bold text-[#423887] underline underline-offset-4 hover:text-[#863078] transition-colors mt-3"
+                            onClick={() => setActiveDropdown(null)}
+                            className="btn-sheen mt-3 w-full py-2.5 px-4 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-2 shadow-sm transition-all active:scale-98"
+                            style={{ color: "#ffffff" }}
                           >
-                            Explore {activeSolution.title.split("&")[0]} specs →
+                            <span>Explore {activeSolution.title.split("&")[0]} Specs</span>
+                            <span className="text-amber-300">→</span>
                           </Link>
                         </div>
 
-                        <div className="pt-4 border-t border-slate-100 mt-4">
+                        <div className="pt-3 border-t border-slate-100 mt-3">
                           <button
                             type="button"
                             onClick={() => {
                               setActiveDropdown(null);
                               setSurveyModalOpen(true);
                             }}
-                            className="w-full py-2.5 px-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-bold text-center transition-all shadow-xs"
+                            className="w-full py-2 px-3 bg-purple-50 hover:bg-purple-100 text-[#423887] border border-purple-200/90 rounded-xl text-xs font-bold text-center transition-all shadow-2xs hover:scale-102 active:scale-98"
                           >
                             Book a Free Site Survey
                           </button>
@@ -770,6 +776,7 @@ export default function Navbar() {
                               <Link
                                 key={item.id}
                                 href={item.href}
+                                onClick={() => setActiveDropdown(null)}
                                 onMouseEnter={() => setHoveredServiceId(item.id)}
                                 className={`group flex items-center justify-between p-2 rounded-xl transition-all ${isHovered ? "bg-purple-50/70" : "hover:bg-slate-50"
                                   }`}
@@ -827,16 +834,20 @@ export default function Navbar() {
 
                           <Link
                             href={activeService.href}
-                            className="inline-flex items-center gap-1 text-[12px] font-bold text-[#423887] underline underline-offset-4 hover:text-[#863078] transition-colors mt-3"
+                            onClick={() => setActiveDropdown(null)}
+                            className="btn-sheen mt-3 w-full py-2.5 px-4 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-2 shadow-sm transition-all active:scale-98"
+                            style={{ color: "#ffffff" }}
                           >
-                            Compare AMC plans →
+                            <span>Compare AMC Plans</span>
+                            <span className="text-amber-300">→</span>
                           </Link>
                         </div>
 
-                        <div className="pt-4 border-t border-slate-100 mt-4">
+                        <div className="pt-3 border-t border-slate-100 mt-3">
                           <Link
                             href="/book-survey"
-                            className="block w-full py-2.5 px-3 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-bold text-center transition-all shadow-xs"
+                            onClick={() => setActiveDropdown(null)}
+                            className="block w-full py-2 px-3 bg-purple-50 hover:bg-purple-100 text-[#423887] border border-purple-200/90 rounded-xl text-xs font-bold text-center transition-all shadow-2xs hover:scale-102 active:scale-98"
                           >
                             Book Free Safety Audit
                           </Link>

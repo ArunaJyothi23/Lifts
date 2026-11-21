@@ -999,15 +999,97 @@ export default function AdminDashboardPage() {
 
   // Sidebar navigation items
   const navItems = [
-    { key: "products", label: "Products", icon: "🛗", badge: `${products.length}` },
-    { key: "services", label: "Services", icon: "🛠️", badge: `${services.length}` },
-    { key: "projects", label: "Projects", icon: "📁", badge: `${projects.length}` },
-    { key: "jobs", label: "Job Postings", icon: "💼", badge: `${jobs.length}` },
-    { key: "applications", label: "Applications", icon: "👥", badge: "Candidates" },
-    { key: "leads", label: "Leads & Surveys", icon: "📋", badge: "Leads" },
-    { key: "enquiries", label: "Enquiries", icon: "💬", badge: `${enquiries.filter((e) => e.status === "Unread").length} New` },
-    { key: "seo", label: "SEO & Meta Engine", icon: "🌐", badge: "Engine" },
-    { key: "settings", label: "Site Settings", icon: "⚙️", badge: null },
+    {
+      key: "products",
+      label: "Products",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+      ),
+      badge: `${products.length}`,
+    },
+    {
+      key: "services",
+      label: "Services",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+      badge: `${services.length}`,
+    },
+    {
+      key: "projects",
+      label: "Projects",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      ),
+      badge: `${projects.length}`,
+    },
+    {
+      key: "jobs",
+      label: "Job Postings",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+      badge: `${jobs.length}`,
+    },
+    {
+      key: "applications",
+      label: "Applications",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      ),
+      badge: "Candidates",
+    },
+    {
+      key: "leads",
+      label: "Leads & Surveys",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+        </svg>
+      ),
+      badge: "Leads",
+    },
+    {
+      key: "enquiries",
+      label: "Enquiries",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+      ),
+      badge: `${enquiries.filter((e) => e.status === "Unread").length} New`,
+    },
+    {
+      key: "seo",
+      label: "SEO & Meta Engine",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      ),
+      badge: "Engine",
+    },
+    {
+      key: "settings",
+      label: "Site Settings",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+      ),
+      badge: null,
+    },
   ];
 
   if (!sessionChecked) {
@@ -1072,74 +1154,81 @@ export default function AdminDashboardPage() {
         <div className="p-3 space-y-5 flex-1 overflow-y-auto scrollbar-none">
           {/* Section: OVERVIEW */}
           <div>
-            <div className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+            <div className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
               OVERVIEW
             </div>
             <button
               type="button"
               onClick={() => setActiveTab("dashboard")}
-              className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs transition-all cursor-pointer ${activeTab === "dashboard"
-                  ? "bg-[#f0f4ff] text-[#423887] shadow-2xs font-bold"
+              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs transition-all cursor-pointer ${activeTab === "dashboard"
+                  ? "bg-purple-50/80 text-[#423887] shadow-2xs font-bold border-l-2 border-[#863078]"
                   : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-semibold"
                 }`}
             >
-              <span className="text-base">🗂️</span>
+              <svg className={`w-4 h-4 shrink-0 ${activeTab === "dashboard" ? "text-[#863078]" : "text-slate-400"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
               <span>Dashboard Overview</span>
             </button>
           </div>
 
           {/* Section: WEBSITE MANAGEMENT */}
           <div>
-            <div className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+            <div className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
               WEBSITE MANAGEMENT
             </div>
             <nav className="space-y-0.5">
-              {navItems.map((item) => (
-                <button
-                  key={item.key}
-                  type="button"
-                  onClick={() => setActiveTab(item.key as AdminSection)}
-                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all cursor-pointer ${activeTab === item.key
-                      ? "bg-[#f0f4ff] text-[#423887] font-bold shadow-2xs"
-                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium"
-                    }`}
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-base">{item.icon}</span>
-                    <span>{item.label}</span>
-                  </div>
-                  {item.badge && (
-                    <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">
-                      {item.badge}
-                    </span>
-                  )}
-                </button>
-              ))}
+              {navItems.map((item) => {
+                const isActive = activeTab === item.key;
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={() => setActiveTab(item.key as AdminSection)}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all cursor-pointer ${isActive
+                        ? "bg-purple-50/80 text-[#423887] font-bold shadow-2xs border-l-2 border-[#863078]"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium"
+                      }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className={isActive ? "text-[#863078]" : "text-slate-400"}>{item.icon}</span>
+                      <span>{item.label}</span>
+                    </div>
+                    {item.badge && (
+                      <span className={`px-2 py-0.5 rounded-md text-[10px] font-semibold border ${isActive ? "bg-white text-[#423887] border-purple-200" : "bg-slate-50 text-slate-500 border-slate-200"}`}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
             </nav>
           </div>
         </div>
 
         {/* Pinned Bottom Footer (Never scrolls away) */}
-        <div className="p-3 border-t border-slate-100 space-y-2 shrink-0">
+        <div className="p-3 border-t border-slate-100 space-y-2 shrink-0 bg-slate-50/50">
           <Link
             href="/"
             target="_blank"
-            className="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-bold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200/90 rounded-xl transition-all shadow-2xs hover:border-[#423887]/30 group"
           >
-            <span>↗</span>
             <span>View Live Website</span>
+            <svg className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#423887] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
           </Link>
 
-          <div className="p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+          <div className="p-2.5 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 min-w-0">
-              <div className="w-7 h-7 rounded-full bg-[#423887] text-white flex items-center justify-center text-xs font-black shrink-0">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#a22b51] via-[#863078] to-[#423887] text-white flex items-center justify-center text-[11px] font-black shrink-0 shadow-2xs">
                 AD
               </div>
-              <div className="leading-tight truncate max-w-[130px]">
+              <div className="leading-tight truncate max-w-[115px]">
                 <div className="text-xs font-bold text-slate-900 truncate" title={adminUser}>
                   {adminUser}
                 </div>
-                <div className="text-[9px] font-bold tracking-wider uppercase flex items-center gap-1">
+                <div className="text-[9px] font-bold tracking-wider uppercase flex items-center gap-1 mt-0.5">
                   <span className={`w-1.5 h-1.5 rounded-full ${isFirebaseConfigured ? "bg-emerald-500 animate-pulse" : "bg-emerald-500"}`}></span>
                   <span className={isFirebaseConfigured ? "text-emerald-600 font-extrabold" : "text-slate-500"}>
                     {isFirebaseConfigured ? "FIREBASE CLOUD" : "ADMINISTRATOR"}
@@ -1151,9 +1240,11 @@ export default function AdminDashboardPage() {
               type="button"
               onClick={handleSignOut}
               title="Sign out of Admin Console"
-              className="px-2 py-1 text-[11px] font-bold text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer border border-rose-100 flex items-center gap-1"
+              className="px-2.5 py-1.5 text-xs font-bold text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all cursor-pointer border border-slate-200 hover:border-rose-200 flex items-center gap-1.5 shadow-2xs active:scale-95 shrink-0"
             >
-              <span>⎋</span>
+              <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
               <span>Exit</span>
             </button>
           </div>
@@ -1192,9 +1283,11 @@ export default function AdminDashboardPage() {
               setActiveTab("dashboard");
               setMobileSidebarOpen(false);
             }}
-            className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold bg-[#f0f4ff] text-[#423887]"
+            className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold ${activeTab === "dashboard" ? "bg-purple-50 text-[#423887] border-l-2 border-[#863078]" : "text-slate-600 hover:bg-slate-50"}`}
           >
-            <span>🗂️</span>
+            <svg className="w-4 h-4 shrink-0 text-[#863078]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
             <span>Dashboard Overview</span>
           </button>
 
@@ -1207,11 +1300,11 @@ export default function AdminDashboardPage() {
                   setActiveTab(item.key as AdminSection);
                   setMobileSidebarOpen(false);
                 }}
-                className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs ${activeTab === item.key ? "bg-[#f0f4ff] text-[#423887] font-bold" : "text-slate-600"
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs ${activeTab === item.key ? "bg-purple-50 text-[#423887] font-bold border-l-2 border-[#863078]" : "text-slate-600"
                   }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <span>{item.icon}</span>
+                  <span className={activeTab === item.key ? "text-[#863078]" : "text-slate-400"}>{item.icon}</span>
                   <span>{item.label}</span>
                 </div>
                 {item.badge && (
@@ -1231,8 +1324,10 @@ export default function AdminDashboardPage() {
             target="_blank"
             className="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-bold text-slate-700 bg-white border border-slate-200 rounded-xl"
           >
-            <span>↗</span>
             <span>View Live Website</span>
+            <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
           </Link>
           <div className="flex items-center justify-between p-2 rounded-xl bg-white border border-slate-200">
             <div className="text-xs font-bold text-slate-800 truncate max-w-[130px]">
@@ -1241,7 +1336,7 @@ export default function AdminDashboardPage() {
             <button
               type="button"
               onClick={handleSignOut}
-              className="px-2 py-1 text-[11px] font-bold text-rose-600 bg-rose-50 rounded-lg"
+              className="px-2 py-1 text-[11px] font-bold text-rose-600 bg-rose-50 rounded-lg hover:bg-rose-100 transition-colors"
             >
               Sign Out
             </button>
@@ -1264,11 +1359,9 @@ export default function AdminDashboardPage() {
             >
               ☰
             </button>
-            <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
-              <span>CMS</span>
-              <span>/</span>
-              <span className="font-bold text-slate-900 capitalize">
-                {activeTab === "seo" ? "SEO & Meta Engine" : activeTab}
+            <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
+              <span className="font-extrabold text-slate-900 capitalize text-sm">
+                {activeTab === "seo" ? "SEO & Meta Engine" : activeTab === "dashboard" ? "Dashboard Overview" : activeTab}
               </span>
             </div>
           </div>
@@ -1573,23 +1666,33 @@ export default function AdminDashboardPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab("products")}
-                    className="px-3.5 py-2 bg-[#423887] text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer"
+                    className="flex items-center gap-1.5 px-3.5 py-2 bg-[#423887] hover:bg-[#352c6f] text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95"
                   >
-                    🛗 All Products ({products.length})
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    <span>All Products ({products.length})</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setActiveTab("services")}
-                    className="px-3.5 py-2 bg-white text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all cursor-pointer"
+                    className="flex items-center gap-1.5 px-3.5 py-2 bg-white hover:bg-slate-50 text-slate-700 hover:text-[#423887] border border-slate-200 rounded-xl text-xs font-bold transition-all shadow-2xs cursor-pointer active:scale-95"
                   >
-                    🛠️ All Services ({services.length})
+                    <svg className="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>All Services ({services.length})</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setActiveTab("seo")}
-                    className="px-3.5 py-2 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer"
+                    className="flex items-center gap-1.5 px-3.5 py-2 bg-gradient-to-r from-[#a22b51] via-[#863078] to-[#423887] hover:opacity-95 text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95"
                   >
-                    🌐 SEO Suite
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <span>SEO Suite</span>
                   </button>
                 </div>
               </div>
@@ -1604,8 +1707,10 @@ export default function AdminDashboardPage() {
                     <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                       LEAD REGISTRATIONS
                     </span>
-                    <div className="w-8 h-8 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center text-sm font-bold group-hover:scale-110 transition-transform">
-                      👤
+                    <div className="w-8 h-8 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
                     </div>
                   </div>
                   <div>
@@ -1627,8 +1732,10 @@ export default function AdminDashboardPage() {
                     <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                       PRODUCTS & ASSETS
                     </span>
-                    <div className="w-8 h-8 rounded-full bg-cyan-50 text-cyan-600 flex items-center justify-center text-sm font-bold group-hover:scale-110 transition-transform">
-                      🛗
+                    <div className="w-8 h-8 rounded-full bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                      </svg>
                     </div>
                   </div>
                   <div>
@@ -1650,8 +1757,10 @@ export default function AdminDashboardPage() {
                     <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                       DYNAMIC ROUTES
                     </span>
-                    <div className="w-8 h-8 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-sm font-bold group-hover:scale-110 transition-transform">
-                      📄
+                    <div className="w-8 h-8 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
                     </div>
                   </div>
                   <div>
@@ -1660,7 +1769,7 @@ export default function AdminDashboardPage() {
                     </div>
                     <div className="text-[11px] text-slate-500 mt-1.5 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                      <span>CMS-connected application pages</span>
+                      <span>Connected live application pages</span>
                     </div>
                   </div>
                 </div>

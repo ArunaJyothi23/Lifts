@@ -11,7 +11,6 @@ import ScrollReveal from "@/components/ScrollReveal";
 export default function SafetyTechnologyPage() {
   const [surveyOpen, setSurveyOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
-  const [selectedSafetyTier, setSelectedSafetyTier] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"standards" | "inspection">("standards");
 
   const ardSteps = [
@@ -278,16 +277,10 @@ export default function SafetyTechnologyPage() {
           {/* 8-Tier Cards Grid with Slow Animated Entrance & Hover Dynamics */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {SAFETY_FEATURES_DATA.map((item, idx) => {
-              const isSelected = selectedSafetyTier === idx;
               return (
                 <ScrollReveal key={idx} animation="fadeInUp" delay={idx * 0.07}>
                   <div
-                    onClick={() => setSelectedSafetyTier(isSelected ? null : idx)}
-                    className={`group relative p-6 rounded-3xl border transition-all duration-700 ease-out cursor-pointer flex flex-col justify-between h-full bg-white/95 backdrop-blur-sm ${
-                      isSelected
-                        ? "border-[#863078] shadow-2xl shadow-purple-950/15 ring-2 ring-[#863078]/30 -translate-y-2"
-                        : "border-slate-200/90 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-900/8 hover:-translate-y-2"
-                    }`}
+                    className="group relative p-6 rounded-3xl border border-slate-200/90 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-900/8 hover:-translate-y-2 transition-all duration-500 ease-out flex flex-col justify-between h-full bg-white/95 backdrop-blur-sm"
                   >
                     {/* Top Animated Badge Strip */}
                     <div>
@@ -320,30 +313,6 @@ export default function SafetyTechnologyPage() {
                         {item.description}
                       </p>
                     </div>
-
-                    {/* Interactive Bottom Status Pill */}
-                    <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1.5 text-[10px] font-extrabold text-emerald-600 bg-emerald-50/80 px-2 py-0.5 rounded-full border border-emerald-200/60">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        Active Fail-Safe
-                      </span>
-
-                      <span className="text-[11px] font-bold text-[#863078] group-hover:translate-x-1 transition-transform duration-300 flex items-center gap-1">
-                        {isSelected ? "Close ↑" : "Inspect ↓"}
-                      </span>
-                    </div>
-
-                    {/* Expandable Technical Detail Pop-over on Click */}
-                    {isSelected && (
-                      <div className="mt-3 p-3 rounded-2xl bg-purple-50/80 border border-purple-200 text-slate-700 text-xs animate-fade-in space-y-1.5">
-                        <div className="font-extrabold text-[#423887] text-[11px] uppercase tracking-wider flex items-center gap-1">
-                          <span>⚙️</span> Technical Verification:
-                        </div>
-                        <p className="text-[11px] text-slate-600 leading-relaxed">
-                          Tested to 125% rated load capacity. Incorporates dual-channel redundant contact switches with instant micro-controller trip telemetry.
-                        </p>
-                      </div>
-                    )}
                   </div>
                 </ScrollReveal>
               );
